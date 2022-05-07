@@ -1,0 +1,354 @@
+-- MariaDB dump 10.17  Distrib 10.5.4-MariaDB, for Linux (x86_64)
+--
+-- Host: localhost    Database: shopping_list
+-- ------------------------------------------------------
+-- Server version	10.5.4-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `Beverages_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Beverages_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Beverages_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Beverages_recipe_table`
+--
+
+LOCK TABLES `Beverages_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Beverages_recipe_table` DISABLE KEYS */;
+INSERT INTO `Beverages_recipe_table` VALUES (1,2,'1'),(2,1,'62');
+/*!40000 ALTER TABLE `Beverages_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Bratwurst_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Bratwurst_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Bratwurst_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Bratwurst_recipe_table`
+--
+
+LOCK TABLES `Bratwurst_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Bratwurst_recipe_table` DISABLE KEYS */;
+INSERT INTO `Bratwurst_recipe_table` VALUES (1,3,'9'),(2,1,'10');
+/*!40000 ALTER TABLE `Bratwurst_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Burritos_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Burritos_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Burritos_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Burritos_recipe_table`
+--
+
+LOCK TABLES `Burritos_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Burritos_recipe_table` DISABLE KEYS */;
+INSERT INTO `Burritos_recipe_table` VALUES (1,1,'11'),(2,1,'8'),(3,1,'12'),(4,1,'13');
+/*!40000 ALTER TABLE `Burritos_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Chicken_Drumbsticks_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Chicken_Drumbsticks_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Chicken_Drumbsticks_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Chicken_Drumbsticks_recipe_table`
+--
+
+LOCK TABLES `Chicken_Drumbsticks_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Chicken_Drumbsticks_recipe_table` DISABLE KEYS */;
+INSERT INTO `Chicken_Drumbsticks_recipe_table` VALUES (1,1,'19'),(2,1,'20');
+/*!40000 ALTER TABLE `Chicken_Drumbsticks_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Chicken_wings_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Chicken_wings_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Chicken_wings_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Chicken_wings_recipe_table`
+--
+
+LOCK TABLES `Chicken_wings_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Chicken_wings_recipe_table` DISABLE KEYS */;
+INSERT INTO `Chicken_wings_recipe_table` VALUES (1,1,'23'),(2,1,'22'),(3,1,'67'),(4,1,'68');
+/*!40000 ALTER TABLE `Chicken_wings_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Jalapeno_Poppers_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Jalapeno_Poppers_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Jalapeno_Poppers_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Jalapeno_Poppers_recipe_table`
+--
+
+LOCK TABLES `Jalapeno_Poppers_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Jalapeno_Poppers_recipe_table` DISABLE KEYS */;
+INSERT INTO `Jalapeno_Poppers_recipe_table` VALUES (1,11,'8'),(2,1,'5'),(3,2,'12'),(4,1,'7');
+/*!40000 ALTER TABLE `Jalapeno_Poppers_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Meatballs_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Meatballs_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Meatballs_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Meatballs_recipe_table`
+--
+
+LOCK TABLES `Meatballs_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Meatballs_recipe_table` DISABLE KEYS */;
+INSERT INTO `Meatballs_recipe_table` VALUES (1,1,'26'),(2,1,'37'),(3,1,'38'),(4,1,'12'),(5,1,'39'),(6,1,'40'),(7,1,'33'),(8,1,'41'),(9,1,'42'),(10,1,'43'),(11,1,'44');
+/*!40000 ALTER TABLE `Meatballs_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Produce_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Produce_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Produce_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Produce_recipe_table`
+--
+
+LOCK TABLES `Produce_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Produce_recipe_table` DISABLE KEYS */;
+INSERT INTO `Produce_recipe_table` VALUES (1,1,'17'),(2,1,'18'),(3,1,'16');
+/*!40000 ALTER TABLE `Produce_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Ribs_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Ribs_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Ribs_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Ribs_recipe_table`
+--
+
+LOCK TABLES `Ribs_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Ribs_recipe_table` DISABLE KEYS */;
+INSERT INTO `Ribs_recipe_table` VALUES (1,2,'34'),(2,1,'20'),(3,1,'35'),(4,1,'36');
+/*!40000 ALTER TABLE `Ribs_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Stuffed_Pizza_Bell_Peppers_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Stuffed_Pizza_Bell_Peppers_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Stuffed_Pizza_Bell_Peppers_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Stuffed_Pizza_Bell_Peppers_recipe_table`
+--
+
+LOCK TABLES `Stuffed_Pizza_Bell_Peppers_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Stuffed_Pizza_Bell_Peppers_recipe_table` DISABLE KEYS */;
+INSERT INTO `Stuffed_Pizza_Bell_Peppers_recipe_table` VALUES (1,4,'64'),(2,1,'37'),(3,1,'29'),(4,1,'53'),(5,2,'27'),(6,1,'38'),(7,1,'65'),(8,1,'54'),(9,1,'44'),(10,1,'66'),(11,1,'55'),(12,2,'8');
+/*!40000 ALTER TABLE `Stuffed_Pizza_Bell_Peppers_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `final_list`
+--
+
+DROP TABLE IF EXISTS `final_list`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `final_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `QFRT` int(11) NOT NULL,
+  `IFRT` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `final_list`
+--
+
+LOCK TABLES `final_list` WRITE;
+/*!40000 ALTER TABLE `final_list` DISABLE KEYS */;
+INSERT INTO `final_list` VALUES (1,2,1),(2,1,62),(3,3,9),(4,1,10),(5,1,11),(6,1,8),(7,1,12),(8,1,13),(9,1,19),(10,1,20),(11,11,8),(12,1,5),(13,2,12),(14,1,7),(15,1,17),(16,1,18),(17,1,16),(18,4,64),(19,1,37),(20,1,29),(21,1,53),(22,2,27),(23,1,38),(24,1,65),(25,1,54),(26,1,44),(27,1,66),(28,1,55),(29,2,8);
+/*!40000 ALTER TABLE `final_list` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `items`
+--
+
+DROP TABLE IF EXISTS `items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `items` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `grocery_item` varchar(255) NOT NULL,
+  `price` decimal(14,2) DEFAULT NULL,
+  `department` text DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `grocery_item` (`grocery_item`)
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `items`
+--
+
+LOCK TABLES `items` WRITE;
+/*!40000 ALTER TABLE `items` DISABLE KEYS */;
+INSERT INTO `items` VALUES (1,'pop',4.77,'Beverage'),(2,'cheese',2.77,'Dairy'),(3,'detergent',10.00,'Home'),(5,'cream cheese',3.98,'Dairy'),(7,'bacon',6.84,'Meat'),(8,'jalapenos',0.20,'Produce'),(9,'Bratwurst',4.77,'Meat'),(10,'Mustard',2.77,'Condiments'),(11,'Tortilla Pack',3.58,'Bread'),(12,'Shredded Cheddar',2.77,'Dairy'),(13,'Steak',17.00,'Meat'),(14,'Chicken Thighs',9.71,'Meat'),(15,'1 lb hamburger',5.62,'Meat'),(16,'Strawberries',5.12,'Produce'),(17,'Lemons',4.12,'Produce'),(18,'Blueberries',5.18,'Produce'),(19,'Chicken Drumbsticks',9.82,'Meat'),(20,'BBQ sauce',3.58,'Condiments'),(21,'Chicken Leg Quarters',6.48,'Meat'),(22,'Chicken Wings',17.48,'Meat'),(23,'Hot Sauce',1.97,'Condiments'),(24,'Italian Sausage Brick',3.32,'Meat'),(25,'Provolone Cheese Slices',2.94,'Dairy'),(26,'Shredded Mozerrela',2.77,'Dairy'),(27,'Pepperoni',3.46,'Meat'),(28,'Diced Bell Pepper',0.20,'Produce'),(29,'Onion',0.20,'Produce'),(30,'Bacon Bits',3.32,'Meat'),(31,'Mushrooms',2.00,'Produce'),(32,'Black Olives',1.47,'Canned Goods'),(33,'Raos Marinara Sauce',7.98,'Pasta'),(34,'Ribs',16.00,'Meat'),(35,'Apple Cider Vinegar',2.32,'Misc'),(36,'Rib Rub',2.32,'Spices'),(37,'1 lb italian sausage',3.32,'Meat'),(38,'1 lb ground turkey',3.32,'Meat'),(39,'Parmesan',3.97,'Dairy'),(40,'Egg',1.64,'Dairy'),(41,'Dried Basil',1.12,'Spices'),(42,'Salt',1.12,'Spices'),(43,'Minced Onion',0.98,'Spices'),(44,'Minced garlic',4.24,'Spices'),(45,'Cajun Spice',3.98,'Spices'),(46,'Lemon pepper seasoning',3.98,'Spices'),(47,'Aluminum Foil',7.58,'Paper'),(48,'Coffee Filter',7.58,'Coffee'),(50,'Dish Detergent',10.00,'Home'),(51,'Paper Towles',4.92,'Paper'),(52,'Mr clean pads',4.77,'Home'),(53,'Pizza Sauce',4.78,'Pasta'),(54,'Olive Oil',4.84,'Pasta'),(55,'Crushed Red Pepper',2.60,'Spices'),(56,'White Rum',10.00,'Drink'),(57,'Heavy Cream',3.12,'Drink'),(58,'Cinnamon Sticks',5.24,'Spices'),(59,'Vanilla Vodka',9.00,'Alcohol'),(60,'Low Carb Splenda',5.17,'Spices'),(61,'Vanilla Extract',5.84,'Spices'),(62,'Coffee',7.72,'Beverage'),(64,'Bell Pepper',0.20,'Produce'),(65,'Grated Mozerrella Cheese',2.77,'Dairy'),(66,'Oregeno',1.94,'Spices'),(67,'Butter',3.78,'Dairy'),(68,'Cayenne Pepp',3.78,'Spices');
+/*!40000 ALTER TABLE `items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `meat_pizza_recipe_table`
+--
+
+DROP TABLE IF EXISTS `meat_pizza_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `meat_pizza_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `meat_pizza_recipe_table`
+--
+
+LOCK TABLES `meat_pizza_recipe_table` WRITE;
+/*!40000 ALTER TABLE `meat_pizza_recipe_table` DISABLE KEYS */;
+INSERT INTO `meat_pizza_recipe_table` VALUES (1,4,'24'),(2,2,'25'),(3,1,'26'),(4,1,'27'),(5,1,'28'),(6,1,'29'),(7,1,'30'),(8,1,'31'),(9,1,'8'),(10,1,'32'),(11,1,'33');
+/*!40000 ALTER TABLE `meat_pizza_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-05-07 16:15:21
