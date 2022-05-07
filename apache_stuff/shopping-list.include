@@ -1,0 +1,10 @@
+Alias /php /media/Websites/shopping_list/php
+
+DocumentRoot /media/Websites/shopping_list
+#DirectoryIndex index.html index.php
+<Directory "/media/Websites/shopping_list">
+	DirectoryIndex index.php
+	Options +Indexes
+        Options +FollowSymLinks
+        Require all granted
+</Directory>
