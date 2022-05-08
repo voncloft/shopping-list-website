@@ -21,3 +21,5 @@ remove "Final" from the database names on webpage
 ....MAAAYBE create database dedicated to recipes - probaby will its cleaner
 
 Sort Final by default
+
+For final shopping list show shopping_list name BUUT if 1 line counts for ingredients of one recipe THEN show both
