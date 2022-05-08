@@ -11,3 +11,11 @@ Add Dept webpage, give mysql database, pull from db for all dept categories EXCE
 give ability to search by departments in pages
 
 Give human error pages
+
+Rount final prices to 2 decimal pages on final webpage
+
+Clean up the database names on the webpage
+
+remove "Final" from the database names on webpage
+
+....MAAAYBE create database dedicated to recipes - probaby will its cleaner
