@@ -23,3 +23,5 @@ remove "Final" from the database names on webpage
 Sort Final by default
 
 For final shopping list show shopping_list name BUUT if 1 line counts for ingredients of one recipe THEN show both
+
+multiple final lists for specific events
