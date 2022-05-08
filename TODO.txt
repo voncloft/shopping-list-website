@@ -29,3 +29,5 @@ give option to save final grocery list a different name show it in finalized lis
 MAJOR BUG if item is deleted in item table BE SUREto delete it from.other tables
 
 give recipe lists the ability to have notes and a url to link to for meal prep days
+
+Work on session when clicking back - gives a error message or implement links on "done" pages
