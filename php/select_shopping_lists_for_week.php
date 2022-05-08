@@ -8,7 +8,7 @@ echo "<br><br>";
     $showtables= mysqli_query($conn, "SHOW TABLES FROM shopping_list");
     while($table = mysqli_fetch_array($showtables)) { 
          $i=0;
-        if($table[0]!="items")
+        if($table[0]!="final_list" && $table[0]!="current_week_recipes" && $table[0]!="items")
          {
             $i++;
             echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  

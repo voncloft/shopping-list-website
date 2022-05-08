@@ -1,8 +1,12 @@
 <?php
 include '../include/passwords.php';
-sql="truncate table final_list";
+$sql="truncate table final_list";
+$sql2="truncate table current_week_recipes";
 echo $sql."<br>";
-if($conn->query($sql){
+if($conn->query($sql)){
+    echo "Main Shopping List Cleared";
+}
+if($conn->query($sql2)){
     echo "Main Shopping List Cleared";
 }
 ?>
