@@ -30,7 +30,6 @@ option to save default shopping lists
 
 total price on individual recipe websites
 
-fix bug on modify food dept space cut off
 
 clear default final grocery list
 
