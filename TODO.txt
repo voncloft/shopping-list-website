@@ -9,3 +9,5 @@ give ability to modify finalized shopping list
 Add Dept webpage, give mysql database, pull from db for all dept categories EXCEPT for final page - that stays static
 
 give ability to search by departments in pages
+
+Give human error pages
