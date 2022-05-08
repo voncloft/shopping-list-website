@@ -4,6 +4,7 @@
 </HEAD>
 <?php
 include '../include/passwords.php';
+echo "<form action='../scripts/clear_final.php' method=POST>";
 echo "<center><h1>Shopping List</h1>";
 $total_price=0;
 //$sql = "select QFRT,count(DISTINCT(IFRT)) from final_list";
@@ -38,5 +39,5 @@ $sql="select IFRT, sum(QFRT) as totalsum from final_list group by IFRT";
     echo "<tr><td>Tax:</td><td>6%</td></tr>";
     $tax_added=$total_price * 1.06;
     echo "<tr><td>Total:</td><td>".$tax_added."</td></tr></table>";
-    echo "</td></tr></table></center>";
+    echo "</td></tr><tr><td>Clear table <input type='submit'></table></center><form>";
 ?>

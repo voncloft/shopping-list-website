@@ -35,7 +35,7 @@ if(!empty($_POST['recipes'])){
             foreach($row_editing as $current_item)
             {
                 $replaced_string="'".' option selected="selected" >'.$current_item['grocery_item'];
-                $look_for_string="'>".$current_item['grocery_item'];
+                $look_for_string="'>".$current_item['grocery_item']."</option>";
                 $select_current_item=str_replace($look_for_string,$replaced_string,$default_list_string);
                
                 $string_in_select="<select>";
