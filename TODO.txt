@@ -19,3 +19,5 @@ Clean up the database names on the webpage
 remove "Final" from the database names on webpage
 
 ....MAAAYBE create database dedicated to recipes - probaby will its cleaner
+
+Sort Final by default
