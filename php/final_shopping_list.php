@@ -19,7 +19,6 @@ $sql="select IFRT, sum(QFRT) as totalsum from final_list group by IFRT";
         $id_to_pull_from_items=$row2['IFRT'];
         $qty_needed_from_recipe=$row2['totalsum'];
         
-        //echo $id_to_pull_from_items." ".$qty_needed_from_recipe;
         echo "<tr><td align=center><input type='checkbox'><td align=center>".$qty_needed_from_recipe."</td>";
         $get_food_info="select grocery_item, price,department from items where id ='".$id_to_pull_from_items."' order by department";
         $item_results=$conn->query($get_food_info);
