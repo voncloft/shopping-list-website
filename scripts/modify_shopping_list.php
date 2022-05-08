@@ -11,12 +11,12 @@ if(!empty($_POST['recipes'])){
     //get default values
     $update_script="";
     $default_list_string="<select>";
-    $default_items_sql="select grocery_item from items";
+    $default_items_sql="select id, grocery_item from items";
     $items=$conn->query($default_items_sql);
     $rows_of_default=$items->fetch_all(MYSQLI_ASSOC);
     foreach($rows_of_default as $original_list)
     {
-        $default_list_string.="<option>".$original_list['grocery_item']."</option>";
+        $default_list_string.="<option value='".$original_list['id']."'>".$original_list['grocery_item']."</option>";
     }
     $default_list_string.="</select>";
     $sql = "select qty,id,ingredient_name from ".$recipe_name;
@@ -27,19 +27,25 @@ if(!empty($_POST['recipes'])){
     foreach ($rows as $from_recipe_list)
     {
             $c++;
+            echo "<input type='hidden' name=hidden".$c." value='".$from_recipe_list['id']."'>";
             echo "<td><input type='text' value='".$from_recipe_list['qty']."' name='recipe_list".$c."'></td>";
             $items_list="select grocery_item, price, department from items where id=".$from_recipe_list['ingredient_name'];
             $items=$conn->query($items_list);
             $row_editing = $items->fetch_all(MYSQLI_ASSOC);
             foreach($row_editing as $current_item)
             {
-                $replaced_string=' <option selected="selected" name=select'.$c.'>'.$current_item['grocery_item'].'</option>';
-                $look_for_string="<option>".$current_item['grocery_item']."</option>";
+                $replaced_string="'".' option selected="selected" >'.$current_item['grocery_item'];
+                $look_for_string="'>".$current_item['grocery_item'];
                 $select_current_item=str_replace($look_for_string,$replaced_string,$default_list_string);
-                echo "<td>".$select_current_item."</td></tr>";
+               
+                $string_in_select="<select>";
+                $replace_in_select="<select name='select".$c."'>";
+                $final_select_option=str_replace($string_in_select,$replace_in_select,$select_current_item);
+                echo "<td>".$final_select_option."</td></tr>";
             }
     }
     $_SESSION['loop_counter'] = $c;
+    $_SESSION['recipe_edit_name']=$recipe_name;
 $conn->close();
 ?>
 <tr><td></td><td><INPUT TYPE="SUBMIT"></td></tr>
