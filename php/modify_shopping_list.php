@@ -1,6 +1,7 @@
 <?php
 echo "RECIPES";
-echo "<br>";
+echo "<br><br>";
+
     include '../include/passwords.php';
     ?>
     <form action='../scripts/modify_shopping_list.php' method=POST>
