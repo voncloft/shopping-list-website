@@ -5,3 +5,5 @@ Add one row under the modify pages
 work on modify food page Delete, price, and department
 
 give ability to modify finalized shopping list
+
+Add Dept webpage, give mysql database, pull from db for all dept categories EXCEPT for final page - that stays static
