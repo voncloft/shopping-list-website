@@ -41,7 +41,7 @@ if(!empty($_POST['recipes'])){
             {
                 $x++;
                 $current_value="currentvalue".$x;
-                echo $current_value;
+                //echo $current_value;
                 $_SESSION[$current_value]=$current_item['id'];
                 $replaced_string="'".' option selected="selected" >'.$current_item['grocery_item'];
                 $look_for_string="'>".$current_item['grocery_item']."</option>";

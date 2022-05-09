@@ -11,14 +11,17 @@ session_start();
         $sql_statement="update ".$database." set qty = '".$_POST[$qty_key]."',ingredient_name = '".$_POST[$desc_key]."' where id = '".$_POST[$hidden_key]."'";
         echo $sql_statement."<br>";
         $conn->query($sql_statement);
-        $update_final="update final_list set qfrt = '".$_POST[$qty_key]."' where IFRT = '".$_POST[$desc_key]."' and recipe_table_name ='".$database."'";
+
+        //DONT THINK I need these lines anymore keep just in case tho they both seperately update qty and description of the final list - however it needs to be ran twice
+        //$update_final="update final_list set qfrt = '".$_POST[$qty_key]."' where IFRT = '".$_POST[$desc_key]."' and recipe_table_name ='".$database."'";
         
-        echo $update_final."<br>";
-        $conn->query($update_final);
+        //echo $update_final."<br>";
+        //$conn->query($update_final);
         $id_items="currentvalue".$c;
         $id_from_items_list=$_SESSION[$id_items];
         
-        $update_food="update final_list set IFRT = '".$_POST[$desc_key]."' where IFRT='".$id_from_items_list."' and recipe_table_name='".$database."'";
+        //$update_food="update final_list set IFRT = '".$_POST[$desc_key]."' where IFRT='".$id_from_items_list."' and recipe_table_name='".$database."'";
+	$update_food="update final_list set IFRT = '".$_POST[$desc_key]."', QFRT = '".$_POST[$qty_key] ."' where IFRT = '".$id_from_items_list."'";
         echo $update_food;
         $conn->query($update_food);
     }

@@ -1,6 +1,6 @@
 <?php
 echo "RECIPES";
-echo "<br><br>";
+echo "<br>";
 
     include '../include/passwords.php';
     ?>
