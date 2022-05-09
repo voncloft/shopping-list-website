@@ -1,20 +1,31 @@
 <?php
-echo "RECIPES";
-echo "<br><br>";
+echo "Recipes not currently imported";
+echo "<br>";
     include '../include/passwords.php';
     ?>
     <form action='../scripts/select_for_final.php' method=POST>
     <?php
     $showtables= mysqli_query($conn, "SHOW TABLES FROM shopping_list");
-    while($table = mysqli_fetch_array($showtables)) { 
-         $i=0;
-        if($table[0]!="final_list" && $table[0]!="current_week_recipes" && $table[0]!="items")
-         {
-            $i++;
-            echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  
-            echo '<label">'.$table[0].'</label><br>';
-      }
+    $sql="select recipes from current_week_recipes";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $i=0;
+    $array = array();
+    
+    foreach($rows as $recipe)
+    { 
+      $array[]=$recipe['recipes'];
     }
+    while($table = mysqli_fetch_array($showtables)) { 
+              if($table[0]!="final_list" && $table[0]!="current_week_recipes" && $table[0]!="items")
+              {
+                  $i++;
+                  if (! in_array($table[0], $array)){
+                  echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  
+                  echo '<label">'.$table[0].'</label><br>';
+                }
+              }
+            }
      ?>
      <input type="submit">
      </form>
