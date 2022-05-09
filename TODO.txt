@@ -1,7 +1,5 @@
 MORE TO COME I AM SURE!!!!!
 
-Add one row under the modify pages
-
 give ability to modify finalized shopping list
 
 Add Dept webpage, give mysql database, pull from db for all dept categories EXCEPT for final page - that stays static
@@ -26,4 +24,3 @@ MAJOR BUG if item is deleted in item table BE SUREto delete it from.other tables
 
 give recipe lists the ability to have notes and a url to link to for meal prep days
 
-Work on session when clicking back - gives a error message or implement links on "done" pages
