@@ -31,6 +31,6 @@ foreach ($rows as $row2){
 
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
-    
+    echo "<br><a href=../index.php>Main Menu</a>";
     
 ?>

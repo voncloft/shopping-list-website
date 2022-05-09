@@ -9,4 +9,5 @@ if($conn->query($sql)){
 if($conn->query($sql2)){
     echo "Main Shopping List Cleared";
 }
+echo "<br><a href=../index.php>Main Menu</a>";
 ?>

@@ -42,4 +42,5 @@ session_start();
             $conn->query($insert_into_final);
         }
     }
+    echo "<br><a href=../index.php>Main Menu</a>";
 ?>
