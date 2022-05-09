@@ -20,8 +20,10 @@ echo "<br>";
           {
             if($table[0]==$recipe['recipes'])
             {            
+		$remove_table_name=str_replace("_recipe_table","",$table[0]);
+		$replaceunderscores=str_replace("_"," ",$remove_table_name);
               echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  
-              echo '<label">'.$table[0].'</label><br>';
+              echo '<label">'.$replaceunderscores.'</label><br>';
           }
       }
     }
