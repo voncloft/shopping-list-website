@@ -21,7 +21,7 @@ session_start();
         $id_from_items_list=$_SESSION[$id_items];
         
         //$update_food="update final_list set IFRT = '".$_POST[$desc_key]."' where IFRT='".$id_from_items_list."' and recipe_table_name='".$database."'";
-	$update_food="update final_list set IFRT = '".$_POST[$desc_key]."', QFRT = '".$_POST[$qty_key] ."' where IFRT = '".$id_from_items_list."'";
+	$update_food="update final_list set IFRT = '".$_POST[$desc_key]."', QFRT = '".$_POST[$qty_key] ."' where IFRT = '".$id_from_items_list."' and recipe_table_name='".$database."'";
         echo $update_food;
         $conn->query($update_food);
     }
