@@ -20,9 +20,11 @@ echo "<br>";
               if($table[0]!="final_list" && $table[0]!="current_week_recipes" && $table[0]!="items")
               {
                   $i++;
+                  $remove_rt=str_replace("_recipe_table","",$table[0]);
+                  $remove_us=str_replace("_"," ",$remove_rt);
                   if (! in_array($table[0], $array)){
                   echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  
-                  echo '<label">'.$table[0].'</label><br>';
+                  echo '<label">'.$remove_us.'</label><br>';
                 }
               }
             }
