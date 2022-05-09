@@ -16,8 +16,6 @@ Clean up the database names on the webpage
 
 Sort Final by default
 
-For final shopping list show shopping_list name BUUT if 1 line counts for ingredients of one recipe THEN show both
-
 multiple final lists for specific events
 
 option to save default shopping lists
