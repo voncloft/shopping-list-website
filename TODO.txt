@@ -24,3 +24,4 @@ MAJOR BUG if item is deleted in item table BE SUREto delete it from.other tables
 
 give recipe lists the ability to have notes and a url to link to for meal prep days
 
+Find a way to remove unused items in recipes - I think the Union command might help: https://ubiq.co/database-blog/compare-two-tables-mysql/
