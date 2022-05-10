@@ -1,8 +1,5 @@
 MORE TO COME I AM SURE!!!!!
 
-FIX BUG: if editing a recipe that is NOT in the final_list - it will add the edited items to final.....even though that particular shopping list is not selected to begin with.....need to make sure that you can edit shopping lists independently without affecting final_list.....will work on later
-
-
 give ability to modify finalized shopping list
 
 Add Dept webpage, give mysql database, pull from db for all dept categories EXCEPT for final page - that stays static
