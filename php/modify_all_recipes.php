@@ -12,12 +12,13 @@ echo "<br>";
     $rows = $result->fetch_all(MYSQLI_ASSOC);
      $i=0;      
      while($table = mysqli_fetch_array($showtables)) { 
+		if($table[0]!="final_list" && $table[0]!="current_week_recipes" && $table[0]!="items"){
       $i++;          
               $remove_table_name=str_replace("_recipe_table","",$table[0]);
               $replaceunderscores=str_replace("_"," ",$remove_table_name);
               echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  
               echo '<label">'.$replaceunderscores.'</label><br>';
-          
+          }
       }
     
  
