@@ -3,6 +3,7 @@
 
 include '../include/passwords.php';
 session_start();
+$overall_price=0;
 $c=0;
 if(!empty($_POST['recipes'])){
     foreach($_POST['recipes'] as $selected){
@@ -25,7 +26,7 @@ if(!empty($_POST['recipes'])){
     //echo $sql;
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
-    echo "<table border = 2><tr><th>Qty</th><th>Description</th></tr>";
+    echo "<table border = 2><tr><th>Qty</th><th>Description</th><th>Price</th></tr>";
     $x=0;
     foreach ($rows as $from_recipe_list)
     {
@@ -50,7 +51,10 @@ if(!empty($_POST['recipes'])){
                 $string_in_select="<select>";
                 $replace_in_select="<select name='select".$c."'>";
                 $final_select_option=str_replace($string_in_select,$replace_in_select,$select_current_item);
-                echo "<td>".$final_select_option."</td></tr>";
+                $get_price=$current_item['price'] * $from_recipe_list['qty'];
+                echo "<td>".$final_select_option."</td><td>".$get_price."</td></tr>";
+                $overall_price=$overall_price + $get_price;
+                
             }
     }
     $_SESSION['loop_counter'] = $c;
@@ -64,8 +68,11 @@ if(!empty($_POST['recipes'])){
         echo "<tr><td><input type='text' name='qtext".$c."'></td><td>".$final_select_option."</td>";  
     }
 $conn->close();
+	echo "<tr><td>Total Price:</td><td>";
+	include '../include/recipe_list_price.php';
+	echo "</td></tr>";
 ?>
+<br>
 <tr><td></td><td><INPUT TYPE="SUBMIT"></td></tr>
 </FORM>
-<br>
 <a href="../index.php">Main Page</a>
