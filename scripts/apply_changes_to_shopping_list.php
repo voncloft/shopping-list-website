@@ -4,7 +4,7 @@ session_start();
     $i= $_SESSION['loop_counter'] ;
     $database=$_SESSION['recipe_edit_name'];
 //check if this recipe is even set up for selection of week to not interfere with main list later
-
+   $url=$_POST['url'];
    $selected_recipes=array();
    $recipe_check="select recipes from current_week_recipes";
    $current_recipe_week=$conn->query($recipe_check);
@@ -59,5 +59,10 @@ session_start();
 	     }
         }
     }
+    echo "<br>";
+	$insert_url="update recipe_lists set url='".$url."' where recipe_name='".$database."'";
+	echo $insert_url."<br>";
+	$conn->query($insert_url);
     echo "<br><a href=../index.php>Main Menu</a>";
+
 ?>

@@ -26,6 +26,13 @@ if(!empty($_POST['recipes'])){
     //echo $sql;
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $url="select url from recipe_lists where recipe_name='".$recipe_name."'";
+    $url_row=$conn->query($url);
+    $rows2 = $url_row->fetch_all(MYSQLI_ASSOC);
+    foreach ($rows2 as $url_for_recipe)
+    {
+    	echo "URL For Recipe: <input type='text' name='url' size='100' value='".$url_for_recipe['url']."'>";
+    }
     echo "<table border = 2><tr><th>Qty</th><th>Description</th><th>Price</th></tr>";
     $x=0;
 

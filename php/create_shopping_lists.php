@@ -4,6 +4,7 @@ include '../include/passwords.php';
 <form action='../scripts/export_recipe.php' method=POST>
     <table><caption>New Recipe</caption>
         <tr><td>Recipe Name</td><td><input type="text" name="recipe_name" id="recipe_name"></td></tr>
+        <tr><td>URL: </td><td><input type="text" name="url"></td></tr>
     </table>
     <table>
         <tr><td>QTY</td><td>Ingredient</td></tr>

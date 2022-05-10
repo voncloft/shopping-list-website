@@ -31,6 +31,10 @@
             }           
         }
     }
+    $insert_into_url_table="insert into recipe_lists(recipe_name)VALUES('".$recipe_name."')";
+    $conn->query($insert_into_url_table);
+        $insert_into_url_table="update recipe_lists set url = '".$_POST['url']."' where recipe_name='".$recipe_name."'";
+    $conn->query($insert_into_url_table);
     echo "<br>"; 
     ?>
 <br><a href="../index.php">Main Page</a>
