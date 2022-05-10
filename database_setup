@@ -310,7 +310,7 @@ CREATE TABLE `Misc_recipe_table` (
   `qty` int(11) NOT NULL,
   `ingredient_name` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,7 +319,7 @@ CREATE TABLE `Misc_recipe_table` (
 
 LOCK TABLES `Misc_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Misc_recipe_table` DISABLE KEYS */;
-INSERT INTO `Misc_recipe_table` VALUES (1,0,'96'),(2,1,'97'),(3,1,'99'),(4,1,'100'),(5,1,'98');
+INSERT INTO `Misc_recipe_table` VALUES (1,0,'96'),(2,0,'97'),(3,0,'99'),(4,0,'100'),(5,0,'98'),(6,1,'113');
 /*!40000 ALTER TABLE `Misc_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -485,7 +485,7 @@ CREATE TABLE `current_week_recipes` (
   `recipes` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `recipes` (`recipes`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -494,7 +494,7 @@ CREATE TABLE `current_week_recipes` (
 
 LOCK TABLES `current_week_recipes` WRITE;
 /*!40000 ALTER TABLE `current_week_recipes` DISABLE KEYS */;
-INSERT INTO `current_week_recipes` VALUES (1,'Beverages_recipe_table'),(2,'Bratwurst_recipe_table'),(3,'Burritos_recipe_table'),(4,'Chicken_Drumbsticks_recipe_table'),(5,'Produce_recipe_table'),(6,'Stuffed_Pizza_Bell_Peppers_recipe_table');
+INSERT INTO `current_week_recipes` VALUES (1,'Beverages_recipe_table'),(2,'Bratwurst_recipe_table'),(3,'Burritos_recipe_table'),(4,'Chicken_Drumbsticks_recipe_table'),(5,'Produce_recipe_table'),(6,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(7,'Misc_recipe_table');
 /*!40000 ALTER TABLE `current_week_recipes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -511,7 +511,7 @@ CREATE TABLE `final_list` (
   `IFRT` int(11) NOT NULL,
   `recipe_table_name` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -520,7 +520,7 @@ CREATE TABLE `final_list` (
 
 LOCK TABLES `final_list` WRITE;
 /*!40000 ALTER TABLE `final_list` DISABLE KEYS */;
-INSERT INTO `final_list` VALUES (1,1,62,'Beverages_recipe_table'),(2,2,1,'Beverages_recipe_table'),(3,0,57,'Beverages_recipe_table'),(4,0,95,'Beverages_recipe_table'),(5,3,9,'Bratwurst_recipe_table'),(6,0,10,'Bratwurst_recipe_table'),(7,0,91,'Bratwurst_recipe_table'),(8,1,11,'Burritos_recipe_table'),(9,5,8,'Burritos_recipe_table'),(10,1,12,'Burritos_recipe_table'),(11,1,13,'Burritos_recipe_table'),(12,0,14,'Burritos_recipe_table'),(13,0,15,'Burritos_recipe_table'),(14,1,19,'Chicken_Drumbsticks_recipe_table'),(15,0,20,'Chicken_Drumbsticks_recipe_table'),(16,0,92,'Chicken_Drumbsticks_recipe_table'),(17,1,17,'Produce_recipe_table'),(18,1,18,'Produce_recipe_table'),(19,1,16,'Produce_recipe_table'),(20,4,64,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(21,1,37,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(22,1,29,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(23,1,53,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(24,2,27,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(25,1,32,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(26,1,65,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(27,0,54,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(28,0,44,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(29,0,66,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(30,0,55,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(31,4,8,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(32,2,30,'Stuffed_Pizza_Bell_Peppers_recipe_table');
+INSERT INTO `final_list` VALUES (1,1,62,'Beverages_recipe_table'),(2,2,1,'Beverages_recipe_table'),(3,0,57,'Beverages_recipe_table'),(4,0,95,'Beverages_recipe_table'),(5,3,9,'Bratwurst_recipe_table'),(6,0,10,'Bratwurst_recipe_table'),(7,0,91,'Bratwurst_recipe_table'),(8,1,11,'Burritos_recipe_table'),(9,5,8,'Burritos_recipe_table'),(10,1,12,'Burritos_recipe_table'),(11,1,13,'Burritos_recipe_table'),(12,0,14,'Burritos_recipe_table'),(13,0,15,'Burritos_recipe_table'),(14,1,19,'Chicken_Drumbsticks_recipe_table'),(15,0,20,'Chicken_Drumbsticks_recipe_table'),(16,0,92,'Chicken_Drumbsticks_recipe_table'),(17,1,17,'Produce_recipe_table'),(18,1,18,'Produce_recipe_table'),(19,1,16,'Produce_recipe_table'),(20,4,64,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(21,1,37,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(22,1,29,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(23,1,53,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(24,2,27,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(25,1,32,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(26,1,65,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(27,0,54,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(28,0,44,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(29,0,66,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(30,0,55,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(31,4,8,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(32,2,30,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(33,0,96,'Misc_recipe_table'),(34,0,97,'Misc_recipe_table'),(35,0,99,'Misc_recipe_table'),(36,0,100,'Misc_recipe_table'),(37,0,98,'Misc_recipe_table'),(38,1,113,'Misc_recipe_table');
 /*!40000 ALTER TABLE `final_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -538,7 +538,7 @@ CREATE TABLE `items` (
   `department` text DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `grocery_item` (`grocery_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -547,7 +547,7 @@ CREATE TABLE `items` (
 
 LOCK TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (1,'Pop',3.98,'Beverage'),(2,'Cheese',2.77,'Dairy'),(3,'Detergent',10.00,'Home'),(5,'Cream cheese',3.98,'Dairy'),(7,'Bacon',7.98,'Meat'),(8,'Jalapenos',0.20,'Produce'),(9,'Bratwurst',5.48,'Meat'),(10,'Guldens Spicy Brown Mustard',1.46,'Condiments'),(11,'Tortilla Pack',4.48,'Bread'),(12,'Shredded Cheddar',3.98,'Dairy'),(13,'Beef Choice Angus Ribeye Steak Thin',15.17,'Meat'),(14,'Chicken Breasts',10.58,'Meat'),(15,'1 lb hamburger',4.34,'Meat'),(16,'Strawberries',3.86,'Produce'),(17,'Lemons',4.12,'Produce'),(18,'Blueberries',6.38,'Produce'),(19,'Chicken Drumbsticks',11.00,'Meat'),(20,'BBQ sauce',3.58,'Condiments'),(21,'Chicken Leg Quarters',7.88,'Meat'),(22,'Chicken Wings',16.23,'Meat'),(23,'Franks Hot Sauce',3.26,'Condiments'),(24,'Italian Sausage Brick',3.57,'Meat'),(25,'Provolone Cheese Slices',6.28,'Dairy'),(26,'Shredded Mozerrela',3.98,'Dairy'),(27,'Spicy Pepperoni',2.43,'Meat'),(28,'Diced Bell Pepper',0.77,'Produce'),(29,'Onion',0.64,'Produce'),(30,'Bacon Bits',3.90,'Meat'),(31,'Mushrooms',2.34,'Produce'),(32,'Black Olives',1.47,'Canned Goods'),(33,'Raos Marinara Sauce',7.98,'Pasta'),(34,'Ribs',16.00,'Meat'),(35,'Apple Cider Vinegar',1.88,'Cooking'),(36,'Weber Rib Rub',6.58,'Spices'),(37,'1 lb italian sausage',3.94,'Meat'),(38,'1 lb ground turkey',3.16,'Meat'),(39,'Parmesan',3.82,'Dairy'),(40,'Eggs-6 pack',1.23,'Dairy'),(41,'Dried Basil',0.98,'Spices'),(42,'Salt',1.12,'Spices'),(43,'Minced Onion',2.97,'Spices'),(44,'Minced garlic',4.24,'Spices'),(45,'Cajun Spice',4.24,'Spices'),(46,'Lemon pepper seasoning',2.86,'Spices'),(47,'Aluminum Foil',1.98,'Paper'),(48,'Coffee Filter',2.17,'Coffee'),(50,'Dish Detergent',10.84,'Home'),(51,'Paper Towles',4.87,'Paper'),(52,'Mr clean pads',4.77,'Home'),(53,'Raos Pizza Sauce',4.78,'Pasta'),(54,'Olive Oil',4.00,'Cooking'),(55,'Crushed Red Pepper',2.72,'Spices'),(56,'White Rum',10.00,'Drink'),(57,'Heavy Cream',3.92,'Drink'),(58,'Cinnamon Sticks',3.97,'Spices'),(59,'Vanilla Vodka',9.00,'Alcohol'),(60,'Low Carb Splenda',6.30,'Spices'),(61,'Vanilla Extract',5.84,'Spices'),(62,'Coffee',8.58,'Beverage'),(64,'Bell Pepper',0.77,'Produce'),(65,'Grated Mozerrella Cheese',3.98,'Dairy'),(66,'Oregeno',0.98,'Spices'),(67,'Butter',3.58,'Dairy'),(68,'Cayenne Pepper',2.92,'Spices'),(69,'Wireless Charger',9.98,'Electronics'),(70,'Mancinos',20.00,'Fast Food'),(71,'Pizza Hut',50.00,'Fast Food'),(72,'Wings etc',50.00,'Fast Food'),(73,'Burger king',20.00,'Fast Food'),(74,'Kfc',40.00,'Fast Food'),(75,'Alcohol Vacation ',80.00,'Fun'),(76,'McDonalds ',20.00,'Fast food'),(77,'Rallys',20.00,'Fast food'),(78,'Dupont bar and grill',20.00,'Fast food'),(80,'Firehouse subs',20.00,'Fast food'),(81,'Arbys',20.00,'Fast food'),(82,'Hardys',20.00,'Fast food'),(83,'Taco bell',20.00,'Fast food'),(84,'Old Spice Body Soap',5.97,'Health and Body'),(85,'Old Spice Deoderant',5.47,'Health and Body'),(86,'Shaving Cream',1.84,'Health and Body'),(87,'Razors',11.97,'Health and Body'),(88,'Toothpaste',3.44,'Health and Body'),(90,'Toothbrush',2.97,'Health and Body'),(91,'Sauerkraut ',1.98,'Canned Goods'),(92,'Black pepper',5.98,'Spices'),(93,'Fat bombs',8.98,'Health'),(94,'Jack links prime rib tender cuts',9.78,'Snacks J10'),(95,'Braggs Apple Cider',6.34,'Cooking'),(96,'Knife work sleeve ',1.00,'Home'),(97,'Plastic utensils ',6.42,'Home'),(98,'Five Star Notebook',6.98,'Office'),(99,'Pens',5.14,'Office'),(100,'Push pins',2.86,'Office'),(101,'Pine-Sol',6.74,'Cleaning'),(102,'Windex',2.97,'Cleaning'),(103,'MX Ergo Plus Wireless Mouse',99.99,'Electronics - Best Buy'),(104,'Logitech Wireless Keyboard - Lit',119.99,'Electronics - Best Buy'),(105,'Pledge',4.48,'Cleaning'),(106,'Samsung - Galaxy S22 Ultra 128GB (Unlocked)',899.00,'Electronics - Best Buy'),(107,'Samsung - Galaxy Watch4 Aluminum Smartwatch 44mm',279.00,'Electronics - Best Buy'),(108,'Vape Juice',11.99,'Cravin Vapes'),(109,'Coils 3 Pack',20.99,'Cravin Vapes'),(110,'Wall charger',4.88,'Electronics'),(111,'6 ft usb c cable',5.88,'Electronics'),(112,'3d printer to build mini titanic',279.00,'<a href=\"https://www.amazon.com/Integrated-Structure-Motherboard-Carborundum-8-66x8-66x9-84in/dp/B07FFTHMMN/ref=pd_aw_ic_dpcp_m_1_m_4?pd_rd_w=rxDZB&pf_rd_p=76ca361a-bf6a-4646-9a1c-ec5c5eafbb6b&pf_rd_r=TVGH1W9CYP4FR1BW83W9&pd_rd_r=dcb0fd71-b0f2-4e10-8c6b-63a6a46386c0&pd_rd_wg=Kz3s8&pd_rd_i=B07FFTHMMN\">Printer</a>');
+INSERT INTO `items` VALUES (1,'Pop',3.98,'Beverage'),(2,'Cheese',2.77,'Dairy'),(3,'Detergent',10.00,'Home'),(5,'Cream cheese',3.98,'Dairy'),(7,'Bacon',7.98,'Meat'),(8,'Jalapenos',0.20,'Produce'),(9,'Bratwurst',5.48,'Meat'),(10,'Guldens Spicy Brown Mustard',1.46,'Condiments'),(11,'Tortilla Pack',4.48,'Bread'),(12,'Shredded Cheddar',3.98,'Dairy'),(13,'Beef Choice Angus Ribeye Steak Thin',15.17,'Meat'),(14,'Chicken Breasts',10.58,'Meat'),(15,'1 lb hamburger',4.34,'Meat'),(16,'Strawberries',3.86,'Produce'),(17,'Lemons',4.12,'Produce'),(18,'Blueberries',6.38,'Produce'),(19,'Chicken Drumbsticks',11.00,'Meat'),(20,'BBQ sauce',3.58,'Condiments'),(21,'Chicken Leg Quarters',7.88,'Meat'),(22,'Chicken Wings',16.23,'Meat'),(23,'Franks Hot Sauce',3.26,'Condiments'),(24,'Italian Sausage Brick',3.57,'Meat'),(25,'Provolone Cheese Slices',6.28,'Dairy'),(26,'Shredded Mozerrela',3.98,'Dairy'),(27,'Spicy Pepperoni',2.43,'Meat'),(28,'Diced Bell Pepper',0.77,'Produce'),(29,'Onion',0.64,'Produce'),(30,'Bacon Bits',3.90,'Meat'),(31,'Mushrooms',2.34,'Produce'),(32,'Black Olives',1.47,'Canned Goods'),(33,'Raos Marinara Sauce',7.98,'Pasta'),(34,'Ribs',16.00,'Meat'),(35,'Apple Cider Vinegar',1.88,'Cooking'),(36,'Weber Rib Rub',6.58,'Spices'),(37,'1 lb italian sausage',3.94,'Meat'),(38,'1 lb ground turkey',3.16,'Meat'),(39,'Parmesan',3.82,'Dairy'),(40,'Eggs-6 pack',1.23,'Dairy'),(41,'Dried Basil',0.98,'Spices'),(42,'Salt',1.12,'Spices'),(43,'Minced Onion',2.97,'Spices'),(44,'Minced garlic',4.24,'Spices'),(45,'Cajun Spice',4.24,'Spices'),(46,'Lemon pepper seasoning',2.86,'Spices'),(47,'Aluminum Foil',1.98,'Paper'),(48,'Coffee Filter',2.17,'Coffee'),(50,'Dish Detergent',10.84,'Home'),(51,'Paper Towles',4.87,'Paper'),(52,'Mr clean pads',4.77,'Home'),(53,'Raos Pizza Sauce',4.78,'Pasta'),(54,'Olive Oil',4.00,'Cooking'),(55,'Crushed Red Pepper',2.72,'Spices'),(56,'White Rum',10.00,'Drink'),(57,'Heavy Cream',3.92,'Drink'),(58,'Cinnamon Sticks',3.97,'Spices'),(59,'Vanilla Vodka',9.00,'Alcohol'),(60,'Low Carb Splenda',6.30,'Spices'),(61,'Vanilla Extract',5.84,'Spices'),(62,'Coffee',8.58,'Beverage'),(64,'Bell Pepper',0.77,'Produce'),(65,'Grated Mozerrella Cheese',3.98,'Dairy'),(66,'Oregeno',0.98,'Spices'),(67,'Butter',3.58,'Dairy'),(68,'Cayenne Pepper',2.92,'Spices'),(69,'Wireless Charger',9.98,'Electronics'),(70,'Mancinos',20.00,'Fast Food'),(71,'Pizza Hut',50.00,'Fast Food'),(72,'Wings etc',50.00,'Fast Food'),(73,'Burger king',20.00,'Fast Food'),(74,'Kfc',40.00,'Fast Food'),(75,'Alcohol Vacation ',80.00,'Fun'),(76,'McDonalds ',20.00,'Fast food'),(77,'Rallys',20.00,'Fast food'),(78,'Dupont bar and grill',20.00,'Fast food'),(80,'Firehouse subs',20.00,'Fast food'),(81,'Arbys',20.00,'Fast food'),(82,'Hardys',20.00,'Fast food'),(83,'Taco bell',20.00,'Fast food'),(84,'Old Spice Body Soap',5.97,'Health and Body'),(85,'Old Spice Deoderant',5.47,'Health and Body'),(86,'Shaving Cream',1.84,'Health and Body'),(87,'Razors',11.97,'Health and Body'),(88,'Toothpaste',3.44,'Health and Body'),(90,'Toothbrush',2.97,'Health and Body'),(91,'Sauerkraut ',1.98,'Canned Goods'),(92,'Black pepper',5.98,'Spices'),(93,'Fat bombs',8.98,'Health'),(94,'Jack links prime rib tender cuts',9.78,'Snacks J10'),(95,'Braggs Apple Cider',6.34,'Cooking'),(96,'Knife work sleeve ',1.00,'Home'),(97,'Plastic utensils ',6.42,'Home'),(98,'Five Star Notebook',6.98,'Office'),(99,'Pens',5.14,'Office'),(100,'Push pins',2.86,'Office'),(101,'Pine-Sol',6.74,'Cleaning'),(102,'Windex',2.97,'Cleaning'),(103,'MX Ergo Plus Wireless Mouse',99.99,'Electronics - Best Buy'),(104,'Logitech Wireless Keyboard - Lit',119.99,'Electronics - Best Buy'),(105,'Pledge',4.48,'Cleaning'),(106,'Samsung - Galaxy S22 Ultra 128GB (Unlocked)',899.00,'Electronics - Best Buy'),(107,'Samsung - Galaxy Watch4 Aluminum Smartwatch 44mm',279.00,'Electronics - Best Buy'),(108,'Vape Juice',11.99,'Cravin Vapes'),(109,'Coils 3 Pack',20.99,'Cravin Vapes'),(110,'Wall charger',4.88,'Electronics'),(111,'6 ft usb c cable',5.88,'Electronics'),(112,'3d printer to build mini titanic',279.00,'<a href=\"https://www.amazon.com/Integrated-Structure-Motherboard-Carborundum-8-66x8-66x9-84in/dp/B07FFTHMMN/ref=pd_aw_ic_dpcp_m_1_m_4?pd_rd_w=rxDZB&pf_rd_p=76ca361a-bf6a-4646-9a1c-ec5c5eafbb6b&pf_rd_r=TVGH1W9CYP4FR1BW83W9&pd_rd_r=dcb0fd71-b0f2-4e10-8c6b-63a6a46386c0&pd_rd_wg=Kz3s8&pd_rd_i=B07FFTHMMN\">Printer</a>'),(113,'Stapler',5.36,'Office');
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -573,7 +573,7 @@ CREATE TABLE `recipe_lists` (
 
 LOCK TABLES `recipe_lists` WRITE;
 /*!40000 ALTER TABLE `recipe_lists` DISABLE KEYS */;
-INSERT INTO `recipe_lists` VALUES (1,'Beverages_recipe_table',NULL),(2,'Body_recipe_table',NULL),(3,'Bratwurst_recipe_table',NULL),(4,'Burritos_recipe_table',NULL),(5,'Chicken_Drumbsticks_recipe_table',NULL),(6,'Chicken_wings_recipe_table',NULL),(7,'Cleaning_Supplies_recipe_table',NULL),(8,'Electronic_needs_recipe_table',''),(9,'Jalapeno_Poppers_recipe_table',NULL),(10,'Meat_Pizza_recipe_table','https://ketoinpearls.com/sausage-crust-pizza/'),(11,'Meatballs_recipe_table','https://joyfilledeats.com/meatball-parm-casserole/#recipe'),(12,'Misc_recipe_table',NULL),(13,'Produce_recipe_table',NULL),(14,'Ribs_recipe_table',NULL),(15,'Snacks_recipe_table',NULL),(16,'Stuffed_Pizza_Bell_Peppers_recipe_table','https://kalynskitchen.com/low-carb-sausage-pepperoni-pizza-stuffed-peppers/#mv-creation-50-jtr'),(17,'Vacation_recipe_table',NULL),(18,'Vaping_Equipment_recipe_table',NULL);
+INSERT INTO `recipe_lists` VALUES (1,'Beverages_recipe_table',NULL),(2,'Body_recipe_table',NULL),(3,'Bratwurst_recipe_table',NULL),(4,'Burritos_recipe_table',NULL),(5,'Chicken_Drumbsticks_recipe_table',NULL),(6,'Chicken_wings_recipe_table',NULL),(7,'Cleaning_Supplies_recipe_table',NULL),(8,'Electronic_needs_recipe_table',''),(9,'Jalapeno_Poppers_recipe_table',NULL),(10,'Meat_Pizza_recipe_table','https://ketoinpearls.com/sausage-crust-pizza/'),(11,'Meatballs_recipe_table','https://joyfilledeats.com/meatball-parm-casserole/#recipe'),(12,'Misc_recipe_table',''),(13,'Produce_recipe_table',NULL),(14,'Ribs_recipe_table',NULL),(15,'Snacks_recipe_table',NULL),(16,'Stuffed_Pizza_Bell_Peppers_recipe_table','https://kalynskitchen.com/low-carb-sausage-pepperoni-pizza-stuffed-peppers/#mv-creation-50-jtr'),(17,'Vacation_recipe_table',NULL),(18,'Vaping_Equipment_recipe_table',NULL);
 /*!40000 ALTER TABLE `recipe_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -586,4 +586,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-10 18:54:29
+-- Dump completed on 2022-05-10 19:00:16
