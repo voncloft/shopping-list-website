@@ -2,7 +2,7 @@ MORE TO COME I AM SURE!!!!!
 
 give ability to modify finalized shopping list
 
-Add Dept webpage, give mysql database, pull from db for all dept categories EXCEPT for final page - that stays static
+Add Dept webpage, give mysql database, give to add item
 
 give ability to search by departments in pages
 
@@ -12,16 +12,10 @@ Give human error pages
 
 Sort Final by default
 
-multiple final lists for specific events
-
-option to save default shopping lists
-
 total price on individual recipe websites - use javascript onChange for dropdown select
-
-give option to save final grocery list a different name show it in finalized lists,if none given save as the default final list
 
 MAJOR BUG if item is deleted in item table BE SUREto delete it from.other tables
 
-give recipe lists the ability to have notes and a url to link to for meal prep days
+give recipe lists the ability to have notes
 
 Find a way to remove unused items in recipes - I think the Union command might help: https://ubiq.co/database-blog/compare-two-tables-mysql/
