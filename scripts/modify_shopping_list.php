@@ -28,6 +28,10 @@ if(!empty($_POST['recipes'])){
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     echo "<table border = 2><tr><th>Qty</th><th>Description</th><th>Price</th></tr>";
     $x=0;
+
+
+
+
     foreach ($rows as $from_recipe_list)
     {
             $c++;

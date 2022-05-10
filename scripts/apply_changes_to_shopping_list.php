@@ -3,6 +3,19 @@ include '../include/passwords.php';
 session_start();
     $i= $_SESSION['loop_counter'] ;
     $database=$_SESSION['recipe_edit_name'];
+//check if this recipe is even set up for selection of week to not interfere with main list later
+
+   $selected_recipes=array();
+   $recipe_check="select recipes from current_week_recipes";
+   $current_recipe_week=$conn->query($recipe_check);
+   $recipe_rows=$current_recipe_week->fetch_all(MYSQLI_ASSOC);
+
+   foreach($recipe_rows as $recipes_selected)
+   {
+        $selected_recipes[]=$recipes_selected['recipes'];
+   }
+
+
    for($c=1;$c<=$i;$c++)
     {
        $qty_key="recipe_list".$c;  
@@ -25,21 +38,25 @@ session_start();
         echo $update_food;
         $conn->query($update_food);
     }
+    
     for($i=1;$i<=20;$i++)
     {
         $txt_to_add="qtext".$i;
         $slct_to_add="select_add".$i;
         //echo $_POST[$txt_to_add];
+	
         if($_POST[$txt_to_add] >0)
         {
             $sql_add="insert into ".$database."(qty,ingredient_name)Values('".$_POST[$txt_to_add]."','".$_POST[$slct_to_add]."')";
             echo $sql_add."<br>";
             $conn->query($sql_add);
+             if (in_array($database, $selected_recipes))
+             {
+            	$insert_into_final="insert into final_list(qfrt,ifrt,recipe_table_name)VALUES('".$_POST[$txt_to_add]."','".$_POST[$slct_to_add]."','".$database."')";
             
-            $insert_into_final="insert into final_list(qfrt,ifrt,recipe_table_name)VALUES('".$_POST[$txt_to_add]."','".$_POST[$slct_to_add]."','".$database."')";
-            
-            echo $insert_into_final."<br>";
-            $conn->query($insert_into_final);
+            	echo $insert_into_final."<br>";
+            	$conn->query($insert_into_final);
+	     }
         }
     }
     echo "<br><a href=../index.php>Main Menu</a>";
