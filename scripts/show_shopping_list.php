@@ -35,4 +35,6 @@ foreach($table_row as $ingredient_name_id){
   foreach($item_row as $item){
     echo "<tr><td>".$ingredient_name_id['qty']."</td><td>".$item['grocery_item']."</td><td>".$item['price']."</td><td>".$item['department']."</td></tr>";  
   }
+
 }
+  echo "<tr><td><a href=../index.php>Main Page</a></td><td></td></tr>";
