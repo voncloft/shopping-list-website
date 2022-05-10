@@ -10,5 +10,7 @@
             echo $sql."<br><br>";
                 echo "Imported Ingredient to main food database";
     }
-
+?>
+<a href="../php/add_foods.php">Add Another Item</a>
+<a href="../index.php">Main Page</a>
     

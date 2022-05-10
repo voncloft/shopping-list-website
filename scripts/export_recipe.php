@@ -32,3 +32,4 @@
     }
     echo "<br>"; 
     ?>
+<a href="../index.php">Main Page</a>

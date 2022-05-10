@@ -56,3 +56,4 @@ $sql="select IFRT, sum(QFRT) as totalsum from final_list group by IFRT";
     echo "<tr><td>Total:</td><td>".number_format($tax_added,2)."</td></tr></table>";
     echo "</td></tr><tr><td>Clear table <input type='submit'></table></center><form>";
 ?>
+<a href="../index.php">Main Page</a>
