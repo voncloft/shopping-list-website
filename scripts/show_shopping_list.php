@@ -33,8 +33,12 @@ foreach($table_row as $ingredient_name_id){
   $item_retrieve=$conn->query($item_sql);
   $item_row=$item_retrieve->fetch_all(MYSQLI_ASSOC);
   foreach($item_row as $item){
-    echo "<tr><td>".$ingredient_name_id['qty']."</td><td>".$item['grocery_item']."</td><td>".$item['price']."</td><td>".$item['department']."</td></tr>";  
+      $reconfigured_cost=$ingredient_name_id['qty'] * $item['price'];
+    echo "<tr><td>".$ingredient_name_id['qty']."</td><td>".$item['grocery_item']."</td><td>".$reconfigured_cost."</td><td>".$item['department']."</td></tr>";  
+    $overall_price=$overall_price+$reconfigured_cost;
   }
 
 }
-  echo "<tr><td><a href=../index.php>Main Page</a></td><td></td></tr>";
+  echo "<tr><td><a href=../index.php>Main Page</a></td><td>Total Cost</td><td>";
+  include '../include/recipe_list_price.php';
+  echo"</td></tr>";
