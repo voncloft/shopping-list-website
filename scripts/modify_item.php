@@ -14,3 +14,5 @@ for($i=1;$i<=$counter;$i++)
    $conn->query($sql);
 }
 ?>
+<br>
+<a href="../index.php">Main Page</a>

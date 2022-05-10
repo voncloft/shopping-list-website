@@ -67,3 +67,5 @@ $conn->close();
 ?>
 <tr><td></td><td><INPUT TYPE="SUBMIT"></td></tr>
 </FORM>
+<br>
+<a href="../index.php">Main Page</a>
