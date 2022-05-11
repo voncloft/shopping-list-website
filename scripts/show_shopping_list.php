@@ -19,7 +19,7 @@ $url_retrieve=$conn->query($url);
 $url_row=$url_retrieve->fetch_all(MYSQLI_ASSOC);
 
 foreach($url_row as $url_echo){
-    if(! is_null($url_echo['url'])){
+    if(! is_null($url_echo['url']) && ! empty($url_echo['url'])){
         echo "URL: <a href='".$url_echo['url']."' target='_blank'>Recipe</a>";
     }
 }
