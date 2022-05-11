@@ -5,12 +5,15 @@ include '../include/passwords.php';
 session_start();
 $overall_price=0;
 $c=0;
+
 if(!empty($_POST['recipes'])){
     foreach($_POST['recipes'] as $selected){
         $recipe_name=$selected;
     }
 }
-
+$remove_rt=str_replace("_recipe_table","",$recipe_name);
+$remove_us=str_replace("_"," ",$remove_rt);
+echo "<h1>".$remove_us."</h1>";
 $url="select url from recipe_lists where recipe_name='".$recipe_name."'";
 $url_retrieve=$conn->query($url);
 $url_row=$url_retrieve->fetch_all(MYSQLI_ASSOC);

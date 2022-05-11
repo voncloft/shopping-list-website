@@ -10,8 +10,9 @@ if(!empty($_POST['recipes'])){
         $recipe_name=$selected;
     }
 }
-//echo $recipe_name;
-    //get default values
+$remove_rt=str_replace("_recipe_table","",$recipe_name);
+$remove_us=str_replace("_"," ",$remove_rt);
+echo "<h1>".$remove_us."</h1>";
     $update_script="";
     $default_list_string="<select>";
     $default_items_sql="select id, grocery_item from items";
