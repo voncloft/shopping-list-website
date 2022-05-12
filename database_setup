@@ -535,7 +535,7 @@ CREATE TABLE `current_week_recipes` (
   `recipes` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `recipes` (`recipes`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -544,7 +544,7 @@ CREATE TABLE `current_week_recipes` (
 
 LOCK TABLES `current_week_recipes` WRITE;
 /*!40000 ALTER TABLE `current_week_recipes` DISABLE KEYS */;
-INSERT INTO `current_week_recipes` VALUES (1,'Beverages_recipe_table'),(2,'Bratwurst_recipe_table'),(3,'Burritos_recipe_table'),(4,'Chicken_Drumbsticks_recipe_table'),(5,'Produce_recipe_table'),(6,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(8,'Cleaning_Supplies_recipe_table'),(10,'Misc_recipe_table');
+INSERT INTO `current_week_recipes` VALUES (1,'Beverages_recipe_table'),(2,'Bratwurst_recipe_table'),(3,'Burritos_recipe_table'),(4,'Chicken_Drumbsticks_recipe_table'),(5,'Produce_recipe_table'),(6,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(11,'Cleaning_Supplies_recipe_table'),(12,'Misc_recipe_table');
 /*!40000 ALTER TABLE `current_week_recipes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -561,7 +561,7 @@ CREATE TABLE `final_list` (
   `IFRT` int(11) NOT NULL,
   `recipe_table_name` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -570,7 +570,7 @@ CREATE TABLE `final_list` (
 
 LOCK TABLES `final_list` WRITE;
 /*!40000 ALTER TABLE `final_list` DISABLE KEYS */;
-INSERT INTO `final_list` VALUES (1,1,62,'Beverages_recipe_table'),(2,2,1,'Beverages_recipe_table'),(3,0,57,'Beverages_recipe_table'),(4,0,95,'Beverages_recipe_table'),(5,3,9,'Bratwurst_recipe_table'),(6,0,10,'Bratwurst_recipe_table'),(7,0,91,'Bratwurst_recipe_table'),(8,1,11,'Burritos_recipe_table'),(9,5,8,'Burritos_recipe_table'),(10,1,12,'Burritos_recipe_table'),(11,1,13,'Burritos_recipe_table'),(12,0,14,'Burritos_recipe_table'),(13,0,15,'Burritos_recipe_table'),(14,1,19,'Chicken_Drumbsticks_recipe_table'),(15,0,20,'Chicken_Drumbsticks_recipe_table'),(16,0,92,'Chicken_Drumbsticks_recipe_table'),(17,1,17,'Produce_recipe_table'),(18,1,18,'Produce_recipe_table'),(19,1,16,'Produce_recipe_table'),(20,4,64,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(21,1,37,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(22,1,29,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(23,1,53,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(24,1,27,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(25,1,32,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(26,1,65,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(27,0,54,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(28,0,44,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(29,0,66,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(30,0,55,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(31,4,8,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(32,1,30,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(39,0,3,'Cleaning_Supplies_recipe_table'),(40,0,50,'Cleaning_Supplies_recipe_table'),(41,0,101,'Cleaning_Supplies_recipe_table'),(42,0,52,'Cleaning_Supplies_recipe_table'),(43,0,102,'Cleaning_Supplies_recipe_table'),(44,0,105,'Cleaning_Supplies_recipe_table'),(45,1,51,'Cleaning_Supplies_recipe_table'),(54,0,96,'Misc_recipe_table'),(55,0,97,'Misc_recipe_table'),(56,0,99,'Misc_recipe_table'),(57,0,100,'Misc_recipe_table'),(58,0,98,'Misc_recipe_table'),(59,1,113,'Misc_recipe_table'),(60,1,133,'Misc_recipe_table');
+INSERT INTO `final_list` VALUES (1,1,62,'Beverages_recipe_table'),(2,2,1,'Beverages_recipe_table'),(3,0,57,'Beverages_recipe_table'),(4,0,95,'Beverages_recipe_table'),(5,3,9,'Bratwurst_recipe_table'),(6,0,10,'Bratwurst_recipe_table'),(7,0,91,'Bratwurst_recipe_table'),(8,1,11,'Burritos_recipe_table'),(9,5,8,'Burritos_recipe_table'),(10,1,12,'Burritos_recipe_table'),(11,1,13,'Burritos_recipe_table'),(12,0,14,'Burritos_recipe_table'),(13,0,15,'Burritos_recipe_table'),(14,1,19,'Chicken_Drumbsticks_recipe_table'),(15,0,20,'Chicken_Drumbsticks_recipe_table'),(16,0,92,'Chicken_Drumbsticks_recipe_table'),(17,1,17,'Produce_recipe_table'),(18,1,18,'Produce_recipe_table'),(19,1,16,'Produce_recipe_table'),(20,4,64,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(21,1,37,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(22,1,29,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(23,1,53,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(24,1,27,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(25,1,32,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(26,1,65,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(27,0,54,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(28,0,44,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(29,0,66,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(30,0,55,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(31,4,8,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(32,1,30,'Stuffed_Pizza_Bell_Peppers_recipe_table'),(61,0,3,'Cleaning_Supplies_recipe_table'),(62,0,50,'Cleaning_Supplies_recipe_table'),(63,0,101,'Cleaning_Supplies_recipe_table'),(64,0,52,'Cleaning_Supplies_recipe_table'),(65,0,102,'Cleaning_Supplies_recipe_table'),(66,0,105,'Cleaning_Supplies_recipe_table'),(67,1,51,'Cleaning_Supplies_recipe_table'),(68,0,96,'Misc_recipe_table'),(69,0,97,'Misc_recipe_table'),(70,0,99,'Misc_recipe_table'),(71,0,100,'Misc_recipe_table'),(72,0,98,'Misc_recipe_table'),(73,1,113,'Misc_recipe_table'),(74,1,133,'Misc_recipe_table');
 /*!40000 ALTER TABLE `final_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -636,4 +636,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-12  7:11:34
+-- Dump completed on 2022-05-12  7:32:09

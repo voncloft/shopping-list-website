@@ -2,12 +2,6 @@ MORE TO COME I AM SURE!!!!!
 
 Convert To excel spreadsheet using multiple buttons? use this: https://stackoverflow.com/questions/11929471/how-do-i-use-two-submit-buttons-and-differentiate-between-which-one-was-used-to
 
-give ability to modify finalized shopping list
-
-Add Dept webpage, give mysql database, give to add item
-
-give ability to search by departments in pages
-
 Give human error pages
 
 ....MAAAYBE create database dedicated to recipes - probaby will its cleaner
