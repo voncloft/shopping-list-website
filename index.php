@@ -9,7 +9,7 @@ Shopping List Actions<br>
 <a href="../php/select_shopping_lists_for_week.php">Select Recipe List to add to final shopping list for week</a><br>
 <a href="../php/modify_all_recipes.php">Modify Shopping List Before Import</a><br>
 <a href="../php/modify_shopping_list.php">Modify Shopping List(Currently Imported)</a><br>
-
+<a href="../php/remove_shopping_list_from_final.php">Remove Shopping List from Current Week</a><br>
 <br>
 Shopping<br>
 <a href="../php/final_shopping_list.php">View Final Shopping List for Week</a><br>
