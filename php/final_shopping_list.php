@@ -28,7 +28,7 @@ $sql="select IFRT, sum(QFRT) as totalsum from final_list group by IFRT";
         
             foreach ($rows_from_items  as $item_info)
             {
-            	$get_recipe_name="select recipe_table_name from final_list where IFRT='".$id_to_pull_from_items."'";
+            	$get_recipe_name="select recipe_table_name from final_list where IFRT='".$id_to_pull_from_items."' and qfrt > 0";
             	$recipes=$conn->query($get_recipe_name);
             	$show_recipe_name=$recipes->fetch_all(MYSQLI_ASSOC);
             	foreach($show_recipe_name as $recipe_td)
