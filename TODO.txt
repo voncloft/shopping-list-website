@@ -15,3 +15,5 @@ MAJOR BUG if item is deleted in item table BE SUREto delete it from.other tables
 give recipe lists the ability to have notes
 
 Find a way to remove unused items in recipes - I think the Union command might help: https://ubiq.co/database-blog/compare-two-tables-mysql/
+
+add macros to item list allow nulls measure in grams of total in package,at recipe time divide by 7

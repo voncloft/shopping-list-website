@@ -44,7 +44,7 @@ CREATE TABLE `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` (
 
 LOCK TABLES `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` DISABLE KEYS */;
-INSERT INTO `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` VALUES (1,1,'140'),(2,1,'29'),(3,2,'64'),(4,2,'31'),(5,2,'15'),(6,0,'42'),(7,0,'92'),(8,1,'7'),(9,1,'12'),(10,1,'141'),(11,0,'10'),(12,5,'8');
+INSERT INTO `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` VALUES (1,0,'67'),(2,1,'29'),(3,2,'64'),(4,2,'31'),(5,2,'15'),(6,0,'42'),(7,0,'92'),(8,1,'7'),(9,1,'12'),(10,1,'141'),(11,0,'10'),(12,5,'8');
 /*!40000 ALTER TABLE `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -635,7 +635,7 @@ CREATE TABLE `current_week_recipes` (
   `recipes` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `recipes` (`recipes`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -644,7 +644,7 @@ CREATE TABLE `current_week_recipes` (
 
 LOCK TABLES `current_week_recipes` WRITE;
 /*!40000 ALTER TABLE `current_week_recipes` DISABLE KEYS */;
-INSERT INTO `current_week_recipes` VALUES (1,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(4,'Cleaning_Supplies_recipe_table'),(8,'Bratwurst_recipe_table'),(9,'Beverages_recipe_table'),(10,'Chicken_Drumbsticks_recipe_table'),(11,'Buffalo_Chicken_Casserole_recipe_table');
+INSERT INTO `current_week_recipes` VALUES (1,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(4,'Cleaning_Supplies_recipe_table'),(9,'Beverages_recipe_table'),(10,'Chicken_Drumbsticks_recipe_table'),(11,'Buffalo_Chicken_Casserole_recipe_table'),(12,'Jalapeno_Poppers_recipe_table');
 /*!40000 ALTER TABLE `current_week_recipes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -661,7 +661,7 @@ CREATE TABLE `final_list` (
   `IFRT` int(11) NOT NULL,
   `recipe_table_name` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -670,7 +670,7 @@ CREATE TABLE `final_list` (
 
 LOCK TABLES `final_list` WRITE;
 /*!40000 ALTER TABLE `final_list` DISABLE KEYS */;
-INSERT INTO `final_list` VALUES (1,1,140,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(2,1,29,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(3,2,64,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(4,2,31,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(5,2,15,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(6,0,42,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(7,0,92,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(8,1,7,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(9,1,12,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(10,1,141,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(11,0,10,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(23,0,3,'Cleaning_Supplies_recipe_table'),(24,0,50,'Cleaning_Supplies_recipe_table'),(25,0,101,'Cleaning_Supplies_recipe_table'),(26,0,52,'Cleaning_Supplies_recipe_table'),(27,0,102,'Cleaning_Supplies_recipe_table'),(28,0,105,'Cleaning_Supplies_recipe_table'),(29,1,51,'Cleaning_Supplies_recipe_table'),(44,3,9,'Bratwurst_recipe_table'),(45,0,10,'Bratwurst_recipe_table'),(46,0,91,'Bratwurst_recipe_table'),(47,1,62,'Beverages_recipe_table'),(48,2,1,'Beverages_recipe_table'),(49,0,57,'Beverages_recipe_table'),(50,0,95,'Beverages_recipe_table'),(51,1,19,'Chicken_Drumbsticks_recipe_table'),(52,0,20,'Chicken_Drumbsticks_recipe_table'),(53,0,92,'Chicken_Drumbsticks_recipe_table'),(54,0,67,'Chicken_Drumbsticks_recipe_table'),(55,1,14,'Buffalo_Chicken_Casserole_recipe_table'),(56,3,142,'Buffalo_Chicken_Casserole_recipe_table'),(57,1,143,'Buffalo_Chicken_Casserole_recipe_table'),(58,1,12,'Buffalo_Chicken_Casserole_recipe_table'),(59,1,144,'Buffalo_Chicken_Casserole_recipe_table'),(60,2,29,'Buffalo_Chicken_Casserole_recipe_table'),(61,1,145,'Buffalo_Chicken_Casserole_recipe_table'),(62,1,146,'Buffalo_Chicken_Casserole_recipe_table'),(63,3,64,'Buffalo_Chicken_Casserole_recipe_table'),(64,0,137,'Buffalo_Chicken_Casserole_recipe_table'),(65,1,54,'Buffalo_Chicken_Casserole_recipe_table'),(66,0,67,'Buffalo_Chicken_Casserole_recipe_table'),(67,1,23,'Buffalo_Chicken_Casserole_recipe_table'),(68,0,42,'Buffalo_Chicken_Casserole_recipe_table'),(69,0,92,'Buffalo_Chicken_Casserole_recipe_table'),(70,1,147,'Buffalo_Chicken_Casserole_recipe_table'),(71,5,8,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(72,1,152,'Buffalo_Chicken_Casserole_recipe_table');
+INSERT INTO `final_list` VALUES (1,0,67,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(2,1,29,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(3,2,64,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(4,2,31,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(5,2,15,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(6,0,42,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(7,0,92,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(8,1,7,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(9,1,12,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(10,1,141,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(11,0,10,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(23,0,3,'Cleaning_Supplies_recipe_table'),(24,0,50,'Cleaning_Supplies_recipe_table'),(25,0,101,'Cleaning_Supplies_recipe_table'),(26,0,52,'Cleaning_Supplies_recipe_table'),(27,0,102,'Cleaning_Supplies_recipe_table'),(28,0,105,'Cleaning_Supplies_recipe_table'),(29,1,51,'Cleaning_Supplies_recipe_table'),(47,1,62,'Beverages_recipe_table'),(48,2,1,'Beverages_recipe_table'),(49,0,57,'Beverages_recipe_table'),(50,0,95,'Beverages_recipe_table'),(51,1,19,'Chicken_Drumbsticks_recipe_table'),(52,0,20,'Chicken_Drumbsticks_recipe_table'),(53,0,92,'Chicken_Drumbsticks_recipe_table'),(54,0,67,'Chicken_Drumbsticks_recipe_table'),(55,1,14,'Buffalo_Chicken_Casserole_recipe_table'),(56,3,142,'Buffalo_Chicken_Casserole_recipe_table'),(57,1,143,'Buffalo_Chicken_Casserole_recipe_table'),(58,1,12,'Buffalo_Chicken_Casserole_recipe_table'),(59,1,144,'Buffalo_Chicken_Casserole_recipe_table'),(60,2,29,'Buffalo_Chicken_Casserole_recipe_table'),(61,1,145,'Buffalo_Chicken_Casserole_recipe_table'),(62,1,146,'Buffalo_Chicken_Casserole_recipe_table'),(63,3,64,'Buffalo_Chicken_Casserole_recipe_table'),(64,0,137,'Buffalo_Chicken_Casserole_recipe_table'),(65,1,54,'Buffalo_Chicken_Casserole_recipe_table'),(66,0,67,'Buffalo_Chicken_Casserole_recipe_table'),(67,1,23,'Buffalo_Chicken_Casserole_recipe_table'),(68,0,42,'Buffalo_Chicken_Casserole_recipe_table'),(69,0,92,'Buffalo_Chicken_Casserole_recipe_table'),(70,1,147,'Buffalo_Chicken_Casserole_recipe_table'),(71,5,8,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table'),(72,1,152,'Buffalo_Chicken_Casserole_recipe_table'),(73,11,8,'Jalapeno_Poppers_recipe_table'),(74,1,5,'Jalapeno_Poppers_recipe_table'),(75,2,12,'Jalapeno_Poppers_recipe_table'),(76,1,7,'Jalapeno_Poppers_recipe_table'),(77,0,15,'Jalapeno_Poppers_recipe_table');
 /*!40000 ALTER TABLE `final_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -736,4 +736,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13  8:55:35
+-- Dump completed on 2022-05-13  9:10:38
