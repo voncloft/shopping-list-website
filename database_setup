@@ -549,6 +549,30 @@ INSERT INTO `Snacks_recipe_table` VALUES (1,0,'94');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Spices_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Spices_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Spices_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Spices_recipe_table`
+--
+
+LOCK TABLES `Spices_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Spices_recipe_table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Spices_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Stuffed_Pizza_Bell_Peppers_recipe_table`
 --
 
@@ -714,7 +738,7 @@ CREATE TABLE `recipe_lists` (
   `url` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `recipe_name` (`recipe_name`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -723,7 +747,7 @@ CREATE TABLE `recipe_lists` (
 
 LOCK TABLES `recipe_lists` WRITE;
 /*!40000 ALTER TABLE `recipe_lists` DISABLE KEYS */;
-INSERT INTO `recipe_lists` VALUES (1,'Beverages_recipe_table',''),(2,'Body_recipe_table',''),(3,'Bratwurst_recipe_table',NULL),(4,'Burritos_recipe_table',NULL),(5,'Chicken_Drumbsticks_recipe_table',''),(6,'Chicken_wings_recipe_table',NULL),(7,'Cleaning_Supplies_recipe_table',''),(8,'Electronic_needs_recipe_table',''),(9,'Jalapeno_Poppers_recipe_table',''),(10,'Meat_Pizza_recipe_table','https://ketoinpearls.com/sausage-crust-pizza/'),(11,'Meatballs_recipe_table','https://joyfilledeats.com/meatball-parm-casserole/#recipe'),(12,'Misc_recipe_table',''),(13,'Produce_recipe_table',''),(14,'Ribs_recipe_table',NULL),(15,'Snacks_recipe_table',NULL),(16,'Stuffed_Pizza_Bell_Peppers_recipe_table','https://kalynskitchen.com/low-carb-sausage-pepperoni-pizza-stuffed-peppers/#mv-creation-50-jtr'),(17,'Vacation_recipe_table',NULL),(18,'Vaping_Equipment_recipe_table',''),(33,'Electronic_Bartender_recipe_table','https://www.youtube.com/watch?v=2DopvpNF7J4'),(34,'Quick_List_recipe_table',''),(35,'Lasagna_recipe_table','https://peaceloveandlowcarb.com/just-like-the-real-thing-lasagna/#tasty-recipes-12196-jump-target'),(36,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table','https://ketodietapp.com/Blog/lchf/bacon-wrapped-and-cheese-stuffed-burgers#preptime'),(37,'Buffalo_Chicken_Casserole_recipe_table','https://www.mincerepublic.com/buffalo-chicken-casserole/'),(38,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table','https://www.wholesomeyum.com/recipes/chicken-bacon-ranch-casserole-recipe-easy-low-carb/');
+INSERT INTO `recipe_lists` VALUES (1,'Beverages_recipe_table',''),(2,'Body_recipe_table',''),(3,'Bratwurst_recipe_table',NULL),(4,'Burritos_recipe_table',NULL),(5,'Chicken_Drumbsticks_recipe_table',''),(6,'Chicken_wings_recipe_table',NULL),(7,'Cleaning_Supplies_recipe_table',''),(8,'Electronic_needs_recipe_table',''),(9,'Jalapeno_Poppers_recipe_table',''),(10,'Meat_Pizza_recipe_table','https://ketoinpearls.com/sausage-crust-pizza/'),(11,'Meatballs_recipe_table','https://joyfilledeats.com/meatball-parm-casserole/#recipe'),(12,'Misc_recipe_table',''),(13,'Produce_recipe_table',''),(14,'Ribs_recipe_table',NULL),(15,'Snacks_recipe_table',NULL),(16,'Stuffed_Pizza_Bell_Peppers_recipe_table','https://kalynskitchen.com/low-carb-sausage-pepperoni-pizza-stuffed-peppers/#mv-creation-50-jtr'),(17,'Vacation_recipe_table',NULL),(18,'Vaping_Equipment_recipe_table',''),(33,'Electronic_Bartender_recipe_table','https://www.youtube.com/watch?v=2DopvpNF7J4'),(34,'Quick_List_recipe_table',''),(35,'Lasagna_recipe_table','https://peaceloveandlowcarb.com/just-like-the-real-thing-lasagna/#tasty-recipes-12196-jump-target'),(36,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table','https://ketodietapp.com/Blog/lchf/bacon-wrapped-and-cheese-stuffed-burgers#preptime'),(37,'Buffalo_Chicken_Casserole_recipe_table','https://www.mincerepublic.com/buffalo-chicken-casserole/'),(38,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table','https://www.wholesomeyum.com/recipes/chicken-bacon-ranch-casserole-recipe-easy-low-carb/'),(39,'Spices_recipe_table','');
 /*!40000 ALTER TABLE `recipe_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -736,4 +760,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-13 19:11:29
+-- Dump completed on 2022-05-13 20:05:20
