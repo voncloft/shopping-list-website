@@ -17,3 +17,10 @@ give recipe lists the ability to have notes
 Find a way to remove unused items in recipes - I think the Union command might help: https://ubiq.co/database-blog/compare-two-tables-mysql/
 
 add macros to item list allow nulls measure in grams of total in package,at recipe time divide by 7
+
+***IN THE FUTURE in a galaxy far far FAR away***
+
+Use a seperate database for recipes only - using the following code
+select recipes.Meat_Pizza_recipe_table.ingredient_name, shopping_list.items.grocery_item from recipes.Meat_Pizza_recipe_table, shopping_list.items where recipes.Meat_Pizza_recipe_table.ingredient_name = shopping_list.items.id
+
+I AM NOT DOING IT RIGHT NOW on MAY 13th 2022
