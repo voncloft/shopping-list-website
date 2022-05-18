@@ -17,7 +17,7 @@ echo "<br>";
       $array[]=$recipe['recipes'];
     }
     while($table = mysqli_fetch_array($showtables)) { 
-              if($table[0]!="final_list" && $table[0]!="current_week_recipes" && $table[0]!="items" && $table[0]!="recipe_lists")
+              if($table[0]!="final_list" && $table[0]!="current_week_recipes" && $table[0]!="items" && $table[0]!="recipe_lists"  && $table[0]!="measurements" )
               {
                   $i++;
                   $remove_rt=str_replace("_recipe_table","",$table[0]);
