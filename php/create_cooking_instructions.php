@@ -1,6 +1,9 @@
 <?php
 include '../include/passwords.php';
+
+echo "<form action='../scripts/save_recipe_instructions.php' method=POST>";
 echo "<table><tr><td>";
+echo "Website Name to save recipe as: <input type='text' name='website_name'></td></tr><tr><td>";
 echo "<table><tr><th>Qty</th><th>Measurement</th><th>Ingredient</th></tr><tr>";
 	for ($c=1;$c<=20;$c++)
 	{
@@ -10,7 +13,7 @@ echo "<table><tr><th>Qty</th><th>Measurement</th><th>Ingredient</th></tr><tr>";
 		$measurements_sql="select unit_of_measurement from measurements";
 		$measurements_results=$conn->query($measurements_sql);
 		$m_rows=$measurements_results->fetch_all(MYSQLI_ASSOC);
-		echo "<select name='qty".$c."'>";
+		echo "<select name='measurement".$c."'>";
 		foreach($m_rows as $mrows){
                         echo '<option value="'.$mrows['unit_of_measurement'].'">'.$mrows['unit_of_measurement'].'</option>';
 		}
@@ -27,5 +30,6 @@ echo "<table><tr><th>Qty</th><th>Measurement</th><th>Ingredient</th></tr><tr>";
 	}
 	
 	echo "</table></td></tr><tr><td>";
-	echo "<br>INSTRUCTIONS: <textarea cols='130' rows='30' name='instructions'></textarea></td></tr>";
+	echo "INSTRUCTIONS: </td></tr><tr><td><textarea cols='130' rows='30' name='instructions'></textarea></td></tr>";
+	echo "<tr><td><input type='submit'></td></tr><form>";
 ?>
