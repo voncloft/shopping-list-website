@@ -885,7 +885,7 @@ CREATE TABLE `current_week_recipes` (
   `recipes` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `recipes` (`recipes`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -894,7 +894,7 @@ CREATE TABLE `current_week_recipes` (
 
 LOCK TABLES `current_week_recipes` WRITE;
 /*!40000 ALTER TABLE `current_week_recipes` DISABLE KEYS */;
-INSERT INTO `current_week_recipes` VALUES (4,'Keto_Mac_and_Cheese_recipe_table'),(5,'Beverages_recipe_table'),(6,'Body_recipe_table'),(9,'Cleaning_Supplies_recipe_table'),(10,'Produce_recipe_table'),(12,'Keto_Fried_Chicken_recipe_table');
+INSERT INTO `current_week_recipes` VALUES (4,'Keto_Mac_and_Cheese_recipe_table'),(5,'Beverages_recipe_table'),(6,'Body_recipe_table'),(9,'Cleaning_Supplies_recipe_table'),(10,'Produce_recipe_table'),(12,'Keto_Fried_Chicken_recipe_table'),(13,'Jalapeno_Poppers_recipe_table');
 /*!40000 ALTER TABLE `current_week_recipes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -911,7 +911,7 @@ CREATE TABLE `final_list` (
   `IFRT` int(11) NOT NULL,
   `recipe_table_name` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -920,7 +920,7 @@ CREATE TABLE `final_list` (
 
 LOCK TABLES `final_list` WRITE;
 /*!40000 ALTER TABLE `final_list` DISABLE KEYS */;
-INSERT INTO `final_list` VALUES (32,2,172,'Keto_Mac_and_Cheese_recipe_table'),(33,0,67,'Keto_Mac_and_Cheese_recipe_table'),(34,0,54,'Keto_Mac_and_Cheese_recipe_table'),(35,0,167,'Keto_Mac_and_Cheese_recipe_table'),(36,0,57,'Keto_Mac_and_Cheese_recipe_table'),(37,1,5,'Keto_Mac_and_Cheese_recipe_table'),(38,2,12,'Keto_Mac_and_Cheese_recipe_table'),(39,1,26,'Keto_Mac_and_Cheese_recipe_table'),(40,1,23,'Keto_Mac_and_Cheese_recipe_table'),(41,0,92,'Keto_Mac_and_Cheese_recipe_table'),(42,1,171,'Keto_Mac_and_Cheese_recipe_table'),(43,1,39,'Keto_Mac_and_Cheese_recipe_table'),(44,0,62,'Beverages_recipe_table'),(45,2,1,'Beverages_recipe_table'),(46,0,57,'Beverages_recipe_table'),(47,0,95,'Beverages_recipe_table'),(48,0,90,'Body_recipe_table'),(49,0,88,'Body_recipe_table'),(50,0,86,'Body_recipe_table'),(51,0,87,'Body_recipe_table'),(52,1,84,'Body_recipe_table'),(53,0,153,'Body_recipe_table'),(54,1,85,'Body_recipe_table'),(66,0,3,'Cleaning_Supplies_recipe_table'),(67,0,50,'Cleaning_Supplies_recipe_table'),(68,0,101,'Cleaning_Supplies_recipe_table'),(69,0,52,'Cleaning_Supplies_recipe_table'),(70,0,102,'Cleaning_Supplies_recipe_table'),(71,0,105,'Cleaning_Supplies_recipe_table'),(72,0,51,'Cleaning_Supplies_recipe_table'),(73,1,170,'Cleaning_Supplies_recipe_table'),(74,1,17,'Produce_recipe_table'),(75,1,158,'Produce_recipe_table'),(76,1,16,'Produce_recipe_table'),(87,1,173,'Keto_Fried_Chicken_recipe_table'),(88,1,167,'Keto_Fried_Chicken_recipe_table'),(89,0,92,'Keto_Fried_Chicken_recipe_table'),(90,1,40,'Keto_Fried_Chicken_recipe_table'),(91,1,57,'Keto_Fried_Chicken_recipe_table'),(92,0,164,'Keto_Fried_Chicken_recipe_table'),(93,1,171,'Keto_Fried_Chicken_recipe_table'),(94,1,39,'Keto_Fried_Chicken_recipe_table'),(95,0,137,'Keto_Fried_Chicken_recipe_table'),(96,0,174,'Keto_Fried_Chicken_recipe_table'),(97,1,144,'Keto_Fried_Chicken_recipe_table'),(98,0,23,'Keto_Fried_Chicken_recipe_table');
+INSERT INTO `final_list` VALUES (32,2,172,'Keto_Mac_and_Cheese_recipe_table'),(33,0,67,'Keto_Mac_and_Cheese_recipe_table'),(34,0,54,'Keto_Mac_and_Cheese_recipe_table'),(35,0,167,'Keto_Mac_and_Cheese_recipe_table'),(36,0,57,'Keto_Mac_and_Cheese_recipe_table'),(37,1,5,'Keto_Mac_and_Cheese_recipe_table'),(38,2,12,'Keto_Mac_and_Cheese_recipe_table'),(39,1,26,'Keto_Mac_and_Cheese_recipe_table'),(40,1,23,'Keto_Mac_and_Cheese_recipe_table'),(41,0,92,'Keto_Mac_and_Cheese_recipe_table'),(42,1,171,'Keto_Mac_and_Cheese_recipe_table'),(43,1,39,'Keto_Mac_and_Cheese_recipe_table'),(44,0,62,'Beverages_recipe_table'),(45,2,1,'Beverages_recipe_table'),(46,0,57,'Beverages_recipe_table'),(47,0,95,'Beverages_recipe_table'),(48,0,90,'Body_recipe_table'),(49,0,88,'Body_recipe_table'),(50,0,86,'Body_recipe_table'),(51,0,87,'Body_recipe_table'),(52,1,84,'Body_recipe_table'),(53,0,153,'Body_recipe_table'),(54,1,85,'Body_recipe_table'),(66,0,3,'Cleaning_Supplies_recipe_table'),(67,0,50,'Cleaning_Supplies_recipe_table'),(68,0,101,'Cleaning_Supplies_recipe_table'),(69,0,52,'Cleaning_Supplies_recipe_table'),(70,0,102,'Cleaning_Supplies_recipe_table'),(71,0,105,'Cleaning_Supplies_recipe_table'),(72,0,51,'Cleaning_Supplies_recipe_table'),(73,1,170,'Cleaning_Supplies_recipe_table'),(74,1,17,'Produce_recipe_table'),(75,1,158,'Produce_recipe_table'),(76,1,16,'Produce_recipe_table'),(87,1,173,'Keto_Fried_Chicken_recipe_table'),(88,1,167,'Keto_Fried_Chicken_recipe_table'),(89,0,92,'Keto_Fried_Chicken_recipe_table'),(90,1,40,'Keto_Fried_Chicken_recipe_table'),(91,1,57,'Keto_Fried_Chicken_recipe_table'),(92,0,164,'Keto_Fried_Chicken_recipe_table'),(93,1,171,'Keto_Fried_Chicken_recipe_table'),(94,1,39,'Keto_Fried_Chicken_recipe_table'),(95,0,137,'Keto_Fried_Chicken_recipe_table'),(96,0,174,'Keto_Fried_Chicken_recipe_table'),(97,1,144,'Keto_Fried_Chicken_recipe_table'),(98,0,23,'Keto_Fried_Chicken_recipe_table'),(99,11,8,'Jalapeno_Poppers_recipe_table'),(100,1,5,'Jalapeno_Poppers_recipe_table'),(101,1,12,'Jalapeno_Poppers_recipe_table'),(102,1,7,'Jalapeno_Poppers_recipe_table'),(103,1,160,'Jalapeno_Poppers_recipe_table');
 /*!40000 ALTER TABLE `final_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1010,4 +1010,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-20 17:05:03
+-- Dump completed on 2022-05-23  7:28:00
