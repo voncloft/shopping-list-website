@@ -44,7 +44,7 @@ CREATE TABLE `BLT_burger_recipe_table` (
 
 LOCK TABLES `BLT_burger_recipe_table` WRITE;
 /*!40000 ALTER TABLE `BLT_burger_recipe_table` DISABLE KEYS */;
-INSERT INTO `BLT_burger_recipe_table` VALUES (1,2,'154'),(2,2,'15'),(3,1,'167'),(4,0,'92'),(5,1,'144'),(6,2,'147'),(7,2,'182'),(8,1,'184');
+INSERT INTO `BLT_burger_recipe_table` VALUES (1,2,'154'),(2,2,'15'),(3,1,'167'),(4,1,'92'),(5,1,'144'),(6,2,'147'),(7,2,'182'),(8,1,'184');
 /*!40000 ALTER TABLE `BLT_burger_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +69,7 @@ CREATE TABLE `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` (
 
 LOCK TABLES `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` DISABLE KEYS */;
-INSERT INTO `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` VALUES (1,0,'67'),(2,0,'29'),(3,2,'64'),(4,0,'31'),(5,2,'15'),(6,0,'42'),(7,0,'92'),(8,1,'7'),(9,2,'12'),(10,0,'141'),(11,1,'10'),(12,0,'8'),(13,0,'153');
+INSERT INTO `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` VALUES (1,1,'67'),(2,1,'29'),(3,2,'64'),(4,0,'31'),(5,2,'15'),(6,1,'42'),(7,1,'92'),(8,1,'7'),(9,2,'12'),(10,1,'141'),(11,1,'10'),(12,1,'8'),(13,0,'153');
 /*!40000 ALTER TABLE `Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +94,7 @@ CREATE TABLE `Bacon_Wrapped_Meatloaf_recipe_table` (
 
 LOCK TABLES `Bacon_Wrapped_Meatloaf_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Bacon_Wrapped_Meatloaf_recipe_table` DISABLE KEYS */;
-INSERT INTO `Bacon_Wrapped_Meatloaf_recipe_table` VALUES (1,0,'54'),(2,1,'29'),(3,1,'175'),(4,1,'150'),(5,0,'66'),(6,0,'176'),(7,2,'15'),(8,1,'12'),(9,0,'164'),(10,0,'39'),(11,0,'40'),(12,1,'177'),(13,0,'167'),(14,0,'92'),(15,1,'154');
+INSERT INTO `Bacon_Wrapped_Meatloaf_recipe_table` VALUES (1,1,'54'),(2,1,'29'),(3,1,'175'),(4,1,'150'),(5,1,'66'),(6,1,'176'),(7,2,'15'),(8,1,'12'),(9,1,'164'),(10,1,'39'),(11,1,'40'),(12,1,'177'),(13,1,'167'),(14,1,'92'),(15,1,'154');
 /*!40000 ALTER TABLE `Bacon_Wrapped_Meatloaf_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +119,7 @@ CREATE TABLE `Beverages_recipe_table` (
 
 LOCK TABLES `Beverages_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Beverages_recipe_table` DISABLE KEYS */;
-INSERT INTO `Beverages_recipe_table` VALUES (1,1,'62'),(2,2,'1'),(3,0,'57'),(4,0,'95');
+INSERT INTO `Beverages_recipe_table` VALUES (1,1,'62'),(2,2,'1'),(3,1,'57'),(4,1,'95');
 /*!40000 ALTER TABLE `Beverages_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +144,7 @@ CREATE TABLE `Body_recipe_table` (
 
 LOCK TABLES `Body_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Body_recipe_table` DISABLE KEYS */;
-INSERT INTO `Body_recipe_table` VALUES (1,0,'90'),(2,0,'88'),(3,0,'86'),(4,0,'87'),(5,1,'84'),(6,0,'153'),(7,1,'85');
+INSERT INTO `Body_recipe_table` VALUES (1,1,'90'),(2,1,'88'),(3,1,'86'),(4,1,'87'),(5,1,'84'),(6,1,'153'),(7,1,'85');
 /*!40000 ALTER TABLE `Body_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +169,7 @@ CREATE TABLE `Bratwurst_recipe_table` (
 
 LOCK TABLES `Bratwurst_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Bratwurst_recipe_table` DISABLE KEYS */;
-INSERT INTO `Bratwurst_recipe_table` VALUES (1,3,'9'),(2,0,'10'),(3,0,'91');
+INSERT INTO `Bratwurst_recipe_table` VALUES (1,3,'9'),(2,1,'10'),(3,1,'91');
 /*!40000 ALTER TABLE `Bratwurst_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +194,7 @@ CREATE TABLE `Buffalo_Chicken_Casserole_recipe_table` (
 
 LOCK TABLES `Buffalo_Chicken_Casserole_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Buffalo_Chicken_Casserole_recipe_table` DISABLE KEYS */;
-INSERT INTO `Buffalo_Chicken_Casserole_recipe_table` VALUES (1,1,'14'),(2,3,'142'),(3,1,'143'),(4,1,'12'),(5,0,'144'),(6,2,'29'),(7,1,'145'),(8,1,'146'),(9,3,'64'),(10,0,'137'),(11,0,'54'),(12,0,'67'),(13,1,'23'),(14,0,'42'),(15,0,'92'),(16,1,'147'),(17,1,'152'),(18,0,'148'),(19,3,'8');
+INSERT INTO `Buffalo_Chicken_Casserole_recipe_table` VALUES (1,1,'14'),(2,3,'142'),(3,1,'143'),(4,1,'12'),(5,1,'144'),(6,2,'29'),(7,1,'145'),(8,1,'146'),(9,3,'64'),(10,1,'137'),(11,1,'54'),(12,1,'67'),(13,1,'23'),(14,1,'42'),(15,1,'92'),(16,1,'147'),(17,1,'152'),(18,1,'148'),(19,3,'8');
 /*!40000 ALTER TABLE `Buffalo_Chicken_Casserole_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,7 +294,7 @@ CREATE TABLE `Cheese_steak_stuffed_peppers_recipe_table` (
 
 LOCK TABLES `Cheese_steak_stuffed_peppers_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Cheese_steak_stuffed_peppers_recipe_table` DISABLE KEYS */;
-INSERT INTO `Cheese_steak_stuffed_peppers_recipe_table` VALUES (1,4,'64'),(2,0,'181'),(3,1,'29'),(4,1,'31'),(5,0,'167'),(6,0,'92'),(7,1,'13'),(8,0,'134'),(9,1,'25');
+INSERT INTO `Cheese_steak_stuffed_peppers_recipe_table` VALUES (1,4,'64'),(2,1,'181'),(3,1,'29'),(4,1,'31'),(5,1,'167'),(6,1,'92'),(7,1,'13'),(8,1,'134'),(9,1,'25');
 /*!40000 ALTER TABLE `Cheese_steak_stuffed_peppers_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,7 +344,7 @@ CREATE TABLE `Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table` (
 
 LOCK TABLES `Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table` DISABLE KEYS */;
-INSERT INTO `Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table` VALUES (1,1,'14'),(2,1,'154'),(3,1,'150'),(4,1,'149'),(5,1,'26'),(6,1,'12'),(7,0,'151');
+INSERT INTO `Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table` VALUES (1,1,'14'),(2,1,'154'),(3,1,'150'),(4,1,'149'),(5,1,'26'),(6,1,'12'),(7,1,'151');
 /*!40000 ALTER TABLE `Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,7 +369,7 @@ CREATE TABLE `Chicken_Drumbsticks_recipe_table` (
 
 LOCK TABLES `Chicken_Drumbsticks_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Chicken_Drumbsticks_recipe_table` DISABLE KEYS */;
-INSERT INTO `Chicken_Drumbsticks_recipe_table` VALUES (1,1,'19'),(2,1,'20'),(3,0,'92'),(4,0,'67');
+INSERT INTO `Chicken_Drumbsticks_recipe_table` VALUES (1,1,'19'),(2,1,'20'),(3,1,'92'),(4,1,'67');
 /*!40000 ALTER TABLE `Chicken_Drumbsticks_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,7 +444,7 @@ CREATE TABLE `Cleaning_Supplies_recipe_table` (
 
 LOCK TABLES `Cleaning_Supplies_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Cleaning_Supplies_recipe_table` DISABLE KEYS */;
-INSERT INTO `Cleaning_Supplies_recipe_table` VALUES (1,0,'3'),(2,1,'50'),(3,0,'101'),(4,0,'52'),(5,0,'102'),(6,0,'105'),(7,0,'51'),(8,0,'170');
+INSERT INTO `Cleaning_Supplies_recipe_table` VALUES (1,1,'3'),(2,1,'50'),(3,1,'101'),(4,1,'52'),(5,1,'102'),(6,1,'105'),(7,1,'51'),(8,1,'170');
 /*!40000 ALTER TABLE `Cleaning_Supplies_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -619,7 +619,7 @@ CREATE TABLE `Keto_Mac_and_Cheese_recipe_table` (
 
 LOCK TABLES `Keto_Mac_and_Cheese_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Keto_Mac_and_Cheese_recipe_table` DISABLE KEYS */;
-INSERT INTO `Keto_Mac_and_Cheese_recipe_table` VALUES (1,2,'172'),(2,0,'67'),(3,0,'54'),(4,0,'167'),(5,1,'57'),(6,1,'192'),(7,2,'12'),(8,1,'26'),(9,0,'186'),(10,0,'92'),(11,1,'171'),(12,1,'39');
+INSERT INTO `Keto_Mac_and_Cheese_recipe_table` VALUES (1,2,'172'),(2,1,'67'),(3,1,'54'),(4,1,'167'),(5,1,'57'),(6,1,'192'),(7,2,'12'),(8,1,'26'),(9,1,'186'),(10,1,'92'),(11,1,'171'),(12,1,'39');
 /*!40000 ALTER TABLE `Keto_Mac_and_Cheese_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -794,7 +794,7 @@ CREATE TABLE `Raviolli_recipe_table` (
 
 LOCK TABLES `Raviolli_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Raviolli_recipe_table` DISABLE KEYS */;
-INSERT INTO `Raviolli_recipe_table` VALUES (1,0,'164'),(2,0,'165'),(3,0,'166'),(4,0,'137'),(5,1,'40'),(6,0,'54'),(7,1,'150'),(8,1,'151'),(9,1,'136'),(10,0,'39'),(11,0,'167'),(12,0,'92'),(13,1,'168'),(14,1,'169');
+INSERT INTO `Raviolli_recipe_table` VALUES (1,1,'164'),(2,1,'165'),(3,1,'166'),(4,1,'137'),(5,1,'40'),(6,1,'54'),(7,1,'150'),(8,1,'151'),(9,1,'136'),(10,1,'39'),(11,1,'167'),(12,1,'92'),(13,1,'168'),(14,1,'169');
 /*!40000 ALTER TABLE `Raviolli_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -919,7 +919,7 @@ CREATE TABLE `Stuffed_Pizza_Bell_Peppers_recipe_table` (
 
 LOCK TABLES `Stuffed_Pizza_Bell_Peppers_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Stuffed_Pizza_Bell_Peppers_recipe_table` DISABLE KEYS */;
-INSERT INTO `Stuffed_Pizza_Bell_Peppers_recipe_table` VALUES (1,4,'64'),(2,1,'37'),(3,1,'29'),(4,1,'53'),(5,1,'27'),(6,1,'32'),(7,1,'65'),(8,0,'54'),(9,0,'44'),(10,0,'66'),(11,0,'55'),(12,4,'8'),(13,1,'30');
+INSERT INTO `Stuffed_Pizza_Bell_Peppers_recipe_table` VALUES (1,4,'64'),(2,1,'37'),(3,1,'29'),(4,1,'53'),(5,1,'27'),(6,1,'32'),(7,1,'65'),(8,1,'54'),(9,1,'44'),(10,1,'66'),(11,1,'55'),(12,4,'8'),(13,1,'30');
 /*!40000 ALTER TABLE `Stuffed_Pizza_Bell_Peppers_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -985,7 +985,7 @@ CREATE TABLE `current_week_recipes` (
   `recipes` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `recipes` (`recipes`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -994,7 +994,7 @@ CREATE TABLE `current_week_recipes` (
 
 LOCK TABLES `current_week_recipes` WRITE;
 /*!40000 ALTER TABLE `current_week_recipes` DISABLE KEYS */;
-INSERT INTO `current_week_recipes` VALUES (1,'Keto_Fried_Chicken_recipe_table'),(2,'Chicken_Leg_Quarters_recipe_table'),(3,'Cauliflower_Potato_Salad_recipe_table'),(4,'Beverages_recipe_table'),(5,'Produce_recipe_table');
+INSERT INTO `current_week_recipes` VALUES (1,'Keto_Fried_Chicken_recipe_table'),(2,'Chicken_Leg_Quarters_recipe_table'),(3,'Cauliflower_Potato_Salad_recipe_table'),(4,'Beverages_recipe_table'),(5,'Produce_recipe_table'),(7,'Misc_recipe_table'),(8,'Cleaning_Supplies_recipe_table');
 /*!40000 ALTER TABLE `current_week_recipes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1011,7 +1011,7 @@ CREATE TABLE `final_list` (
   `IFRT` int(11) NOT NULL,
   `recipe_table_name` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1020,7 +1020,7 @@ CREATE TABLE `final_list` (
 
 LOCK TABLES `final_list` WRITE;
 /*!40000 ALTER TABLE `final_list` DISABLE KEYS */;
-INSERT INTO `final_list` VALUES (1,1,185,'Keto_Fried_Chicken_recipe_table'),(2,1,40,'Keto_Fried_Chicken_recipe_table'),(3,1,171,'Keto_Fried_Chicken_recipe_table'),(4,1,23,'Keto_Fried_Chicken_recipe_table'),(5,1,21,'Chicken_Leg_Quarters_recipe_table'),(6,1,172,'Cauliflower_Potato_Salad_recipe_table'),(7,1,29,'Cauliflower_Potato_Salad_recipe_table'),(8,1,175,'Cauliflower_Potato_Salad_recipe_table'),(9,1,40,'Cauliflower_Potato_Salad_recipe_table'),(10,1,62,'Beverages_recipe_table'),(11,2,1,'Beverages_recipe_table'),(12,1,17,'Produce_recipe_table'),(13,1,158,'Produce_recipe_table'),(14,1,16,'Produce_recipe_table');
+INSERT INTO `final_list` VALUES (1,1,185,'Keto_Fried_Chicken_recipe_table'),(2,1,40,'Keto_Fried_Chicken_recipe_table'),(3,1,171,'Keto_Fried_Chicken_recipe_table'),(4,1,23,'Keto_Fried_Chicken_recipe_table'),(5,1,21,'Chicken_Leg_Quarters_recipe_table'),(6,1,172,'Cauliflower_Potato_Salad_recipe_table'),(7,1,29,'Cauliflower_Potato_Salad_recipe_table'),(8,1,175,'Cauliflower_Potato_Salad_recipe_table'),(9,1,40,'Cauliflower_Potato_Salad_recipe_table'),(10,1,62,'Beverages_recipe_table'),(11,2,1,'Beverages_recipe_table'),(12,1,17,'Produce_recipe_table'),(13,1,158,'Produce_recipe_table'),(14,1,16,'Produce_recipe_table'),(21,1,69,'Misc_recipe_table'),(22,1,195,'Misc_recipe_table'),(23,1,50,'Cleaning_Supplies_recipe_table');
 /*!40000 ALTER TABLE `final_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1098,7 +1098,7 @@ CREATE TABLE `recipe_lists` (
 
 LOCK TABLES `recipe_lists` WRITE;
 /*!40000 ALTER TABLE `recipe_lists` DISABLE KEYS */;
-INSERT INTO `recipe_lists` VALUES (1,'Beverages_recipe_table',''),(2,'Body_recipe_table',''),(3,'Bratwurst_recipe_table',NULL),(4,'Burritos_recipe_table',''),(5,'Chicken_Drumbsticks_recipe_table',''),(6,'Chicken_wings_recipe_table',NULL),(7,'Cleaning_Supplies_recipe_table',''),(8,'Electronic_needs_recipe_table',''),(9,'Jalapeno_Poppers_recipe_table',''),(10,'Meat_Pizza_recipe_table','https://ketoinpearls.com/sausage-crust-pizza/'),(11,'Meatballs_recipe_table','https://joyfilledeats.com/meatball-parm-casserole/#recipe'),(12,'Misc_recipe_table',''),(13,'Produce_recipe_table',''),(14,'Ribs_recipe_table',''),(15,'Snacks_recipe_table',NULL),(16,'Stuffed_Pizza_Bell_Peppers_recipe_table','https://kalynskitchen.com/low-carb-sausage-pepperoni-pizza-stuffed-peppers/#mv-creation-50-jtr'),(17,'Vacation_recipe_table',''),(18,'Vaping_Equipment_recipe_table',''),(33,'Electronic_Bartender_recipe_table','https://www.youtube.com/watch?v=2DopvpNF7J4'),(34,'Quick_List_recipe_table',''),(35,'Lasagna_recipe_table','https://peaceloveandlowcarb.com/just-like-the-real-thing-lasagna/#tasty-recipes-12196-jump-target'),(36,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table','https://ketodietapp.com/Blog/lchf/bacon-wrapped-and-cheese-stuffed-burgers#preptime'),(37,'Buffalo_Chicken_Casserole_recipe_table','https://www.mincerepublic.com/buffalo-chicken-casserole/'),(38,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table','https://www.wholesomeyum.com/recipes/chicken-bacon-ranch-casserole-recipe-easy-low-carb/'),(39,'Spices_recipe_table',''),(40,'Raviolli_recipe_table','https://www.gnom-gnom.com/spinach-ricotta-grain-free-keto-ravioli/'),(41,'Steak_and_eggs_recipe_table',''),(42,'Keto_Mac_and_Cheese_recipe_table','https://www.delish.com/cooking/nutrition/a29024668/keto-mac-and-cheese-recipe/'),(43,'Keto_Fried_Chicken_recipe_table','https://www.delish.com/cooking/nutrition/a29537911/keto-fried-chicken-recipe/'),(44,'Cheesy_bacon_ranch_chicken_breast_recipe_table','https://www.delish.com/cooking/recipe-ideas/a27156187/cheesy-bacon-ranch-chicken-reipe/'),(45,'Bacon_Wrapped_Meatloaf_recipe_table','https://www.delish.com/cooking/recipe-ideas/a23480870/keto-meatloaf-recipe/'),(46,'Keto_Chili_recipe_table','https://www.delish.com/cooking/recipe-ideas/a23103912/keto-chili-recipe/'),(47,'Cheese_steak_stuffed_peppers_recipe_table','https://www.delish.com/cooking/recipe-ideas/recipes/a51551/cheesesteak-stuffed-peppers-recipe/'),(48,'BLT_burger_recipe_table','https://www.delish.com/cooking/recipe-ideas/recipes/a54644/blt-burgers-recipe/'),(49,'deviled_eggs_recipe_table','https://www.wholesomeyum.com/keto-deviled-eggs-recipe/#jumptorecipe'),(50,'Chicken_Leg_Quarters_recipe_table',''),(51,'Cauliflower_Potato_Salad_recipe_table','https://www.wholesomeyum.com/recipes/cauliflower-potato-salad-low-carb-paleo-potato-salad/#jumptorecipe'),(52,'Cauliflower_Tots_recipe_table','https://www.wholesomeyum.com/cheesy-low-carb-cauliflower-tots-recipe/#jumptorecipe');
+INSERT INTO `recipe_lists` VALUES (1,'Beverages_recipe_table',''),(2,'Body_recipe_table',''),(3,'Bratwurst_recipe_table',''),(4,'Burritos_recipe_table',''),(5,'Chicken_Drumbsticks_recipe_table',''),(6,'Chicken_wings_recipe_table',NULL),(7,'Cleaning_Supplies_recipe_table',''),(8,'Electronic_needs_recipe_table',''),(9,'Jalapeno_Poppers_recipe_table',''),(10,'Meat_Pizza_recipe_table','https://ketoinpearls.com/sausage-crust-pizza/'),(11,'Meatballs_recipe_table','https://joyfilledeats.com/meatball-parm-casserole/#recipe'),(12,'Misc_recipe_table',''),(13,'Produce_recipe_table',''),(14,'Ribs_recipe_table',''),(15,'Snacks_recipe_table',NULL),(16,'Stuffed_Pizza_Bell_Peppers_recipe_table','https://kalynskitchen.com/low-carb-sausage-pepperoni-pizza-stuffed-peppers/#mv-creation-50-jtr'),(17,'Vacation_recipe_table',''),(18,'Vaping_Equipment_recipe_table',''),(33,'Electronic_Bartender_recipe_table','https://www.youtube.com/watch?v=2DopvpNF7J4'),(34,'Quick_List_recipe_table',''),(35,'Lasagna_recipe_table','https://peaceloveandlowcarb.com/just-like-the-real-thing-lasagna/#tasty-recipes-12196-jump-target'),(36,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table','https://ketodietapp.com/Blog/lchf/bacon-wrapped-and-cheese-stuffed-burgers#preptime'),(37,'Buffalo_Chicken_Casserole_recipe_table','https://www.mincerepublic.com/buffalo-chicken-casserole/'),(38,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table','https://www.wholesomeyum.com/recipes/chicken-bacon-ranch-casserole-recipe-easy-low-carb/'),(39,'Spices_recipe_table',''),(40,'Raviolli_recipe_table','https://www.gnom-gnom.com/spinach-ricotta-grain-free-keto-ravioli/'),(41,'Steak_and_eggs_recipe_table',''),(42,'Keto_Mac_and_Cheese_recipe_table','https://www.delish.com/cooking/nutrition/a29024668/keto-mac-and-cheese-recipe/'),(43,'Keto_Fried_Chicken_recipe_table','https://www.delish.com/cooking/nutrition/a29537911/keto-fried-chicken-recipe/'),(44,'Cheesy_bacon_ranch_chicken_breast_recipe_table','https://www.delish.com/cooking/recipe-ideas/a27156187/cheesy-bacon-ranch-chicken-reipe/'),(45,'Bacon_Wrapped_Meatloaf_recipe_table','https://www.delish.com/cooking/recipe-ideas/a23480870/keto-meatloaf-recipe/'),(46,'Keto_Chili_recipe_table','https://www.delish.com/cooking/recipe-ideas/a23103912/keto-chili-recipe/'),(47,'Cheese_steak_stuffed_peppers_recipe_table','https://www.delish.com/cooking/recipe-ideas/recipes/a51551/cheesesteak-stuffed-peppers-recipe/'),(48,'BLT_burger_recipe_table','https://www.delish.com/cooking/recipe-ideas/recipes/a54644/blt-burgers-recipe/'),(49,'deviled_eggs_recipe_table','https://www.wholesomeyum.com/keto-deviled-eggs-recipe/#jumptorecipe'),(50,'Chicken_Leg_Quarters_recipe_table',''),(51,'Cauliflower_Potato_Salad_recipe_table','https://www.wholesomeyum.com/recipes/cauliflower-potato-salad-low-carb-paleo-potato-salad/#jumptorecipe'),(52,'Cauliflower_Tots_recipe_table','https://www.wholesomeyum.com/cheesy-low-carb-cauliflower-tots-recipe/#jumptorecipe');
 /*!40000 ALTER TABLE `recipe_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1111,4 +1111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-02 14:17:02
+-- Dump completed on 2022-07-02 14:38:44
