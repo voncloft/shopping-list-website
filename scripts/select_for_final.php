@@ -10,17 +10,20 @@ if(!empty($_POST['recipes'])){
         $result = $conn->query($sql);
         $rows = $result->fetch_all(MYSQLI_ASSOC);
 foreach ($rows as $row2){
-            $sql2="select grocery_item,price,department from items where id ='".$row2['ingredient_name']."'";
+            $sql2="select grocery_item,price,department,pantryqty from items where id ='".$row2['ingredient_name']."'";
             $results=$conn->query($sql2);
             $row_food=$results->fetch_all(MYSQLI_ASSOC);
             
-           foreach ($row_food as $food_called){             
+           foreach ($row_food as $food_called){
+              if($food_called['pantryqty']<$row2['qty'])
+              {
                 $sql_statement_to_input_to_final="Insert into final_list(QFRT,IFRT,recipe_table_name)VALUES('".$row2['qty']."','".$row2['ingredient_name']."','".$selected."')";
-                
+                echo $food_called['pantryqty']."<br>";
                 echo $sql_statement_to_input_to_final."<br>";
             if ($conn->query($sql_statement_to_input_to_final)){
                 echo "Imported Ingredient";
             }
+               }
             }
         }
     }
