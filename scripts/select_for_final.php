@@ -1,9 +1,10 @@
 <?php
 include '../include/passwords.php';
 $recipes_for_week="";
+$qty_for_final="";
 if(!empty($_POST['recipes'])){
     foreach($_POST['recipes'] as $selected){
-        echo "<br>".$selected;
+        //echo "<br>".$selected;
         $sql_week_recipes="insert into current_week_recipes(recipes)VALUES('".$selected."')";
         $conn->query($sql_week_recipes);
         $sql = "select qty, ingredient_name,id from ".$selected;
@@ -17,13 +18,18 @@ foreach ($rows as $row2){
            foreach ($row_food as $food_called){
               if($food_called['pantryqty']<$row2['qty'])
               {
-                $sql_statement_to_input_to_final="Insert into final_list(QFRT,IFRT,recipe_table_name)VALUES('".$row2['qty']."','".$row2['ingredient_name']."','".$selected."')";
-                echo $food_called['pantryqty']."<br>";
-                echo $sql_statement_to_input_to_final."<br>";
-            if ($conn->query($sql_statement_to_input_to_final)){
-                echo "Imported Ingredient";
-            }
-               }
+                 $qty_for_final=$row2['qty'];
+              }
+              else
+              {
+                 $qty_for_final=0;              
+              }
+              echo $qty_for_final." ".$food_called['grocery_item']." added to list<br>";
+                $sql_statement_to_input_to_final="Insert into final_list(QFRT,IFRT,recipe_table_name)VALUES('".$qty_for_final."','".$row2['ingredient_name']."','".$selected."')";                    
+                    echo $sql_statement_to_input_to_final."<br>";
+                    if ($conn->query($sql_statement_to_input_to_final)){
+                        echo "Import Successful<br>";
+                    }              
             }
         }
     }
