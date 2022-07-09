@@ -4,7 +4,7 @@
     $price=$_POST["price"];
     $department=$_POST["dept"];
 //echo $items;
-    $sql="Insert into items (grocery_item,price,department) Values ('".$item."','".$price."','".$department."')";
+    $sql="Insert into items (grocery_item,price,department,pantryqty) Values ('".$item."','".$price."','".$department."','0')";
     echo "<br><br>";
     if ($conn->query($sql)){
             echo $sql."<br><br>";
