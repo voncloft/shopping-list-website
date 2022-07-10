@@ -14,7 +14,7 @@ include '../include/passwords.php';
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         for($i=1;$i<=20;$i++)
         {
-            echo '<tr><td><input type="text" name="qty'.$i.'" id="qty'.$i.'"></td>
+            echo '<tr><td><input type="number" name="qty'.$i.'" id="qty'.$i.'"></td>
         <td><select id="ingredient'.$i.'" name="ingredient'.$i.'">';
             foreach ($rows as $row2){
                 echo '<option value="'.$row2['id'].'">'.$row2['grocery_item'].'</option>';

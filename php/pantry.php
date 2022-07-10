@@ -16,7 +16,7 @@ $sql = "select id,grocery_item, department,pantryqty from items order by departm
 		echo "<td></td><td><br>".$row2['department']."</td></tr>";
 	}
 
-        	echo "<td><input type='hidden' name='idtb".$c."' value=".$row2['id']."></td><td><input type='text' name='itemtb".$c."' value='".$row2['grocery_item']."'></td><td><input type='text' name='pantry".$c."' value=".$row2['pantryqty']."></td></tr>";  
+        	echo "<td><input type='hidden' name='idtb".$c."' value=".$row2['id']."></td><td><input type='text' name='itemtb".$c."' value='".$row2['grocery_item']."'></td><td><input type='number' name='pantry".$c."' value=".$row2['pantryqty']."></td></tr>";  
 
 	$last_val=$row2['department'];
     }

@@ -44,7 +44,7 @@ echo "<h1>".$remove_us."</h1>";
     {
             $c++;
             echo "<input type='hidden' name=hidden".$c." value='".$from_recipe_list['id']."'>";
-            echo "<td><input type='text' value='".$from_recipe_list['qty']."' name='recipe_list".$c."'></td>";
+            echo "<td><input type='number' value='".$from_recipe_list['qty']."' name='recipe_list".$c."'></td>";
             $items_list="select id, grocery_item, price, department from items where id='".$from_recipe_list['ingredient_name']."'";
             
             //echo $items_list;
