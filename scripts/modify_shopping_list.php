@@ -77,7 +77,7 @@ echo "<h1>".$remove_us."</h1>";
                 $string_in_select="<select>";
                 $replace_in_select="<select name='select_add".$c."'>";
                 $final_select_option=str_replace($string_in_select,$replace_in_select,$default_list_string);
-        echo "<tr><td><input type='text' name='qtext".$c."'></td><td>".$final_select_option."</td>";  
+        echo "<tr><td><input type='number' name='qtext".$c."'></td><td>".$final_select_option."</td>";  
     }
 $conn->close();
 	echo "<tr><td>Total Price:</td><td>";
