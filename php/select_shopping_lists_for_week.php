@@ -1,7 +1,9 @@
 <?php
-echo "Recipes not currently imported";
+include '../include/toolbar.html';
+echo "<br>Recipes not currently imported";
 echo "<br>";
     include '../include/passwords.php';
+
     ?>
     <form action='../scripts/select_for_final.php' method=POST>
     <?php

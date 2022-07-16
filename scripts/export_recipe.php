@@ -1,5 +1,7 @@
 <?php
     include '../include/passwords.php';
+include '../include/toolbar.html';
+
     $recipe_name=$_POST["recipe_name"]."_recipe_table";
     $final_table_name=str_replace(" ","_",$recipe_name);
     echo $final_table_name."<br>";

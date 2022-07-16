@@ -1,5 +1,7 @@
 <?php
 include '../include/passwords.php';
+include '../include/toolbar.html';
+
 $sql="truncate table final_list";
 $sql2="truncate table current_week_recipes";
 echo $sql."<br>";

@@ -4,6 +4,7 @@
 </HEAD>
 <?php
 include '../include/passwords.php';
+include '../include/toolbar.html';
 echo "<form action='../scripts/clear_final.php' method=POST>";
 echo "<center><h1>Shopping List</h1>";
 $total_price=0;

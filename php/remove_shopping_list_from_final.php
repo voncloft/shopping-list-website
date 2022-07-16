@@ -1,8 +1,11 @@
 <?php
-echo "Recipes Imported Currently";
-echo "<br>";
 
     include '../include/passwords.php';
+    include '../include/toolbar.html';
+
+echo "<br>Recipes Imported Currently";
+echo "<br>";
+
     ?>
     <form action='../scripts/remove_shopping_list.php' method=POST>
     <?php

@@ -1,5 +1,6 @@
 <?php
-echo "All Recipes";
+include '../include/toolbar.html';
+echo "<br>All Recipes";
 echo "<br>";
 
     include '../include/passwords.php';

@@ -1,5 +1,7 @@
 <?php
 include '../include/passwords.php';
+include '../include/toolbar.html';
+
 session_start();
 if(!empty($_POST['recipes'])){
     foreach($_POST['recipes'] as $selected){

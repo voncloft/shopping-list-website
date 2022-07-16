@@ -2,6 +2,8 @@
 <?php
 
 include '../include/passwords.php';
+include '../include/toolbar.html';
+
 session_start();
 $overall_price=0;
 $c=0;

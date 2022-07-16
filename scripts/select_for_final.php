@@ -1,5 +1,7 @@
 <?php
 include '../include/passwords.php';
+include '../include/toolbar.html';
+
 $recipes_for_week="";
 $qty_for_final="";
 if(!empty($_POST['recipes'])){

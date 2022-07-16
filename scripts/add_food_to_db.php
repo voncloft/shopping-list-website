@@ -1,5 +1,7 @@
 <?php
     include '../include/passwords.php';
+include '../include/toolbar.html';
+
     $item=$_POST["item"];
     $price=$_POST["price"];
     $department=$_POST["dept"];

@@ -1,8 +1,12 @@
 <?php
-echo "All Recipes";
-echo "<br>";
 
     include '../include/passwords.php';
+	include '../include/toolbar.html';
+
+echo "<br>All Recipes";
+echo "<br>";
+
+
     ?>
     <form action='../scripts/show_shopping_list.php' method=POST>
     <?php

@@ -1,5 +1,6 @@
 <?php
 include '../include/passwords.php';
+include '../include/toolbar.html'
 ?>
 <form action='../scripts/export_recipe.php' method=POST>
     <table><caption>New Recipe</caption>

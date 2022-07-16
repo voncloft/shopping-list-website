@@ -1,6 +1,8 @@
 <?php
 include '../include/passwords.php';
+include '../include/toolbar.html';
 session_start();
+
 echo "<form action='/scripts/modify_item.php' method=POST>";
 $sql = "select id,grocery_item, price, department from items order by grocery_item";
     $result = $conn->query($sql);

@@ -18,6 +18,10 @@
  });
 </script>
 </head>
+<?php
+include '../include/toolbar.html'
+
+?>
 <input type="hidden" name="update" value="<?php echo $stat;?>">
 <form action='../scripts/add_food_to_db.php' method=POST>
 <table><caption>Add item</caption>

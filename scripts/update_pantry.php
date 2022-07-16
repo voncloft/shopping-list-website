@@ -1,5 +1,7 @@
 <?php
 include '../include/passwords.php';
+include '../include/toolbar.html';
+
 session_start();
 $counter=$_SESSION['counter'];
 for($i=1;$i<=$counter;$i++)

@@ -1,5 +1,7 @@
 <?php
 include '../include/passwords.php';
+include '../include/toolbar.html';
+
 session_start();
 $last_val=null;
 echo "<form action='/scripts/update_pantry.php' method=POST>";

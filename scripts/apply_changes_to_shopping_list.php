@@ -1,5 +1,7 @@
 <?php
 include '../include/passwords.php';
+include '../include/toolbar.html';
+
 session_start();
     $i= $_SESSION['loop_counter'] ;
     $database=$_SESSION['recipe_edit_name'];
