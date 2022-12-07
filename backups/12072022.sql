@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `shopping_list`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `shopping_list` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `shopping_list`;
-
---
 -- Table structure for table `Apple_Cinnamon_Smoothie_recipe_table`
 --
 
@@ -1311,4 +1303,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-07 10:13:14
+-- Dump completed on 2022-12-07 10:12:36
