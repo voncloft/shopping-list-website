@@ -1,4 +1,6 @@
 <html>
+<meta name="viewport" content="initial-scale=.75, maximum-scale=1.0, user-scalable=no" />
+
 <head>
 <link rel="stylesheet" type="text/css" href="../include/colors.css" />
 <script type="text/javascript" src="../include/jquery/jquery.js"></script>

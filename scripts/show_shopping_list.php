@@ -1,3 +1,5 @@
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
 <form action='apply_changes_to_shopping_list.php' method=POST>
 <?php
 

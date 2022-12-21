@@ -1,8 +1,10 @@
-<form action='apply_changes_to_shopping_list.php' method=POST>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <?php
-
 include '../include/passwords.php';
 include '../include/toolbar.html';
+?>
+<form action='apply_changes_to_shopping_list.php' method=POST>
+<?php
 
 session_start();
 $overall_price=0;
@@ -46,7 +48,7 @@ echo "<h1>".$remove_us."</h1>";
     {
             $c++;
             echo "<input type='hidden' name=hidden".$c." value='".$from_recipe_list['id']."'>";
-            echo "<td><input type='number' value='".$from_recipe_list['qty']."' name='recipe_list".$c."'></td>";
+            echo "<td><input type='number' size='8' value='".$from_recipe_list['qty']."' name='recipe_list".$c."'></td>";
             $items_list="select id, grocery_item, price, department from items where id='".$from_recipe_list['ingredient_name']."'";
             
             //echo $items_list;
@@ -63,7 +65,7 @@ echo "<h1>".$remove_us."</h1>";
                 $select_current_item=str_replace($look_for_string,$replaced_string,$default_list_string);
                
                 $string_in_select="<select>";
-                $replace_in_select="<select name='select".$c."'>";
+                $replace_in_select="<select name='select".$c."' width='20' style='width:200px'>";
                 $final_select_option=str_replace($string_in_select,$replace_in_select,$select_current_item);
                 $get_price=$current_item['price'] * $from_recipe_list['qty'];
                 echo "<td>".$final_select_option."</td><td>".$get_price."</td></tr>";
@@ -77,9 +79,9 @@ echo "<h1>".$remove_us."</h1>";
     for($c=1;$c<=20;$c++)
     {
                 $string_in_select="<select>";
-                $replace_in_select="<select name='select_add".$c."'>";
+                $replace_in_select="<select name='select_add".$c."' width='20' style='width:200px'>";
                 $final_select_option=str_replace($string_in_select,$replace_in_select,$default_list_string);
-        echo "<tr><td><input type='number' name='qtext".$c."'></td><td>".$final_select_option."</td>";  
+        echo "<tr><td><input type='number' size='8' name='qtext".$c."'></td><td>".$final_select_option."</td>";  
     }
 $conn->close();
 	echo "<tr><td>Total Price:</td><td>";

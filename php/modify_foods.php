@@ -1,3 +1,5 @@
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
 <?php
 include '../include/passwords.php';
 include '../include/toolbar.html';
@@ -12,7 +14,7 @@ $sql = "select id,grocery_item, price, department from items order by grocery_it
     $c=0;
     foreach ($rows as $row2){
         $c++;
-        echo "<td><input type='hidden' name='idtb".$c."' value=".$row2['id']."></td><td><input type='text' name='itemtb".$c."' value='".$row2['grocery_item']."'></td><td><input type='text' name='pricetb".$c."' value=".$row2['price']."></td><td><input type='text' name='dtb".$c."' value='".$row2['department']."'></td></tr>";  
+        echo "<td><input type='hidden' name='idtb".$c."' value=".$row2['id']."></td><td><input type='text' name='itemtb".$c."' value='".$row2['grocery_item']."'></td><td><input type='text' size='3' name='pricetb".$c."' value=".$row2['price']."></td><td><input type='text' name='dtb".$c."' value='".$row2['department']."'></td></tr>";  
     }
     
     echo "</table>";

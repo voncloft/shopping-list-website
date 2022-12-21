@@ -1,5 +1,6 @@
 <HEAD>
 <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 </HEAD>
 <?php
