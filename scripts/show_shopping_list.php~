@@ -13,7 +13,6 @@ echo "<center><table><caption><h1>All Recipes Selected</h1></caption><tr><td>";
 echo "<table border = 2><tr align = 'top'>"; //2nd table within the first table
 if(empty($_POST['recipes'])){
 	$recipe_name=$_GET['recipe_name'];
-	echo "<td valign = 'top' align='center'>";
 			$remove_rt=str_replace("_recipe_table","",$recipe_name);
 		$remove_us=str_replace("_"," ",$remove_rt);
 		echo "<center><h1>".$remove_us."</h1></center>";
