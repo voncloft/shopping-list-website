@@ -20,6 +20,8 @@ session_start();
    }
 
 
+$update_food="delete from final_list where recipe_table_name='".$database."'";
+$conn->query($update_food);
    for($c=1;$c<=$i;$c++)
     {
        $qty_key="recipe_list".$c;  
@@ -38,7 +40,9 @@ session_start();
         $id_from_items_list=$_SESSION[$id_items];
         
         //$update_food="update final_list set IFRT = '".$_POST[$desc_key]."' where IFRT='".$id_from_items_list."' and recipe_table_name='".$database."'";
-	$update_food="update final_list set IFRT = '".$_POST[$desc_key]."', QFRT = '".$_POST[$qty_key] ."' where IFRT = '".$id_from_items_list."' and recipe_table_name='".$database."'";
+	//OLD METHOD
+	//$update_food="update final_list set IFRT = '".$_POST[$desc_key]."', QFRT = '".$_POST[$qty_key] ."' where IFRT = '".$id_from_items_list."' and recipe_table_name='".$database."'";
+	$update_food="insert into final_list(QFRT,IFRT,recipe_table_name) VALUES ('".$_POST[$qty_key]."','".$_POST[$desc_key]."','".$database."')";
         echo $update_food;
         $conn->query($update_food);
     }
