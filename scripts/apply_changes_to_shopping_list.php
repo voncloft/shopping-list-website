@@ -5,7 +5,8 @@ include '../include/passwords.php';
 include '../include/toolbar.html';
 
 session_start();
-    $i= $_SESSION['loop_counter'] ;
+	$current_week_recipe=0;
+    $i=$_SESSION['loop_counter'] ;
     $database=$_SESSION['recipe_edit_name'];
 //check if this recipe is even set up for selection of week to not interfere with main list later
    $url=$_POST['url'];
@@ -17,11 +18,18 @@ session_start();
    foreach($recipe_rows as $recipes_selected)
    {
         $selected_recipes[]=$recipes_selected['recipes'];
+	if ($database==$recipes_selected['recipes'])
+	{
+		$current_week_recipe=1;
+	}
    }
 
 
 $update_food="delete from final_list where recipe_table_name='".$database."'";
-$conn->query($update_food);
+if ($current_week_recipe==1)
+{
+	$conn->query($update_food);
+}
    for($c=1;$c<=$i;$c++)
     {
        $qty_key="recipe_list".$c;  
@@ -44,7 +52,10 @@ $conn->query($update_food);
 	//$update_food="update final_list set IFRT = '".$_POST[$desc_key]."', QFRT = '".$_POST[$qty_key] ."' where IFRT = '".$id_from_items_list."' and recipe_table_name='".$database."'";
 	$update_food="insert into final_list(QFRT,IFRT,recipe_table_name) VALUES ('".$_POST[$qty_key]."','".$_POST[$desc_key]."','".$database."')";
         echo $update_food;
-        $conn->query($update_food);
+	if($current_week_recipe==1)
+	{
+        	$conn->query($update_food);
+	}
     }
     
     for($i=1;$i<=20;$i++)
