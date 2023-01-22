@@ -18,7 +18,7 @@ Shopping<br>
 <a href="../php/final_shopping_list.php">View Final Shopping List for Week</a><br>
 <br><b><u>To Do:</u></b><br>
 1. Check box and have it marked in database<br>
-2. Edit Final table with ajax in pantry quantity and click ok <br>
+2. Edit Final table with ajax in pantry to ignore a certain item <br>
 3. Ability to rename a recipe<br>
 4. Delete recipes and items<br>
 
