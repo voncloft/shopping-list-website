@@ -21,7 +21,8 @@ Shopping<br>
 2. Edit Final table with ajax in pantry to ignore a certain item with ajax<br>
 3. Ability to rename a recipe<br>
 4. Delete recipes and items<br>
-5. Implement personal recipe editor<br>
-
+5. Implement personal recipe editor - have it pull cals and macros from items<br>
+6. Have items use macros and calories<br>
+7. Final page and recipe lists will show calories and macros<br>
 
 
