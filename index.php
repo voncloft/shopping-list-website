@@ -21,7 +21,7 @@ Shopping<br>
 2. Edit Final table with ajax in pantry to ignore a certain item <br>
 3. Ability to rename a recipe<br>
 4. Delete recipes and items<br>
-
+5. Implement personal recipe editor<br>
 
 
 
