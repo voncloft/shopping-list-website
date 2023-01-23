@@ -40,7 +40,7 @@ $sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT"
 				else {            
             	echo "<tr><td align=center><input type='checkbox' id='IFRT_CHECKBOX' class='checkIt' value=".$id_to_pull_from_items."><td align=center>".$qty_needed_from_recipe."</td>";
 				}            
-            echo "<td align=center>".$pantry_results['pantryqty']."</td>";
+            echo '<td contenteditable="true" id="txt_pantry" onBlur="saveToDb(this,'.$id_to_pull_from_items.')" align=center>'.$pantry_results["pantryqty"].'</td>';
             $get_food_info="select pantryqty,grocery_item, price,department from items where id ='".$id_to_pull_from_items."' order by department";
             $item_results=$conn->query($get_food_info);
             $rows_from_items=$item_results->fetch_all(MYSQLI_ASSOC);
@@ -112,6 +112,20 @@ $sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT"
     });
  } 	
 });
+function saveToDb(editableObj,id)
+{
+	var id_from_items = $(editableObj).text();
+	//alert(id_from_items);
+	$.ajax({
+		type: "POST",
+		url: '../ajax/edit_pantry.php',
+		data:"id="+id+"&updated_value="+id_from_items,
+		success: function(data)
+		{
+			window.location.href="final_shopping_list.php"
+		}
+	});
+}
 </script>
 <a href="../index.php">Main Page</a>
 </body>
