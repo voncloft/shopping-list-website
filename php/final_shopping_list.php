@@ -15,7 +15,8 @@ echo "<center><h1>Shopping List</h1>";
 $total_price=0;
 $url_link="";
 //$sql = "select QFRT,count(DISTINCT(IFRT)) from final_list";
-$sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT";
+//$sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT";
+$sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totalsum, items.department from final_list inner join items on final_list.IFRT=items.ID group by IFRT order by items.department";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     
