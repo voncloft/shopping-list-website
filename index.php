@@ -19,8 +19,8 @@ Shopping<br>
 <br><b><u>To Do:</u></b><br>
 1. (x) Check box and have it marked in database using ajax<br>
 2a.(x) Edit Final table with ajax in pantry <br>
-2b. have ignore box for row <br>
-2c. (z)have ability to edit qty as well-not possible due to sum(qty) in sql statement<br>
+2b. (x) have ignore/remove box for row <br>
+2c. (Abandoning....for now)have ability to edit qty as well-not possible due to sum(qty) in sql statement<br>
 3. Ability to rename a recipe<br>
 4. Delete recipes and items<br>
 5. Implement personal recipe editor - have it pull cals and macros from items<br>
