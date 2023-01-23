@@ -27,4 +27,4 @@ Shopping<br>
 6. Have items use macros and calories<br>
 7. Final page and recipe lists will show calories and macros<br>
 8. Exercise Tracker (weight, treadmill, muscle, etc)
-
+9. Default final_list order by department
