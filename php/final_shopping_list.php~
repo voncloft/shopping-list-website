@@ -113,5 +113,5 @@ $sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT"
  } 	
 });
 </script>
-<a href="../index.php">Main Page</a>
+<a hre});f="../index.php">Main Page</a>
 </body>

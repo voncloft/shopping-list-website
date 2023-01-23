@@ -1,21 +1,37 @@
 <HEAD>
 <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+<script type="text/javascript" src="jquery-1.2.1.min.js"></script>
+
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-
+<script type="text/javascript">
 </HEAD>
-<body>
-
-    </script>
+	<!--script>
+    $('input[name=IFRT_CHECKBOX]').click(function(){
+    //if a checkbox with name 'favorite' is clicked, do the following.
+    //grab the id from the clicked box
+    var id=$(this).attr('id');
+    //grab the value from the checkbox (remember, if it is checked it will be 'on', else ''
+    var IFRT=$(this).val();
+    //setup the ajax call
+    $.ajax({
+            type:'POST',
+            url:'../ajax/checkbox.php',
+            data:'id= ' + id + '&IFRT'+IFRT_CHECKBOX
+        });
+    }
+    });
+    </script--!>
+    
 <?php
 include '../include/passwords.php';
 include '../include/toolbar.html';
+include '../ajax/checkbox.php';
 echo "<form action='../scripts/clear_final.php' method=POST>";
 echo "<center><h1>Shopping List</h1>";
 $total_price=0;
 $url_link="";
 //$sql = "select QFRT,count(DISTINCT(IFRT)) from final_list";
-$sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT";
+$sql="select IFRT, sum(QFRT) as totalsum from final_list group by IFRT";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     
@@ -33,13 +49,7 @@ $sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT"
         //if(!$row2['totalsum']==0)
         if($row2['totalsum']>$pantry_results['pantryqty'])
         {
-				if($row2['checked']=="1")
-				{
-           		echo "<tr><td align=center><input type='checkbox' id='IFRT_CHECKBOX' class='checkIt' value=".$id_to_pull_from_items." checked ><td align=center>".$qty_needed_from_recipe."</td>";
-				}
-				else {            
-            	echo "<tr><td align=center><input type='checkbox' id='IFRT_CHECKBOX' class='checkIt' value=".$id_to_pull_from_items."><td align=center>".$qty_needed_from_recipe."</td>";
-				}            
+            echo "<tr><td align=center><input type='checkbox' id='".$id_to_pull_from_items."' name='".IFRT_CHECKBOX."'><td align=center>".$qty_needed_from_recipe."</td>";
             echo "<td align=center>".$pantry_results['pantryqty']."</td>";
             $get_food_info="select pantryqty,grocery_item, price,department from items where id ='".$id_to_pull_from_items."' order by department";
             $item_results=$conn->query($get_food_info);
@@ -88,30 +98,4 @@ $sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT"
     echo "<tr><td>Total:</td><td>".number_format($tax_added,2)."</td></tr></table>";
     echo "</td></tr><tr><td>Clear table <input type='submit'></table></center><form>";
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-	<script>
-	
- $('.checkIt').change(function () {
-    var id = $(this).val();
-    
-    //alert(id);
-    if (this.checked)
-    {
-    $.ajax({
-        type: "POST",
-        url: '../ajax/checkbox.php',
-        data:"id="+id+"&checked=true"
-    });
- }
- else {
-    $.ajax({
-        type: "POST",
-        url: '../ajax/checkbox.php',
-        data:"id="+id+"&checked=false"
-    });
- } 	
-});
-</script>
 <a href="../index.php">Main Page</a>
-</body>
