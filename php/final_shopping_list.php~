@@ -79,14 +79,14 @@ $sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totals
         url: '../ajax/checkbox.php',
         data:"id="+id+"&checked=true"
     });
- }
- else {
+ 	}
+ 	else {
     $.ajax({
         type: "POST",
         url: '../ajax/checkbox.php',
         data:"id="+id+"&checked=false"
     });
- } 	
+ 	} 	
 });
 $('.ignoreIt').change(function() {
 	var id = $(this).val();
