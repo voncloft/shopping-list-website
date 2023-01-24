@@ -7,8 +7,13 @@ include '../include/toolbar.html';
     $item=$_POST["item"];
     $price=$_POST["price"];
     $department=$_POST["dept"];
+    $servings=$_POST["servings"];
+    $protein=$_POST["protein"];
+    $fat=$_POST["fat"];
+    $carbs=$_POST["carbs"];
+    $calories=$_POST["calories"];
 //echo $items;
-    $sql="Insert into items (grocery_item,price,department,pantryqty) Values ('".$item."','".$price."','".$department."','0')";
+    $sql="Insert into items (grocery_item,price,department,pantryqty,servings,protein,fat,carbs,calories) Values ('".$item."','".$price."','".$department."','0','".$servings."','".$protein."','".$fat."','".$carbs."','".$calories."')";
     echo "<br><br>";
     if ($conn->query($sql)){
             echo $sql."<br><br>";

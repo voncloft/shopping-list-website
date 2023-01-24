@@ -26,10 +26,19 @@ include '../include/toolbar.html'
 ?>
 <input type="hidden" name="update" value="<?php echo $stat;?>">
 <form action='../scripts/add_food_to_db.php' method=POST>
-<table><caption>Add item</caption>
+<table border = 2 ><caption>Add item</caption>
 <tr><td>Item Name</td><td>Price</td><td>Department</td></tr>
 <tr><td><input type="text" name="item" id="item"></td>
 <td><input type="text" name="price" id="price"></td>
 <td><input type="text" name="dept" id="dept"></td></tr>
+<tr><td>Servings</td><td>Calories</td><td>Fat</td></tr>
+<tr><td><input type="text" name="servings" id="servings"></td>
+<td><input type="text" name="calories" id="calories"></td>
+<td><input type="text" name="fat" id="fat"></td></tr>
+<tr><td>Protein</td><td>Carbohydrates</td></tr>
+<tr><td><input type="text" name="protein" id="protein"></td>
+<td><input type="text" name="carbs" id="carbs"></td></tr>
+
+
 </table><input type="submit">
 </form>
