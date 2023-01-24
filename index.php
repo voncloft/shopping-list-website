@@ -28,3 +28,4 @@ Shopping<br>
 7. Final page and recipe lists will show calories and macros<br>
 8. Exercise Tracker (weight, treadmill, muscle, etc)<br>
 9. (x)Default final_list order by department
+10. Export recipe to spreadsheet
