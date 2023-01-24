@@ -18,16 +18,16 @@ foreach ($rows as $row2){
             $sql2="select grocery_item,price,department,pantryqty from items where id ='".$row2['ingredient_name']."'";
             $results=$conn->query($sql2);
             $row_food=$results->fetch_all(MYSQLI_ASSOC);
-            
+            $qty_for_final=$row2['qty'];
            foreach ($row_food as $food_called){
-              if($food_called['pantryqty']<$row2['qty'])
+              /*if($food_called['pantryqty']<$row2['qty'])
               {
                  $qty_for_final=$row2['qty'];
               }
               else
               {
                  $qty_for_final=0;              
-              }
+              }*/
               echo $qty_for_final." ".$food_called['grocery_item']." added to list<br>";
                 $sql_statement_to_input_to_final="Insert into final_list(QFRT,IFRT,recipe_table_name)VALUES('".$qty_for_final."','".$row2['ingredient_name']."','".$selected."')";                    
                     echo $sql_statement_to_input_to_final."<br>";
