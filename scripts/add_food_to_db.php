@@ -12,8 +12,9 @@ include '../include/toolbar.html';
     $fat=$_POST["fat"];
     $carbs=$_POST["carbs"];
     $calories=$_POST["calories"];
+    $fiber=$_POST["fiber"];
 //echo $items;
-    $sql="Insert into items (grocery_item,price,department,pantryqty,servings,protein,fat,carbs,calories) Values ('".$item."','".$price."','".$department."','0','".$servings."','".$protein."','".$fat."','".$carbs."','".$calories."')";
+    $sql="Insert into items (grocery_item,price,department,pantryqty,servings,protein,fat,carbs,calories,fiber) Values ('".$item."','".$price."','".$department."','0','".$servings."','".$protein."','".$fat."','".$carbs."','".$calories."','".$fiber."')";
     echo "<br><br>";
     if ($conn->query($sql)){
             echo $sql."<br><br>";

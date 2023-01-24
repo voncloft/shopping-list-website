@@ -35,10 +35,10 @@ include '../include/toolbar.html'
 <tr><td><input type="text" name="servings" id="servings"></td>
 <td><input type="text" name="calories" id="calories"></td>
 <td><input type="text" name="fat" id="fat"></td></tr>
-<tr><td>Protein</td><td>Carbohydrates</td></tr>
+<tr><td>Protein</td><td>Carbohydrates</td><td>Fiber</td></tr>
 <tr><td><input type="text" name="protein" id="protein"></td>
-<td><input type="text" name="carbs" id="carbs"></td></tr>
-
+<td><input type="text" name="carbs" id="carbs"></td>
+<td><input type="text" name="fiber" id="fiber"></td></tr>
 
 </table><input type="submit">
 </form>

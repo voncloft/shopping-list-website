@@ -6,11 +6,11 @@ include '../include/toolbar.html';
 session_start();
 
 echo "<form action='/scripts/modify_item.php' method=POST>";
-$sql = "select id,grocery_item, price, department,servings,calories,fat,protein,carbs from items order by grocery_item";
+$sql = "select id,grocery_item, price, department,servings,calories,fat,protein,carbs,fiber from items order by grocery_item";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
 
-    echo "<center><table><caption>SHOPPING LIST</caption><tr><th></th><th>Item</th><th>Price</th><th>Department</th><th>Servings</th><th>Calories</th><th>Fat</th><th>Protein</th><th>Carbs</th></tr><tr>";
+    echo "<center><table><caption>SHOPPING LIST</caption><tr><th></th><th>Item</th><th>Price</th><th>Department</th><th>Servings</th><th>Calories</th><th>Fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th></tr><tr>";
     $c=0;
     foreach ($rows as $row2){
         $c++;
@@ -23,6 +23,7 @@ $sql = "select id,grocery_item, price, department,servings,calories,fat,protein,
 	echo "<td><input type='text' name='fat".$c."' value=".$row2['fat']."></td>";
 	echo "<td><input type='text' name='protein".$c."' value=".$row2['protein']."></td>";
 	echo "<td><input type='text' name='carbs".$c."' value=".$row2['carbs']."></td>";
+	echo "<td><input type='text' name='fiber".$c."' value=".$row2['fiber']."></td>";
 	echo "</tr>";
     }
     

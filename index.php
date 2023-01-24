@@ -24,7 +24,7 @@ Shopping<br>
 3. Ability to rename a recipe<br>
 4. Delete recipes and items<br>
 5. Implement personal recipe editor - have it pull cals and macros from items<br>
-6. Have items use macros and calories<br>
+6 (x)Have items use macros and calories<br>
 7. Final page and recipe lists will show calories and macros<br>
 8. Exercise Tracker (weight, treadmill, muscle, etc)<br>
 9. (x)Default final_list order by department
