@@ -8,11 +8,11 @@ include '../include/passwords.php';
 include '../include/toolbar.html';
 echo "<form action='../scripts/clear_final.php' method=POST>";
 echo "<center><h1>Shopping List</h1>";
-$total_price=0;
-$url_link="";
-//$sql = "select QFRT,count(DISTINCT(IFRT)) from final_list";
-//$sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT";
-$sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totalsum, items.department from final_list inner join items on final_list.IFRT=items.ID group by IFRT order by items.department";
+	 $total_price=0;
+	 $url_link="";
+	 //$sql = "select QFRT,count(DISTINCT(IFRT)) from final_list";
+	 //$sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT";
+	 $sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totalsum, items.department from final_list inner join items on final_list.IFRT=items.ID group by IFRT order by items.department";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     echo "<table><tr><td>";
@@ -52,11 +52,11 @@ $sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totals
             	$complete_recipe_entry=str_replace("_"," ",$finalized_recipe_entry);						
 					$url_link.="<a target='_blank' href=http://voncloft.shopping.com/scripts/show_shopping_list.php?recipe_name=".$word.">".$complete_recipe_entry."</a>, ";	 			   			   
  			   }
-                $price_for_items=($qty_needed_from_recipe - $pantry_results['pantryqty'])* $item_info['price'];    
-					 echo "<td>".$item_info['grocery_item']."</td><td align=center>".$price_for_items."</td><td align=center>".$item_info['department']."</td><td>".substr($url_link,0,-4)."</td></tr>";
-  					 unset($recipe_entry);
-                $total_price+=$price_for_items;
-                $url_link="";
+            $price_for_items=($qty_needed_from_recipe - $pantry_results['pantryqty'])* $item_info['price'];    
+				echo "<td>".$item_info['grocery_item']."</td><td align=center>".$price_for_items."</td><td align=center>".$item_info['department']."</td><td>".substr($url_link,0,-4)."</td></tr>";
+  				unset($recipe_entry);
+            $total_price+=$price_for_items;
+            $url_link="";
             }
         }
     }

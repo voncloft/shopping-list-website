@@ -90,7 +90,6 @@ echo "<center><h1>Shopping List</h1>";
 });
 $('.ignoreIt').change(function() {
 	var id = $(this).val();
-	alert(id);
 	$.ajax({
 		type: "POST",
 		url: '../ajax/ignore.php',
