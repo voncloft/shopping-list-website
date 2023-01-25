@@ -38,7 +38,7 @@ echo "<td>";
         $fiber=$fiber+($qty*$servings*$macros['fiber']);
     }
         include '../chart/macros.php';
-	echo "</td></tr><tr><td valign = 'top' align='center'>";
+	echo "</td><td valign = 'top' align='center'>";
 			$remove_rt=str_replace("_recipe_table","",$recipe_name);
 		$remove_us=str_replace("_"," ",$remove_rt);
 		echo "<center><h1>".$remove_us."</h1></center>";
@@ -70,7 +70,6 @@ echo "<td>";
   		}
   		echo "<tr><td><td>Total Cost</td><td>";
   		include '../include/recipe_list_price.php';
-  		echo "weee";
   		echo"</td></tr></table>";
 
 }
@@ -91,7 +90,7 @@ else {
         	$fiber=$fiber+($qty*$servings*$macros['fiber']);
     	}
         include'../chart/macros.php';
-        echo "</td></tr><tr>";
+        echo "</td>";
 	echo "<td valign = 'top' align='center'>"; //table within table start
 		$count=$count+1;
 		$remove_rt=str_replace("_recipe_table","",$recipe_name);
@@ -133,7 +132,7 @@ else {
 		$fat=0;
 		$protein=0;
 		echo "</td></tr>";
-		if ($count == 3){
+		if ($count == 2){
 			$count=0;
 			echo "</tr><tr>";
 		}
