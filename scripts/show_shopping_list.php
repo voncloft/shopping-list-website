@@ -99,7 +99,8 @@ else {
 	$sql = "select ".$recipe_name.".qty, ".$recipe_name.".ingredient_name,items.servings, items.calories, items.fat, items.protein, items.carbs, items.fiber, items.grocery_item from ".$recipe_name." inner join items on ".$recipe_name.".ingredient_name=items.id";
     	$result = $conn->query($sql);
     	$rows = $result->fetch_all(MYSQLI_ASSOC);
-    	echo "<table border = 2><tr><th>item</th><th>qty</td><th>Servings</th><th>Calories</th><th>fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th></tr>";
+		//debugging    	
+    	//echo "<table border = 2><tr><th>item</th><th>qty</td><th>Servings</th><th>Calories</th><th>fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th></tr>";
     	foreach ($rows as $macros){
 	        $servings=$macros['servings'];
         	$qty=$macros['qty'];
@@ -108,7 +109,8 @@ else {
         	$carbs=$carbs+($qty*$servings*$macros['carbs']);
         	$fiber=$fiber+($qty*$servings*$macros['fiber']);
         	$calories=$calories+($qty*$servings*$macros['calories']);
-        echo "<tr>";
+			//debugging        
+        /*echo "<tr>";
         echo "<td>".$macros['grocery_item']."</td>";
         echo"<td>".$qty."</td>";
         echo "<td>".$servings."</td>";
@@ -117,7 +119,7 @@ else {
         echo "<td>".$macros['protein']."(".$protein.")</td>";
         echo "<td>".$macros['carbs']."(".$carbs.")</td>";
         echo "<td>".$macros['fiber']."(".$fiber.")</td>";
-        echo "</tr>";
+        echo "</tr>";*/
     	}
         include'../chart/macros.php';
         echo "</td>";
