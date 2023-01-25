@@ -12,7 +12,7 @@ echo "<form action='../scripts/save_recipe_instructions.php' method=POST>";
  }
     $drop_down_menu=$dropdown_menu."</select>";
 echo "<table><tr><td>";
-echo "<br>Creating recipe for: ".$drop_down_menu."</td></tr><tr><td>";
+echo "<br>Website Name to save recipe as: ".$drop_down_menu."</td></tr><tr><td>";
 echo "<table><tr><th>Qty</th><th>Measurement</th><th>Ingredient</th></tr><tr>";
 	for ($c=1;$c<=20;$c++)
 	{

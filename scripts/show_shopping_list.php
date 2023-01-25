@@ -89,7 +89,9 @@ echo "<td>";
   		echo "<tr><td><td>Total Cost</td><td>";
   		include '../include/recipe_list_price.php';
   		echo"</td></tr></table>";
-
+  		echo "<table><tr><td>";
+  		include '../recipes/steps/'.$recipe_name."_steps.html";
+		echo "</td></tr></table>";
 }
 else {
     foreach($_POST['recipes'] as $selected){
@@ -157,6 +159,9 @@ else {
   		echo "<tr><td><td>Total Cost</td><td>";
   		include '../include/recipe_list_price.php';
   		echo"</td></tr></table>";
+ 		echo "<table><tr><td>";
+  		include '../recipes/steps/'.$recipe_name."_steps.html";
+		echo "</td></tr></table>";
 		$overall_price=0;
 		$carbs=0;
 		$fiber=0;

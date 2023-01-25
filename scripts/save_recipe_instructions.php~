@@ -1,7 +1,7 @@
 <?php
 	include '../include/passwords.php';
 	$ingredient_file='../recipes/ingredients/'.str_replace(" ","_",$_POST['recipe_name'])."_recipe_table_ingredients.html";
-	$steps_file='../recipes/steps/'.str_replace(" ","_",$_POST['recipe_name'])."_recipe_table_steps.html";	
+	$steps_file='../recipes/steps/'.str_replace(" ","_",$_POST['recipe_name'])."_recipe_table_ingredients.html";	
 	$qty="";
 	$contents="";
 	//$c=0;
