@@ -40,7 +40,7 @@ echo "<td>";
         $carbs=$carbs+($qty*$servings*$macros['carbs']);
         $fiber=$fiber+($qty*$servings*$macros['fiber']);
 	$calories=$calories+($qty*$servings*$macros['calories']);
-	/* DEBUGGING
+	//Debugging 
 	echo "<tr>";
 	echo "<td>".$macros['grocery_item']."</td>";
 	echo"<td>".$qty."</td>";
@@ -50,7 +50,7 @@ echo "<td>";
 	echo "<td>".$macros['protein']."(".$protein.")</td>";
 	echo "<td>".$macros['carbs']."(".$carbs.")</td>";
 	echo "<td>".$macros['fiber']."(".$fiber.")</td>";
-	echo "</tr>";*/
+	echo "</tr>";
     }
 	//DEBUGGING
     //echo "</table>";
