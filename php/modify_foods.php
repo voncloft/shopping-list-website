@@ -15,7 +15,7 @@ table th{
 include '../include/passwords.php';
 include '../include/toolbar.html';
 session_start();
-
+//fix the selection menu at the top from being stopped when scrolling down to keep header on top
 echo "<form action='/scripts/modify_item.php' method=POST>";
 $sql = "select id,grocery_item, price, department,servings,calories,fat,protein,carbs,fiber from items order by grocery_item";
     $result = $conn->query($sql);

@@ -12,6 +12,7 @@ include '../include/toolbar.html';
          $fiber=0;
 	$servings=0;
 	$total_sum=0;
+	$counter=0;
 echo "<form action='../scripts/clear_final.php' method=POST>";
 echo "<center><h1>Shopping List</h1>";
 	 $total_price=0;

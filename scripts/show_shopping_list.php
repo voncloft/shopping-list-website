@@ -9,11 +9,36 @@ session_start();
 $overall_price=0;
 $c=0;
 $count=0;
+$fat=0;
+$qty=0;
+$servings=0;
+$protein=0;
+$carbs=0;
+$fiber=0;
+$counter=0;
 echo "<center><table><caption><h1>All Recipes Selected</h1></caption><tr><td>";
 echo "<table border = 2><tr align = 'top'>"; //2nd table within the first table
 if(empty($_POST['recipes'])){
+//$counter=1;
+echo "<td>";
 	$recipe_name=$_GET['recipe_name'];
-	echo "<td valign = 'top' align='center'>";
+    $sql = "select ".$recipe_name.".qty, ".$recipe_name.".ingredient_name,items.servings, items.calories, items.fat, items.protein, items.carbs, items.fiber from ".$recipe_name." inner join items on ".$recipe_name.".ingredient_name=items.id";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    foreach ($rows as $macros){
+        //$fat=$fat+$macros['fat'];
+        //$protein=$protein+$macros['protein'];
+        //$carbs=$carbs+$macros['carbs'];
+        //$fiber=$fiber+$macros['fiber'];
+        $servings=$macros['servings'];
+        $qty=$macros['qty'];
+        $fat=$fat+($qty*$servings*$macros['fat']);
+        $protein=$protein+($qty*$servings*$macros['protein']);
+        $carbs=$carbs+($qty*$servings*$macros['carbs']);
+        $fiber=$fiber+($qty*$servings*$macros['fiber']);
+    }
+        include '../chart/macros.php';
+	echo "</td></tr><tr><td valign = 'top' align='center'>";
 			$remove_rt=str_replace("_recipe_table","",$recipe_name);
 		$remove_us=str_replace("_"," ",$remove_rt);
 		echo "<center><h1>".$remove_us."</h1></center>";
@@ -45,12 +70,28 @@ if(empty($_POST['recipes'])){
   		}
   		echo "<tr><td><td>Total Cost</td><td>";
   		include '../include/recipe_list_price.php';
+  		echo "weee";
   		echo"</td></tr></table>";
 
 }
 else {
     foreach($_POST['recipes'] as $selected){
+	$counter++;
+	echo "<td>";
         $recipe_name=$selected;
+	$sql = "select ".$recipe_name.".qty, ".$recipe_name.".ingredient_name,items.servings, items.calories, items.fat, items.protein, items.carbs, items.fiber from ".$recipe_name." inner join items on ".$recipe_name.".ingredient_name=items.id";
+    	$result = $conn->query($sql);
+    	$rows = $result->fetch_all(MYSQLI_ASSOC);
+    	foreach ($rows as $macros){
+	        $servings=$macros['servings'];
+        	$qty=$macros['qty'];
+        	$fat=$fat+($qty*$servings*$macros['fat']);
+        	$protein=$protein+($qty*$servings*$macros['protein']);
+        	$carbs=$carbs+($qty*$servings*$macros['carbs']);
+        	$fiber=$fiber+($qty*$servings*$macros['fiber']);
+    	}
+        include'../chart/macros.php';
+        echo "</td></tr><tr>";
 	echo "<td valign = 'top' align='center'>"; //table within table start
 		$count=$count+1;
 		$remove_rt=str_replace("_recipe_table","",$recipe_name);
@@ -86,7 +127,12 @@ else {
   		include '../include/recipe_list_price.php';
   		echo"</td></tr></table>";
 		$overall_price=0;
-		echo "</td>";
+		$fiber=0;
+		$servings=0;
+		$qty=0;
+		$fat=0;
+		$protein=0;
+		echo "</td></tr>";
 		if ($count == 3){
 			$count=0;
 			echo "</tr><tr>";
