@@ -156,6 +156,7 @@ else {
   		include '../include/recipe_list_price.php';
   		echo"</td></tr></table>";
 		$overall_price=0;
+		$carbs=0;
 		$fiber=0;
 		$servings=0;
 		$qty=0;
