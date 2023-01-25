@@ -25,7 +25,7 @@ Shopping<br>
 2c. (Abandoning....for now)have ability to edit qty as well-not possible due to sum(qty) in sql statement<br>
 3. Ability to rename a recipe<br>
 4. Delete recipes and items<br>
-5a. (x)Implement personal recipe editor - 
+5a. (x)Implement personal recipe editor <br>
 5b. have it pull cals and macros from items<br>
 6 (x)Have items use macros and calories<br>
 7. (x)Final page and recipe lists will show calories and macros<br>
