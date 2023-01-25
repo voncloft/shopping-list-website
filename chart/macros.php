@@ -8,17 +8,19 @@
 	<tr><td valign='top'>
 	<div id='myDiv<?php echo $counter; ?>'><!-- Plotly chart will be drawn inside this DIV --></div>
 	</td><td valign='top'>
-		Fat: <?php echo $fat; ?><br>
-		Protein: <?php echo $protein; ?><br>
-		Carbs: <?php echo $carbs; ?><br>
-		Fiber: <?php echo $fiber; ?>
+		Calories: <?php echo $calories/7; ?><br>
+		Fat: <?php echo $fat/7; ?><br>
+		Protein: <?php echo $protein/7; ?><br>
+		Carbs: <?php echo $carbs/7; ?><br>
+		Fiber: <?php echo $fiber/7; ?>
 	</td></tr></table>
 </body>
 <script>
-var fat = <?php echo $fat; ?>;
-var protein = <?php echo $protein; ?>;
-var carbs = <?php echo $carbs; ?>;
-var fiber = <?php echo $fiber; ?>;
+
+var fat = <?php echo $fat/7; ?>;
+var protein = <?php echo $protein/7; ?>;
+var carbs = <?php echo $carbs/7; ?>;
+var fiber = <?php echo $fiber/7; ?>;
 
 var data = [{
   values: [fat, protein, carbs, fiber],

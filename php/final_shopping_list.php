@@ -13,13 +13,16 @@ include '../include/toolbar.html';
 	$servings=0;
 	$total_sum=0;
 	$counter=0;
+	$calories=0;
 echo "<form action='../scripts/clear_final.php' method=POST>";
 echo "<center><h1>Shopping List</h1>";
 	 $total_price=0;
 	 $url_link="";
+	//debugging
+	 //echo "<table border = 2><tr><th>item</th><th>qty</td><th>Servings</th><th>Calories</th><th>fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th></tr>";
 	 //$sql = "select QFRT,count(DISTINCT(IFRT)) from final_list";
 	 //$sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT";
-	 $sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totalsum, items.department,items.fiber,items.carbs,items.fat,items.protein,items.servings from final_list inner join items on final_list.IFRT=items.ID group by IFRT order by items.department";
+	 $sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totalsum, items.department,items.fiber,items.carbs,items.fat,items.protein,items.servings, items.calories, items.grocery_item from final_list inner join items on final_list.IFRT=items.ID group by IFRT order by items.department";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     foreach ($rows as $macros){
@@ -33,6 +36,19 @@ echo "<center><h1>Shopping List</h1>";
         $protein=$protein+($total_sum*$servings*$macros['protein']);
         $carbs=$carbs+($total_sum*$servings*$macros['carbs']);
 	$fiber=$fiber+($total_sum*$servings*$macros['fiber']);
+	$calories=$calories+($total_sum*$servings*$macros['calories']);
+	//debugging
+	/*
+        echo "<tr>";
+        echo "<td>".$macros['grocery_item']."</td>";
+        echo"<td>".$total_sum."</td>";
+        echo "<td>".$servings."</td>";
+        echo "<td>".$macros['calories']."(".$calories.")</td>";
+        echo "<td>".$macros['fat']."(".$fat.")</td>";
+        echo "<td>".$macros['protein']."(".$protein.")</td>";
+        echo "<td>".$macros['carbs']."(".$carbs.")</td>";
+        echo "<td>".$macros['fiber']."(".$fiber.")</td>";
+        echo "</tr>";*/
     }
 	include '../chart/macros.php';
     echo "<table><tr><td>";
