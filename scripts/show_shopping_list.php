@@ -89,9 +89,19 @@ echo "<td>";
   		echo "<tr><td><td>Total Cost</td><td>";
   		include '../include/recipe_list_price.php';
   		echo"</td></tr></table>";
-  		echo "<table><tr><td>";
-  		include '../recipes/steps/'.$recipe_name."_steps.html";
-		echo "</td></tr></table>";
+ 		if(file_exists('../recipes/ingredients/'.$recipe_name."_ingredients.html"))
+ 		{  			
+			echo "<table><tr><td>";  	
+			echo include '../recipes/ingredients/'.$recipe_name."_ingredients.html";
+			echo "</td></tr><tr><td>";	
+  			include '../recipes/steps/'.$recipe_name."_steps.html";
+  			echo "</td></tr></table>";
+  		}
+  		else {
+  				echo "<table><tr><td>";  	
+  				echo "No recipe instructions exist";
+  				echo "</td></tr></table>";
+  		}
 }
 else {
     foreach($_POST['recipes'] as $selected){
@@ -159,9 +169,20 @@ else {
   		echo "<tr><td><td>Total Cost</td><td>";
   		include '../include/recipe_list_price.php';
   		echo"</td></tr></table>";
- 		echo "<table><tr><td>";
-  		include '../recipes/steps/'.$recipe_name."_steps.html";
-		echo "</td></tr></table>";
+ 		
+ 		if(file_exists('../recipes/ingredients/'.$recipe_name."_ingredients.html"))
+ 		{  			
+			echo "<table><tr><td>";  	
+			echo include '../recipes/ingredients/'.$recipe_name."_ingredients.html";
+			echo "</td></tr><tr><td>";	
+  			include '../recipes/steps/'.$recipe_name."_steps.html";
+  			echo "</td></tr></table>";
+  		}
+  		else {
+  				echo "<table><tr><td>";  	
+  				echo "No recipe instructions exist";
+  				echo "</td></tr></table>";
+  		}
 		$overall_price=0;
 		$carbs=0;
 		$fiber=0;

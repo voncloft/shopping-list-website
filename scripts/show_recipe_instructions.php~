@@ -6,5 +6,5 @@ foreach($_POST['recipes'] as $selected)
 	include '../recipes/steps/'.$selected."_steps.html";
 	echo "<br><br>";
 }
-echo "<a href=../index.php>Home</a>";
+echo "<center><a href=../index.php>Home</a></center>";
 ?>
