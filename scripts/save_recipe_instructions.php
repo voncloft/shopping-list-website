@@ -21,7 +21,7 @@
 	$instructions="<br><U>Steps:</u> <br>".$_POST['instructions'];
 	//$contents=$contents;
 	file_put_contents($ingredient_file, $ingredients);
-	file_put_contents($steps_file,$instructions);
+	file_put_contents($steps_file,nl2br($instructions));
 	echo "File Written<br>";
 	echo "<a href=../index.php>Home</a>";
 ?>

@@ -269,7 +269,7 @@ CREATE TABLE `Cauliflower_Potato_Salad_recipe_table` (
 
 LOCK TABLES `Cauliflower_Potato_Salad_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Cauliflower_Potato_Salad_recipe_table` DISABLE KEYS */;
-INSERT INTO `Cauliflower_Potato_Salad_recipe_table` VALUES (1,2,'256'),(2,1,'144'),(3,1,'35'),(4,1,'10'),(5,1,'137'),(6,1,'174'),(7,1,'42'),(8,1,'92'),(9,0,'29'),(10,0,'175'),(11,0,'40');
+INSERT INTO `Cauliflower_Potato_Salad_recipe_table` VALUES (1,1,'256'),(2,1,'144'),(3,1,'35'),(4,1,'10'),(5,1,'137'),(6,1,'174'),(7,1,'42'),(8,1,'92'),(9,0,'29'),(10,0,'175'),(11,0,'40');
 /*!40000 ALTER TABLE `Cauliflower_Potato_Salad_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1345,7 +1345,7 @@ CREATE TABLE `measurements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `unit_of_measurement` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1354,7 +1354,7 @@ CREATE TABLE `measurements` (
 
 LOCK TABLES `measurements` WRITE;
 /*!40000 ALTER TABLE `measurements` DISABLE KEYS */;
-INSERT INTO `measurements` VALUES (4,'N/A'),(5,'tsp'),(6,'tbsp'),(7,'cup');
+INSERT INTO `measurements` VALUES (4,'N/A'),(5,'tsp'),(6,'tbsp'),(7,'cup'),(8,'oz');
 /*!40000 ALTER TABLE `measurements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1393,4 +1393,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-26 12:24:01
+-- Dump completed on 2023-01-26 16:39:47
