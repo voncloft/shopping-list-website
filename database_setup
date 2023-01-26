@@ -1260,7 +1260,7 @@ CREATE TABLE `current_week_recipes` (
   `recipes` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `recipes` (`recipes`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1269,7 +1269,7 @@ CREATE TABLE `current_week_recipes` (
 
 LOCK TABLES `current_week_recipes` WRITE;
 /*!40000 ALTER TABLE `current_week_recipes` DISABLE KEYS */;
-INSERT INTO `current_week_recipes` VALUES (1,'Beverages_recipe_table'),(2,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table'),(3,'Keto_Mac_and_Cheese_recipe_table'),(4,'Produce_recipe_table'),(5,'Cleaning_Supplies_recipe_table');
+INSERT INTO `current_week_recipes` VALUES (1,'Beverages_recipe_table'),(2,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table'),(4,'Produce_recipe_table'),(5,'Cleaning_Supplies_recipe_table'),(7,'Keto_Mac_and_Cheese_recipe_table');
 /*!40000 ALTER TABLE `current_week_recipes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1287,7 +1287,7 @@ CREATE TABLE `final_list` (
   `recipe_table_name` text DEFAULT NULL,
   `checked` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1296,7 +1296,7 @@ CREATE TABLE `final_list` (
 
 LOCK TABLES `final_list` WRITE;
 /*!40000 ALTER TABLE `final_list` DISABLE KEYS */;
-INSERT INTO `final_list` VALUES (2,2,1,'Beverages_recipe_table',NULL),(3,0,57,'Beverages_recipe_table',NULL),(4,1,95,'Beverages_recipe_table',NULL),(5,1,202,'Beverages_recipe_table',NULL),(6,0,224,'Beverages_recipe_table',NULL),(7,0,226,'Beverages_recipe_table',NULL),(8,0,227,'Beverages_recipe_table',NULL),(9,0,232,'Beverages_recipe_table',NULL),(10,1,48,'Beverages_recipe_table',NULL),(11,0,153,'Beverages_recipe_table',NULL),(12,1,14,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(13,1,154,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(14,1,150,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(15,1,149,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(16,1,26,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(17,1,12,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(18,0,151,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(19,1,261,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(20,1,262,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(21,1,152,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(22,1,256,'Keto_Mac_and_Cheese_recipe_table',NULL),(23,1,67,'Keto_Mac_and_Cheese_recipe_table',NULL),(24,1,54,'Keto_Mac_and_Cheese_recipe_table',NULL),(25,1,167,'Keto_Mac_and_Cheese_recipe_table',NULL),(26,1,57,'Keto_Mac_and_Cheese_recipe_table',NULL),(27,1,192,'Keto_Mac_and_Cheese_recipe_table',NULL),(28,1,266,'Keto_Mac_and_Cheese_recipe_table',NULL),(29,1,26,'Keto_Mac_and_Cheese_recipe_table',NULL),(30,1,23,'Keto_Mac_and_Cheese_recipe_table',NULL),(31,1,92,'Keto_Mac_and_Cheese_recipe_table',NULL),(32,2,171,'Keto_Mac_and_Cheese_recipe_table',NULL),(33,1,39,'Keto_Mac_and_Cheese_recipe_table',NULL),(45,1,17,'Produce_recipe_table',NULL),(46,1,158,'Produce_recipe_table',NULL),(47,1,16,'Produce_recipe_table',NULL),(48,0,236,'Produce_recipe_table',NULL),(49,0,239,'Produce_recipe_table',NULL),(50,0,238,'Produce_recipe_table',NULL),(51,0,210,'Produce_recipe_table',NULL),(52,0,248,'Produce_recipe_table',NULL),(53,0,243,'Produce_recipe_table',NULL),(54,0,265,'Produce_recipe_table',NULL),(55,1,263,'Produce_recipe_table',NULL),(56,1,3,'Cleaning_Supplies_recipe_table',NULL),(57,1,50,'Cleaning_Supplies_recipe_table',NULL),(58,1,101,'Cleaning_Supplies_recipe_table',NULL),(59,1,52,'Cleaning_Supplies_recipe_table',NULL),(60,1,102,'Cleaning_Supplies_recipe_table',NULL),(61,1,105,'Cleaning_Supplies_recipe_table',NULL),(62,1,51,'Cleaning_Supplies_recipe_table',NULL),(63,1,170,'Cleaning_Supplies_recipe_table',NULL),(64,1,230,'Cleaning_Supplies_recipe_table',NULL),(65,1,203,'Cleaning_Supplies_recipe_table',NULL),(66,0,228,'Cleaning_Supplies_recipe_table',NULL),(67,1,231,'Cleaning_Supplies_recipe_table',NULL),(68,1,229,'Cleaning_Supplies_recipe_table',NULL);
+INSERT INTO `final_list` VALUES (2,2,1,'Beverages_recipe_table',NULL),(3,0,57,'Beverages_recipe_table',NULL),(4,1,95,'Beverages_recipe_table',NULL),(5,1,202,'Beverages_recipe_table',NULL),(6,0,224,'Beverages_recipe_table',NULL),(7,0,226,'Beverages_recipe_table',NULL),(8,0,227,'Beverages_recipe_table',NULL),(9,0,232,'Beverages_recipe_table',NULL),(10,1,48,'Beverages_recipe_table',NULL),(11,0,153,'Beverages_recipe_table',NULL),(12,1,14,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(13,1,154,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(14,1,150,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(15,1,149,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(16,1,26,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(17,1,12,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(18,0,151,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(19,1,261,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(20,1,262,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(21,1,152,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table',NULL),(45,1,17,'Produce_recipe_table',NULL),(46,1,158,'Produce_recipe_table',NULL),(47,1,16,'Produce_recipe_table',NULL),(48,0,236,'Produce_recipe_table',NULL),(49,0,239,'Produce_recipe_table',NULL),(50,0,238,'Produce_recipe_table',NULL),(51,0,210,'Produce_recipe_table',NULL),(52,0,248,'Produce_recipe_table',NULL),(53,0,243,'Produce_recipe_table',NULL),(54,0,265,'Produce_recipe_table',NULL),(55,1,263,'Produce_recipe_table',NULL),(56,1,3,'Cleaning_Supplies_recipe_table',NULL),(57,1,50,'Cleaning_Supplies_recipe_table',NULL),(58,1,101,'Cleaning_Supplies_recipe_table',NULL),(59,1,52,'Cleaning_Supplies_recipe_table',NULL),(60,1,102,'Cleaning_Supplies_recipe_table',NULL),(61,1,105,'Cleaning_Supplies_recipe_table',NULL),(62,1,51,'Cleaning_Supplies_recipe_table',NULL),(63,1,170,'Cleaning_Supplies_recipe_table',NULL),(64,1,230,'Cleaning_Supplies_recipe_table',NULL),(65,1,203,'Cleaning_Supplies_recipe_table',NULL),(66,0,228,'Cleaning_Supplies_recipe_table',NULL),(67,1,231,'Cleaning_Supplies_recipe_table',NULL),(68,1,229,'Cleaning_Supplies_recipe_table',NULL),(80,1,256,'Keto_Mac_and_Cheese_recipe_table',NULL),(81,1,67,'Keto_Mac_and_Cheese_recipe_table',NULL),(82,1,54,'Keto_Mac_and_Cheese_recipe_table',NULL),(83,1,167,'Keto_Mac_and_Cheese_recipe_table',NULL),(84,1,57,'Keto_Mac_and_Cheese_recipe_table',NULL),(85,1,192,'Keto_Mac_and_Cheese_recipe_table',NULL),(86,1,266,'Keto_Mac_and_Cheese_recipe_table',NULL),(87,1,26,'Keto_Mac_and_Cheese_recipe_table',NULL),(88,1,23,'Keto_Mac_and_Cheese_recipe_table',NULL),(89,1,92,'Keto_Mac_and_Cheese_recipe_table',NULL),(90,2,171,'Keto_Mac_and_Cheese_recipe_table',NULL),(91,1,39,'Keto_Mac_and_Cheese_recipe_table',NULL);
 /*!40000 ALTER TABLE `final_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1393,4 +1393,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-26 10:34:59
+-- Dump completed on 2023-01-26 12:21:35
