@@ -27,10 +27,8 @@ Shopping<br>
 4. Delete recipes and items<br>
 5a.(x)Implement personal recipe editor <br>
 5b.(x) have it pull ingredients automatically<br>
-5c. Auto Newline in instructions no manual "<BR>" code
 6 (x)Have items use macros and calories<br>
 7. (x)Final page and recipe lists will show calories and macros<br>
 8. Exercise Tracker (weight, treadmill, muscle, etc)<br>
 9. (x)Default final_list order by department
 10. Export recipe to spreadsheet
-

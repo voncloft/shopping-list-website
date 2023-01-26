@@ -3,7 +3,7 @@ include '../include/passwords.php';
 include '../include/toolbar.html';
 echo "<form action='../scripts/save_recipe_instructions.php' method=POST>";
  $showtables= mysqli_query($conn, "SHOW TABLES FROM shopping_list");
- $dropdown_menu="<select name='recipe_name' id='recipe_name'>";
+ $dropdown_menu="<select name='recipe_name' id='recipe_name'><option value='Pick_Recipe'>Pick Recipe</option>";
  //$selected_recipe=$_GET['selected_recipe'];
 
  
@@ -28,7 +28,7 @@ echo "<form action='../scripts/save_recipe_instructions.php' method=POST>";
  	}	
  }
     $drop_down_menu=$dropdown_menu."</select>";
-if(!empty($_GET['selected_recipe']))
+if(!empty($_GET['selected_recipe']) && ($_GET['selected_recipe']!="Pick_Recipe_recipe_table"))
 {
 	$c=0;
 	$sql="select ingredient_name from ".$_GET['selected_recipe'];
@@ -79,6 +79,7 @@ else
 	echo "Recipe has not been selected<br>";
 	echo $drop_down_menu;
 }
+echo "<center><a href='../index.php'>Home</a></center>";
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
@@ -86,4 +87,5 @@ $("#recipe_name").on('change', function() {
         var recipe = $(this).val();
 	window.location.href="create_cooking_instructions.php?selected_recipe="+recipe.replace(/ /g,"_")+"_recipe_table";
 });
+
 </script>
