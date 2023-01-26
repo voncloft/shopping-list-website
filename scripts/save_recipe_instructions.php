@@ -7,7 +7,8 @@
 	//$c=0;
 	$qty_contents="";
 	$ingredients="<U>Ingredients:</u><br>";
-	for ($c=1;$c<=20;$c++)
+	$count=$_POST["count"];
+	for ($c=1;$c<=$count;$c++)
 	{		
 		$qty="qty".$c;
 		if ($_POST[$qty]>0)
@@ -21,6 +22,7 @@
 	//$contents=$contents;
 	file_put_contents($ingredient_file, $ingredients);
 	file_put_contents($steps_file,$instructions);
-	echo "File Written";
+	echo "File Written<br>";
+	echo "<a href=../index.php>Home</a>";
 ?>
 

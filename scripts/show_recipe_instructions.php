@@ -1,4 +1,6 @@
 <?php
+include '../include/toolbar.html';
+echo "</center><br>";
 foreach($_POST['recipes'] as $selected)
 {
 	echo "<i>".str_replace("_"," ",str_replace("_recipe_table","",$selected))."</i><br>";
