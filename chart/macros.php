@@ -8,11 +8,15 @@
 	<tr><td valign='top'>
 	<div id='myDiv<?php echo $counter; ?>'><!-- Plotly chart will be drawn inside this DIV --></div>
 	</td><td valign='top'>
-		Calories: <?php echo $calories/7; ?><br>
-		Fat: <?php echo $fat/7; ?><br>
-		Protein: <?php echo $protein/7; ?><br>
-		Carbs: <?php echo $carbs/7; ?><br>
-		Fiber: <?php echo $fiber/7; ?>
+		Calories: <?php echo round($calories/7,2); ?><br>
+		Fat: <?php echo round($fat/7,2); ?>g<br>
+		Protein: <?php echo round($protein/7,2); ?>g<br>
+		Carbs: <?php echo round($carbs/7,2); ?>g<br>
+		Fiber: <?php echo round($fiber/7,2); ?>g<br>
+		<?php
+			$net=($carbs/7)-($fiber/7);
+		?>
+		Net Carbs:<?php echo round($net,2);?>g
 	</td></tr></table>
 </body>
 <script>
