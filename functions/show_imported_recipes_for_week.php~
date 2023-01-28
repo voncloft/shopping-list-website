@@ -1,3 +1,0 @@
-<?php
-include_once '../include/passwords.php';
-function show_curren
