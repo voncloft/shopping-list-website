@@ -6,12 +6,15 @@ include '../include/toolbar.html';
 include '../functions/show_recipes_interface.php';
 echo "<br>Recipes not currently imported";
 echo "<br>";
-?>
-<form action='../scripts/select_for_final.php' method=POST>
-<?php
-	get_interface("select_recipes","","");
-?>
- <input type="submit">
-</form>
+
+    ?>
+    <form action='../scripts/select_for_final.php' method=POST>
+    <?php
+
+            
+            get_interface("select_recipes","","");
+     ?>
+     <input type="submit">
+     </form>
 
 
