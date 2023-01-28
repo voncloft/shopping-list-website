@@ -4,6 +4,7 @@
 </HEAD>
 <body>
 <?php
+//session_start();
 include_once '../include/passwords.php';
 include_once '../include/toolbar.html';
 require_once '../functions/saveFinalPriceToDB.php';

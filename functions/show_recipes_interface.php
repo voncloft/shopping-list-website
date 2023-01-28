@@ -1,20 +1,25 @@
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
 <?php
-include '../include/toolbar.html';
-include '../functions/show_recipes_interface.php';
-echo "<br>Recipes not currently imported";
-echo "<br>";
-    include '../include/passwords.php';
-
-    ?>
-    <form action='../scripts/select_for_final.php' method=POST>
-    <?php
-    
-    
-    $showtables= mysqli_query($conn, "SHOW TABLES FROM shopping_list");
+include_once '../include/dbcontroller.php';
+	
+function get_interface($interface,$recipe_name,$function_of_use)
+{
+	/*interfaces:
+		checkbox: select recipes to edit, final_list, show recipe list (before and imported),
+					 show instructions, remove recipe for week
+		textbox:  modify items
+	*/
+	switch($interface){
+		case "select_recipes";
+			show_all_recipes_to_select();
+			break;
+	}	
+}
+function show_all_recipes_to_select()
+{
+	 $db_handle = new DBController();    
+    $showtables= mysqli_query($db_handle, "SHOW TABLES FROM shopping_list");
     $sql="select recipes from current_week_recipes";
-    $result = $conn->query($sql);
+    $result = $db_handle->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     $i=0;
     $array = array();
@@ -35,10 +40,5 @@ echo "<br>";
                 }
               }
             }
-            
-            //get_interface("select_recipes","","")
-     ?>
-     <input type="submit">
-     </form>
-
-
+}
+?>

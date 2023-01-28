@@ -1,13 +1,10 @@
 <?php
-include_once '../include/dbcontroller.php';
+//session_start();
+require_once '../include/passwords.php';
 function saveFinalPriceToDB($price)
 {
-	//return $sql;	
-	$db_handle = new DBController();	
-	//$price="2.22";	
+	global $conn;
 	$sql="Update weekly_total set price='".$price."' where id = 1";
-	$db_handle->executeUpdate($sql);
-	//return $sql;
+	$conn->query($sql);
 }
-//echo $price;
 ?>
