@@ -15,9 +15,17 @@ table th{
 include_once '../include/passwords.php';
 include '../include/toolbar.html';
 include_once '../functions/show_recipes_interface.php';
+//session_start();
+//fix the selection menu at the top from being stopped when scrolling down to keep header on top
 echo "<form action='/scripts/modify_item.php' method=POST>";
-get_interface("modify_pantry","","");
-echo '<Input type="submit">';
-echo "</form>";
+
+ 
+    get_interface("modify_pantry","","");
+
+    echo '<Input type="submit">';
+    echo "</form>";
+
+
+//echo $string_to_write;
 ?>
 
