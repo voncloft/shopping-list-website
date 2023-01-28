@@ -33,7 +33,7 @@ foreach ($rows as $row2){
                     echo $sql_statement_to_input_to_final."<br>";
                     if ($conn->query($sql_statement_to_input_to_final)){
                         echo "Import Successful<br>";
-                        header("Location: ../php/final_shopping_list.php");
+                        header("Location: ../php/final_list.php");
                     }              
             }
         }

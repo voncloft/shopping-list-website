@@ -55,7 +55,6 @@ if ($current_week_recipe==1)
 	if($current_week_recipe==1)
 	{
         	$conn->query($update_food);
-        	header("Location: ../php/final_shopping_list.php");
 	}
     }
     

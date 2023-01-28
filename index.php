@@ -33,4 +33,5 @@ Shopping<br>
 8. Exercise Tracker (weight, treadmill, muscle, etc)<br>
 9. (x)Default final_list order by department<br>
 10. Export recipe to spreadsheet
-
+11. remove week_total from being listed in checkbox stuff
+12. Have seperate functions for pages no more spaghetti code.

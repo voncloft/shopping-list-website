@@ -15,7 +15,6 @@ if(!empty($_POST['recipes'])){
 	$conn->query($sql2);
 	echo $sql."<br>".$sql2."<br>";
 	echo "Removed ".$recipe_name." from the week<br>";
-	header("Location: ../php/final_shopping_list.php");
 	}
 }
 ?>

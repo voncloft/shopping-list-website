@@ -4,8 +4,9 @@
 </HEAD>
 <body>
 <?php
-include '../include/passwords.php';
-include '../include/toolbar.html';
+include_once '../include/passwords.php';
+include_once '../include/toolbar.html';
+require_once '../functions/saveFinalPriceToDB.php';
          $fat=0;
          $protein=0;
          $carbs=0;
@@ -18,6 +19,7 @@ echo "<form action='../scripts/clear_final.php' method=POST>";
 echo "<center><h1>Shopping List</h1>";
 	 $total_price=0;
 	 $url_link="";
+	 $tax_added=0;
 	//debugging
 	 //echo "<table border = 2><tr><th>item</th><th>qty</td><th>Servings</th><th>Calories</th><th>fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th></tr>";
 	 //$sql = "select QFRT,count(DISTINCT(IFRT)) from final_list";
@@ -101,6 +103,7 @@ echo "<center><h1>Shopping List</h1>";
     echo "<table><tr><td>Bill:</td><td>".$total_price."</td></tr>";
     echo "<tr><td>Tax:</td><td>6%</td></tr>";
     $tax_added=$total_price * 1.06;
+    saveFinalPriceToDB(number_format($tax_added,2));
     echo "<tr><td>Total:</td><td>".number_format($tax_added,2)."</td></tr></table>";
     echo "</td></tr><tr><td>Clear table <input type='submit'></table></center><form>";
 ?>
@@ -144,7 +147,7 @@ function saveToDb(editableObj,id)
 		url: '../ajax/edit_pantry.php',
 		data:"id="+id+"&updated_value="+id_from_items,
 		success: function(data)
-		{
+		{		
 			window.location.href="final_shopping_list.php"
 		}
 	});
