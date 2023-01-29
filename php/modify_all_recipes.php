@@ -9,7 +9,7 @@ echo "<br>";
 ?>
 <form action='../scripts/modify_shopping_list.php' method=POST>
 <?php
-		get_interface("select_recipes","","");
+		get_interface("select_recipes","dont_hide_imported");
  ?>
 <input type="submit">
 </form>

@@ -16,7 +16,7 @@ include_once '../include/passwords.php';
 include '../include/toolbar.html';
 include_once '../functions/show_recipes_interface.php';
 echo "<form action='/scripts/modify_item.php' method=POST>";
-get_interface("modify_pantry","","");
+get_interface("modify_pantry","");
 echo '<Input type="submit">';
 echo "</form>";
 ?>

@@ -8,7 +8,7 @@ echo "<br>";
 ?>
 <form action='../scripts/show_shopping_list.php' method=POST>
 <?php
-    get_interface("select_recipes","","");
+    get_interface("select_recipes","dont_hid_import");
 ?>
 <input type="submit">
 </form>

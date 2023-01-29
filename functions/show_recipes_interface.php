@@ -5,11 +5,11 @@ include_once '../functions/show_all_recipes.php';
 include_once '../functions/show_imported_recipes_for_week.php';
 include_once '../functions/modify_pantry.php';
 include_once '../functions/pantry_inventory.php';
-function get_interface($interface,$recipe_name,$function_of_use)
+function get_interface($interface,$function_of_use)
 {
 	switch($interface){
 		case "select_recipes";//show all recipes
-			show_all_recipes_to_select();
+			show_all_recipes_to_select($function_of_use);
 			break;
 		case "show_imported";//show only recipes in the week imported
 			show_imported_recipes();

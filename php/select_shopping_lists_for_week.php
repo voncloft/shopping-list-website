@@ -9,7 +9,7 @@ echo "<br>";
 ?>
 <form action='../scripts/select_for_final.php' method=POST>
 <?php
-	get_interface("select_recipes","","");
+	get_interface("select_recipes","hide_imported");
 ?>
  <input type="submit">
 </form>

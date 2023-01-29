@@ -7,7 +7,7 @@ echo "<br>";
 ?>
 <form action='../scripts/show_recipe_instructions.php' method=POST>
 <?php
-	get_interface("select_recipes","","");
+	get_interface("select_recipes","dont_hide_import");
 ?>
 <input type="submit">
 </form>
