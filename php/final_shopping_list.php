@@ -92,7 +92,7 @@ echo "<center><h1>Shopping List</h1>";
 					$url_link.="<a target='_blank' href=http://voncloft.shopping.com/scripts/show_shopping_list.php?recipe_name=".$word.">".$complete_recipe_entry."</a>, ";	 			   			   
  			   }
             $price_for_items=($qty_needed_from_recipe - $pantry_results['pantryqty'])* $item_info['price'];    
-				echo "<td><a target=_blank href='https://www.walmart.com/search?q=".$item_info['grocery_item']."'>".$item_info['grocery_item']."</a></td><td align=center>".$price_for_items."</td><td align=center>".$item_info['department']."</td><td>".substr($url_link,0,-4)."</td></tr>";
+				echo "<td><a target=_blank href='https://www.walmart.com/search?q=".$item_info['grocery_item']."&facet=fulfillment_method_in_store%3AIn-store'>".$item_info['grocery_item']."</a></td><td align=center>".$price_for_items."</td><td align=center>".$item_info['department']."</td><td>".substr($url_link,0,-4)."</td></tr>";
   				unset($recipe_entry);
             $total_price+=$price_for_items;
             $url_link="";
