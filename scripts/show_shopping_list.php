@@ -82,7 +82,7 @@ echo "<td>";
   		$item_row=$item_retrieve->fetch_all(MYSQLI_ASSOC);
   		foreach($item_row as $item){
       			$reconfigured_cost=$ingredient_name_id['qty'] * $item['price'];
-    			echo "<tr><td>".$ingredient_name_id['qty']."</td><td>".$item['grocery_item']."</td><td>".$reconfigured_cost."</td><td>".$item['department']."</td></tr>";  
+    			echo "<tr><td>".$ingredient_name_id['qty']."</td><td><a target=_blank href='https://www.walmart.com/search?q=".$item['grocery_item']."'>".$item['grocery_item']."</a></td><td>".$reconfigured_cost."</td><td>".$item['department']."</td></tr>";  
     			$overall_price=$overall_price+$reconfigured_cost;
   			}
   		}
@@ -150,7 +150,7 @@ else {
   		$item_row=$item_retrieve->fetch_all(MYSQLI_ASSOC);
   		foreach($item_row as $item){
       			$reconfigured_cost=$ingredient_name_id['qty'] * $item['price'];
-    			echo "<tr><td>".$ingredient_name_id['qty']."</td><td>".$item['grocery_item']."</td><td>".$reconfigured_cost."</td><td>".$item['department']."</td></tr>";  
+    			echo "<tr><td>".$ingredient_name_id['qty']."</td><td><a target=_blank href='https://www.walmart.com/search?q=".$item['grocery_item']."'>".$item['grocery_item']."</a></td><td>".$reconfigured_cost."</td><td>".$item['department']."</td></tr>";  
     			$overall_price=$overall_price+$reconfigured_cost;
   			}
 		}
