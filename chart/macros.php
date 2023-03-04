@@ -13,6 +13,7 @@
 			getServings();
 			global $servings_from_db;
 		?>
+		Servings: <?php echo $servings_from_db; ?><br>
 		Calories: <?php echo round($calories/$servings_from_db,2); ?><br>
 		Fat: <?php echo round($fat/$servings_from_db,2); ?>g<br>
 		Protein: <?php echo round($protein/$servings_from_db,2); ?>g<br>
