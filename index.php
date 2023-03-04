@@ -1,5 +1,4 @@
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
 <b>
 Item Actions<br>
 <a href="../php/add_foods.php">Add Grocery Items to Database</a><br>
@@ -17,21 +16,7 @@ Shopping List Actions<br>
 <a href="../php/remove_shopping_list_from_final.php">Remove Shopping List from Current Week</a><br>
 <br>
 Shopping<br>
-<a href="../php/final_shopping_list.php">View Final Shopping List for Week</a><br>
-<br><b><u>To Do:</u></b><br>
-1. (x) Check box and have it marked in database using ajax<br>
-2a.(x) Edit Final table with ajax in pantry <br>
-2b. (x) have ignore/remove box for row <br>
-2c. (Abandoning....for now)have ability to edit qty as well-not possible due to sum(qty) in sql statement<br>
-3. Ability to rename a recipe<br>
-4. Delete recipes and items<br>
-5a.(x)Implement personal recipe editor <br>
-5b.(x) have it pull ingredients automatically<br>
-5c.(x)Auto Newline in instructions no manual "< BR >" code<BR>
-6 (x)Have items use macros and calories<br>
-7. (x)Final page and recipe lists will show calories and macros<br>
-8. Exercise Tracker (weight, treadmill, muscle, etc)<br>
-9. (x)Default final_list order by department<br>
-10. Export recipe to spreadsheet
-11. remove week_total from being listed in checkbox stuff
-12. Have seperate functions for pages no more spaghetti code.
+<a href="../php/final_shopping_list.php">View Final Shopping List for Week</a><br><br>
+Misc<br>
+<a href="todo.html">TODO</a>
+

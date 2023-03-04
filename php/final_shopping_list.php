@@ -8,6 +8,8 @@
 include_once '../include/passwords.php';
 include_once '../include/toolbar.html';
 require_once '../functions/saveFinalPriceToDB.php';
+require_once '../functions/get_servings.php';
+getServings();
          $fat=0;
          $protein=0;
          $carbs=0;
@@ -16,8 +18,21 @@ require_once '../functions/saveFinalPriceToDB.php';
 	$total_sum=0;
 	$counter=0;
 	$calories=0;
+	$portions="<select name=portions id=portions>";
+	$portion_counter=0;
+	for($portion_counter=1;$portion_counter<=10;$portion_counter++)
+	{
+			if($portion_counter==$servings_from_db){
+			$portions=$portions."<option value='".$portion_counter."' selected >".$portion_counter."</option>";
+			}
+			else {			
+			$portions=$portions."<option value='".$portion_counter."'>".$portion_counter."</option>";
+			}	
+	}
+	$portions=$portions."</select>";
 echo "<form action='../scripts/clear_final.php' method=POST>";
 echo "<center><h1>Shopping List</h1>";
+echo "Portions for Prep: ".$portions;
 	 $total_price=0;
 	 $url_link="";
 	 $tax_added=0;
@@ -112,6 +127,7 @@ echo "<center><h1>Shopping List</h1>";
 <script>
 	$('.checkIt').change(function () {
     var id = $(this).val();
+    //alert(id);
     if (this.checked)
     {
     $.ajax({
@@ -137,6 +153,20 @@ $('.ignoreIt').change(function() {
 		success: function(data)
 		{
 			window.location.href="final_shopping_list.php"
+		}
+	});
+});
+$('#portions').change(function() {
+	var id = $(this).val();
+	//alert(id);
+	$.ajax({
+		type: "POST",
+		url: '../ajax/portions.php',
+		data:"id="+id,
+		success: function(data)
+		{
+			window.location.href="final_shopping_list.php"
+			//alert(data);
 		}
 	});
 });

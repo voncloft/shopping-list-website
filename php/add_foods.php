@@ -20,6 +20,7 @@
  });
 </script>
 </head>
+<center>
 <?php
 include '../include/toolbar.html'
 
