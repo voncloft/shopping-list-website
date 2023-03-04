@@ -8,7 +8,11 @@
 	<tr><td valign='top'>
 	<div id='myDiv<?php echo $counter; ?>'><!-- Plotly chart will be drawn inside this DIV --></div>
 	</td><td valign='top'>
-		
+		<?php
+			include_once '../functions/get_servings.php';
+			getServings();
+			global $servings_from_db;
+		?>
 		Calories: <?php echo round($calories/$servings_from_db,2); ?><br>
 		Fat: <?php echo round($fat/$servings_from_db,2); ?>g<br>
 		Protein: <?php echo round($protein/$servings_from_db,2); ?>g<br>
