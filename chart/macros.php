@@ -22,10 +22,10 @@
 </body>
 <script>
 
-var fat = <?php echo $fat/7; ?>;
-var protein = <?php echo $protein/7; ?>;
-var carbs = <?php echo $carbs/7; ?>;
-var fiber = <?php echo $fiber/7; ?>;
+var fat = <?php echo round($fat/$servings_from_db,2); ?>;
+var protein = <?php echo round($protein/$servings_from_db,2); ?>;
+var carbs = <?php echo round($carbs/$servings_from_db,2); ?>;
+var fiber = <?php echo round($fiber/$servings_from_db,2); ?>;
 
 var data = [{
   values: [fat, protein, carbs, fiber],
