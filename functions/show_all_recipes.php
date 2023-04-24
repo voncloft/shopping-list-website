@@ -29,14 +29,16 @@ function show_all_recipes_to_select($function_of_use)
                   		if (! in_array($table[0], $array)){
                   		echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  
                   		echo '<label">'.$remove_us.'</label><br>';
+                  		get_prices_and_macros($table[0]); 
                 		}
                 		break;
                 		default:
                   		echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  
-                  		echo '<label">'.$remove_us.'</label><br>';                				
+                  		echo '<label">'.$remove_us.'</label><br>';
+                  		              				
              	}
-             	                  get_prices_and_macros($table[0]);
-             	                  echo "<br>";
+             	
+             	echo "<br>";
               }
             }
          }
