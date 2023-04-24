@@ -30,15 +30,17 @@ function show_all_recipes_to_select($function_of_use)
                   		echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  
                   		echo '<label">'.$remove_us.'</label><br>';
                   		get_prices_and_macros($table[0]); 
+                  		echo "<br>";
                 		}
                 		break;
                 		default:
                   		echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  
                   		echo '<label">'.$remove_us.'</label><br>';
-                  		              				
+                  		get_prices_and_macros($table[0]);
+                  		echo "<br>";               				
              	}
              	
-             	echo "<br>";
+             	
               }
             }
          }

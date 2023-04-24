@@ -1,8 +1,10 @@
 <?php
 include_once '../include/passwords.php';
+include_once 'get_prices_and_macros.php';
 function show_imported_recipes()
 {
 	global $conn;
+	echo "<br>";
 	 $showtables= mysqli_query($conn, "SHOW TABLES FROM shopping_list");    
     $sql="select recipes from current_week_recipes";
     $result = $conn->query($sql);
@@ -18,6 +20,8 @@ function show_imported_recipes()
               $replaceunderscores=str_replace("_"," ",$remove_table_name);
               echo '<input type="checkbox" name="recipes[]" value="'.$table[0]. '">';  
               echo '<label">'.$replaceunderscores.'</label><br>';
+              get_prices_and_macros($table[0]); 
+              echo "<br>";
           }
       }
     }
