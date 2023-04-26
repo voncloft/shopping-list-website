@@ -219,7 +219,7 @@ CREATE TABLE `Bratwurst_recipe_table` (
 
 LOCK TABLES `Bratwurst_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Bratwurst_recipe_table` DISABLE KEYS */;
-INSERT INTO `Bratwurst_recipe_table` VALUES (1,3,'9'),(2,1,'10'),(3,0,'91'),(4,0,'8'),(5,1,'295');
+INSERT INTO `Bratwurst_recipe_table` VALUES (1,1,'9'),(2,0,'10'),(3,0,'91'),(4,0,'8'),(5,0,'295');
 /*!40000 ALTER TABLE `Bratwurst_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -521,6 +521,31 @@ LOCK TABLES `Cleaning_Supplies_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Cleaning_Supplies_recipe_table` DISABLE KEYS */;
 INSERT INTO `Cleaning_Supplies_recipe_table` VALUES (1,1,'3'),(2,1,'50'),(3,0,'101'),(4,0,'52'),(5,0,'102'),(6,0,'105'),(7,1,'51'),(8,0,'170'),(9,0,'230'),(10,0,'203'),(11,0,'228'),(12,0,'231'),(13,0,'229'),(14,0,'280'),(15,0,'195'),(16,0,'283'),(17,0,'282'),(18,0,'284');
 /*!40000 ALTER TABLE `Cleaning_Supplies_recipe_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Condiments_recipe_table`
+--
+
+DROP TABLE IF EXISTS `Condiments_recipe_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Condiments_recipe_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qty` int(11) NOT NULL,
+  `ingredient_name` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Condiments_recipe_table`
+--
+
+LOCK TABLES `Condiments_recipe_table` WRITE;
+/*!40000 ALTER TABLE `Condiments_recipe_table` DISABLE KEYS */;
+INSERT INTO `Condiments_recipe_table` VALUES (1,1,'10'),(2,1,'295');
+/*!40000 ALTER TABLE `Condiments_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1385,7 +1410,7 @@ CREATE TABLE `current_week_recipes` (
   `recipes` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `recipes` (`recipes`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1394,7 +1419,7 @@ CREATE TABLE `current_week_recipes` (
 
 LOCK TABLES `current_week_recipes` WRITE;
 /*!40000 ALTER TABLE `current_week_recipes` DISABLE KEYS */;
-INSERT INTO `current_week_recipes` VALUES (2,'Jalapeno_Poppers_recipe_table'),(3,'Keto_Fried_Chicken_recipe_table'),(6,'Chicken_Drumbsticks_recipe_table');
+INSERT INTO `current_week_recipes` VALUES (2,'Jalapeno_Poppers_recipe_table'),(3,'Keto_Fried_Chicken_recipe_table'),(6,'Chicken_Drumbsticks_recipe_table'),(9,'Beverages_recipe_table');
 /*!40000 ALTER TABLE `current_week_recipes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1412,7 +1437,7 @@ CREATE TABLE `final_list` (
   `recipe_table_name` text DEFAULT NULL,
   `checked` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1421,7 +1446,7 @@ CREATE TABLE `final_list` (
 
 LOCK TABLES `final_list` WRITE;
 /*!40000 ALTER TABLE `final_list` DISABLE KEYS */;
-INSERT INTO `final_list` VALUES (12,22,8,'Jalapeno_Poppers_recipe_table',NULL),(13,2,5,'Jalapeno_Poppers_recipe_table',NULL),(14,2,12,'Jalapeno_Poppers_recipe_table',NULL),(15,2,7,'Jalapeno_Poppers_recipe_table',NULL),(16,2,160,'Jalapeno_Poppers_recipe_table',NULL),(17,1,185,'Keto_Fried_Chicken_recipe_table',NULL),(18,1,167,'Keto_Fried_Chicken_recipe_table',NULL),(19,1,92,'Keto_Fried_Chicken_recipe_table',NULL),(20,1,40,'Keto_Fried_Chicken_recipe_table',NULL),(21,1,57,'Keto_Fried_Chicken_recipe_table',NULL),(22,1,164,'Keto_Fried_Chicken_recipe_table',NULL),(23,2,171,'Keto_Fried_Chicken_recipe_table',NULL),(24,1,39,'Keto_Fried_Chicken_recipe_table',NULL),(25,1,137,'Keto_Fried_Chicken_recipe_table',NULL),(26,1,174,'Keto_Fried_Chicken_recipe_table',NULL),(27,0,144,'Keto_Fried_Chicken_recipe_table',NULL),(28,0,23,'Keto_Fried_Chicken_recipe_table',NULL),(46,1,19,'Chicken_Drumbsticks_recipe_table',NULL),(47,1,20,'Chicken_Drumbsticks_recipe_table',NULL),(48,1,92,'Chicken_Drumbsticks_recipe_table',NULL),(49,0,67,'Chicken_Drumbsticks_recipe_table',NULL),(50,1,54,'Chicken_Drumbsticks_recipe_table',NULL),(51,0,23,'Chicken_Drumbsticks_recipe_table',NULL);
+INSERT INTO `final_list` VALUES (12,22,8,'Jalapeno_Poppers_recipe_table',NULL),(13,2,5,'Jalapeno_Poppers_recipe_table',NULL),(14,2,12,'Jalapeno_Poppers_recipe_table',NULL),(15,2,7,'Jalapeno_Poppers_recipe_table',NULL),(16,2,160,'Jalapeno_Poppers_recipe_table',NULL),(17,1,185,'Keto_Fried_Chicken_recipe_table',NULL),(18,1,167,'Keto_Fried_Chicken_recipe_table',NULL),(19,1,92,'Keto_Fried_Chicken_recipe_table',NULL),(20,1,40,'Keto_Fried_Chicken_recipe_table',NULL),(21,1,57,'Keto_Fried_Chicken_recipe_table',NULL),(22,1,164,'Keto_Fried_Chicken_recipe_table',NULL),(23,2,171,'Keto_Fried_Chicken_recipe_table',NULL),(24,1,39,'Keto_Fried_Chicken_recipe_table',NULL),(25,1,137,'Keto_Fried_Chicken_recipe_table',NULL),(26,1,174,'Keto_Fried_Chicken_recipe_table',NULL),(27,0,144,'Keto_Fried_Chicken_recipe_table',NULL),(28,0,23,'Keto_Fried_Chicken_recipe_table',NULL),(46,1,19,'Chicken_Drumbsticks_recipe_table',NULL),(47,1,20,'Chicken_Drumbsticks_recipe_table',NULL),(48,1,92,'Chicken_Drumbsticks_recipe_table',NULL),(49,0,67,'Chicken_Drumbsticks_recipe_table',NULL),(50,1,54,'Chicken_Drumbsticks_recipe_table',NULL),(51,0,23,'Chicken_Drumbsticks_recipe_table',NULL),(59,1,62,'Beverages_recipe_table',NULL),(60,2,1,'Beverages_recipe_table',NULL),(61,0,57,'Beverages_recipe_table',NULL),(62,0,95,'Beverages_recipe_table',NULL),(63,0,202,'Beverages_recipe_table',NULL),(64,0,224,'Beverages_recipe_table',NULL),(65,0,226,'Beverages_recipe_table',NULL),(66,0,227,'Beverages_recipe_table',NULL),(67,0,232,'Beverages_recipe_table',NULL),(68,1,48,'Beverages_recipe_table',NULL);
 /*!40000 ALTER TABLE `final_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1496,7 +1521,7 @@ CREATE TABLE `recipe_lists` (
   `url` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `recipe_name` (`recipe_name`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1505,7 +1530,7 @@ CREATE TABLE `recipe_lists` (
 
 LOCK TABLES `recipe_lists` WRITE;
 /*!40000 ALTER TABLE `recipe_lists` DISABLE KEYS */;
-INSERT INTO `recipe_lists` VALUES (1,'Beverages_recipe_table',''),(2,'Body_recipe_table',''),(3,'Bratwurst_recipe_table',''),(4,'Burritos_recipe_table',''),(5,'Chicken_Drumbsticks_recipe_table',''),(6,'Chicken_wings_recipe_table',''),(7,'Cleaning_Supplies_recipe_table',''),(8,'Electronic_needs_recipe_table',''),(9,'Jalapeno_Poppers_recipe_table',''),(10,'Meat_Pizza_recipe_table','https://ketoinpearls.com/sausage-crust-pizza/'),(11,'Meatballs_recipe_table','https://joyfilledeats.com/meatball-parm-casserole/#recipe'),(12,'Misc_recipe_table',''),(13,'Produce_recipe_table',''),(14,'Ribs_recipe_table',''),(15,'Snacks_recipe_table',''),(16,'Stuffed_Pizza_Bell_Peppers_recipe_table','https://kalynskitchen.com/low-carb-sausage-pepperoni-pizza-stuffed-peppers/#mv-creation-50-jtr'),(17,'Vacation_recipe_table',''),(18,'Vaping_Equipment_recipe_table',''),(33,'Electronic_Bartender_recipe_table','https://www.youtube.com/watch?v=2DopvpNF7J4'),(34,'Quick_List_recipe_table',''),(35,'Lasagna_recipe_table','https://peaceloveandlowcarb.com/just-like-the-real-thing-lasagna/#tasty-recipes-12196-jump-target'),(36,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table','https://ketodietapp.com/Blog/lchf/bacon-wrapped-and-cheese-stuffed-burgers#preptime'),(37,'Buffalo_Chicken_Casserole_recipe_table','https://www.mincerepublic.com/buffalo-chicken-casserole/'),(38,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table','https://www.wholesomeyum.com/recipes/chicken-bacon-ranch-casserole-recipe-easy-low-carb/'),(39,'Spices_recipe_table',''),(40,'Raviolli_recipe_table','https://www.gnom-gnom.com/spinach-ricotta-grain-free-keto-ravioli/'),(41,'Steak_and_eggs_recipe_table',''),(42,'Keto_Mac_and_Cheese_recipe_table','https://www.delish.com/cooking/nutrition/a29024668/keto-mac-and-cheese-recipe/'),(43,'Keto_Fried_Chicken_recipe_table','https://www.delish.com/cooking/nutrition/a29537911/keto-fried-chicken-recipe/'),(44,'Cheesy_bacon_ranch_chicken_breast_recipe_table','https://www.delish.com/cooking/recipe-ideas/a27156187/cheesy-bacon-ranch-chicken-reipe/'),(45,'Bacon_Wrapped_Meatloaf_recipe_table','https://www.delish.com/cooking/recipe-ideas/a23480870/keto-meatloaf-recipe/'),(46,'Keto_Chili_recipe_table','https://www.delish.com/cooking/recipe-ideas/a23103912/keto-chili-recipe/'),(47,'Cheese_steak_stuffed_peppers_recipe_table','https://www.delish.com/cooking/recipe-ideas/recipes/a51551/cheesesteak-stuffed-peppers-recipe/'),(48,'BLT_burger_recipe_table','https://www.delish.com/cooking/recipe-ideas/recipes/a54644/blt-burgers-recipe/'),(49,'deviled_eggs_recipe_table','https://www.wholesomeyum.com/keto-deviled-eggs-recipe/#jumptorecipe'),(50,'Chicken_Leg_Quarters_recipe_table',''),(51,'Cauliflower_Potato_Salad_recipe_table','https://www.wholesomeyum.com/recipes/cauliflower-potato-salad-low-carb-paleo-potato-salad/#jumptorecipe'),(52,'Cauliflower_Tots_recipe_table','https://www.wholesomeyum.com/cheesy-low-carb-cauliflower-tots-recipe/#jumptorecipe'),(53,'Pulled_pork_recipe_table','https://realsimplegood.com/crock-pot-pulled-pork/'),(54,'French_fries_recipe_table','https://imhungryforthat.com/keto-french-fries/#tasty-recipes-1440-jump-target'),(55,'Peanut_butter_fat_bombs_recipe_table','https://www.fittoservegroup.com/low-carb-chocolate-peanut-butter-fat-bombs/#mv-creation-52-jtr'),(56,'Cauliflower_pizza_recipe_table','https://detoxinista.com/wprm_print/recipe/23235'),(57,'Shaving_List_recipe_table',''),(58,'Kale_Smoothie_recipe_table',''),(59,'Salsa_recipe_table','https://www.foodnetwork.com/recipes/food-network-kitchen/nutribullet-salsa-6562395'),(60,'Apple_Cinnamon_Smoothie_recipe_table','https://loseweightbyeating.com/wprm_print/recipe/177796'),(61,'Keto_fries_recipe_table','https://imhungryforthat.com/keto-french-fries/#tasty-recipes-1440-jump-target'),(62,'Stuffed_Peppers_Lasagna_recipe_table','https://www.wholesomeyum.com/recipes/beef-lasagna-stuffed-peppers-gluten-free-low-carb/#jumptorecipe'),(63,'Baked_Ziti_recipe_table','https://www.wholesomeyum.com/cauliflower-baked-ziti/'),(65,'Cheeseburger_casserole__recipe_table',''),(66,'Pizza_Casserole_recipe_table',''),(67,'Taco_Casserole_recipe_table',''),(68,'Keto_Pretzel_Bites_recipe_table','https://www.reddit.com/r/ketorecipes/comments/11o46cy/keto_pretzel_bites_with_cheese_sauce/?utm_source=share&utm_medium=android_app&utm_name=androidcss&utm_term=2&utm_content=share_button'),(69,'Stuffed_Chicken_Breast_recipe_table',''),(70,'Reuben_Casserole_recipe_table','https://www.wholesomeyum.com/reuben-casserole/');
+INSERT INTO `recipe_lists` VALUES (1,'Beverages_recipe_table',''),(2,'Body_recipe_table',''),(3,'Bratwurst_recipe_table',''),(4,'Burritos_recipe_table',''),(5,'Chicken_Drumbsticks_recipe_table',''),(6,'Chicken_wings_recipe_table',''),(7,'Cleaning_Supplies_recipe_table',''),(8,'Electronic_needs_recipe_table',''),(9,'Jalapeno_Poppers_recipe_table',''),(10,'Meat_Pizza_recipe_table','https://ketoinpearls.com/sausage-crust-pizza/'),(11,'Meatballs_recipe_table','https://joyfilledeats.com/meatball-parm-casserole/#recipe'),(12,'Misc_recipe_table',''),(13,'Produce_recipe_table',''),(14,'Ribs_recipe_table',''),(15,'Snacks_recipe_table',''),(16,'Stuffed_Pizza_Bell_Peppers_recipe_table','https://kalynskitchen.com/low-carb-sausage-pepperoni-pizza-stuffed-peppers/#mv-creation-50-jtr'),(17,'Vacation_recipe_table',''),(18,'Vaping_Equipment_recipe_table',''),(33,'Electronic_Bartender_recipe_table','https://www.youtube.com/watch?v=2DopvpNF7J4'),(34,'Quick_List_recipe_table',''),(35,'Lasagna_recipe_table','https://peaceloveandlowcarb.com/just-like-the-real-thing-lasagna/#tasty-recipes-12196-jump-target'),(36,'Bacon_Wrapped_Cheese_Stuffed_Burgers_recipe_table','https://ketodietapp.com/Blog/lchf/bacon-wrapped-and-cheese-stuffed-burgers#preptime'),(37,'Buffalo_Chicken_Casserole_recipe_table','https://www.mincerepublic.com/buffalo-chicken-casserole/'),(38,'Chicken_Bacon_Ranch_Casserole_Recipe_recipe_table','https://www.wholesomeyum.com/recipes/chicken-bacon-ranch-casserole-recipe-easy-low-carb/'),(39,'Spices_recipe_table',''),(40,'Raviolli_recipe_table','https://www.gnom-gnom.com/spinach-ricotta-grain-free-keto-ravioli/'),(41,'Steak_and_eggs_recipe_table',''),(42,'Keto_Mac_and_Cheese_recipe_table','https://www.delish.com/cooking/nutrition/a29024668/keto-mac-and-cheese-recipe/'),(43,'Keto_Fried_Chicken_recipe_table','https://www.delish.com/cooking/nutrition/a29537911/keto-fried-chicken-recipe/'),(44,'Cheesy_bacon_ranch_chicken_breast_recipe_table','https://www.delish.com/cooking/recipe-ideas/a27156187/cheesy-bacon-ranch-chicken-reipe/'),(45,'Bacon_Wrapped_Meatloaf_recipe_table','https://www.delish.com/cooking/recipe-ideas/a23480870/keto-meatloaf-recipe/'),(46,'Keto_Chili_recipe_table','https://www.delish.com/cooking/recipe-ideas/a23103912/keto-chili-recipe/'),(47,'Cheese_steak_stuffed_peppers_recipe_table','https://www.delish.com/cooking/recipe-ideas/recipes/a51551/cheesesteak-stuffed-peppers-recipe/'),(48,'BLT_burger_recipe_table','https://www.delish.com/cooking/recipe-ideas/recipes/a54644/blt-burgers-recipe/'),(49,'deviled_eggs_recipe_table','https://www.wholesomeyum.com/keto-deviled-eggs-recipe/#jumptorecipe'),(50,'Chicken_Leg_Quarters_recipe_table',''),(51,'Cauliflower_Potato_Salad_recipe_table','https://www.wholesomeyum.com/recipes/cauliflower-potato-salad-low-carb-paleo-potato-salad/#jumptorecipe'),(52,'Cauliflower_Tots_recipe_table','https://www.wholesomeyum.com/cheesy-low-carb-cauliflower-tots-recipe/#jumptorecipe'),(53,'Pulled_pork_recipe_table','https://realsimplegood.com/crock-pot-pulled-pork/'),(54,'French_fries_recipe_table','https://imhungryforthat.com/keto-french-fries/#tasty-recipes-1440-jump-target'),(55,'Peanut_butter_fat_bombs_recipe_table','https://www.fittoservegroup.com/low-carb-chocolate-peanut-butter-fat-bombs/#mv-creation-52-jtr'),(56,'Cauliflower_pizza_recipe_table','https://detoxinista.com/wprm_print/recipe/23235'),(57,'Shaving_List_recipe_table',''),(58,'Kale_Smoothie_recipe_table',''),(59,'Salsa_recipe_table','https://www.foodnetwork.com/recipes/food-network-kitchen/nutribullet-salsa-6562395'),(60,'Apple_Cinnamon_Smoothie_recipe_table','https://loseweightbyeating.com/wprm_print/recipe/177796'),(61,'Keto_fries_recipe_table','https://imhungryforthat.com/keto-french-fries/#tasty-recipes-1440-jump-target'),(62,'Stuffed_Peppers_Lasagna_recipe_table','https://www.wholesomeyum.com/recipes/beef-lasagna-stuffed-peppers-gluten-free-low-carb/#jumptorecipe'),(63,'Baked_Ziti_recipe_table','https://www.wholesomeyum.com/cauliflower-baked-ziti/'),(65,'Cheeseburger_casserole__recipe_table',''),(66,'Pizza_Casserole_recipe_table',''),(67,'Taco_Casserole_recipe_table',''),(68,'Keto_Pretzel_Bites_recipe_table','https://www.reddit.com/r/ketorecipes/comments/11o46cy/keto_pretzel_bites_with_cheese_sauce/?utm_source=share&utm_medium=android_app&utm_name=androidcss&utm_term=2&utm_content=share_button'),(69,'Stuffed_Chicken_Breast_recipe_table',''),(70,'Reuben_Casserole_recipe_table','https://www.wholesomeyum.com/reuben-casserole/'),(71,'Condiments_recipe_table','');
 /*!40000 ALTER TABLE `recipe_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1528,7 +1553,7 @@ CREATE TABLE `variables` (
 
 LOCK TABLES `variables` WRITE;
 /*!40000 ALTER TABLE `variables` DISABLE KEYS */;
-INSERT INTO `variables` VALUES (8,'68.36');
+INSERT INTO `variables` VALUES (8,'83.16');
 /*!40000 ALTER TABLE `variables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1564,4 +1589,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-24 18:55:04
+-- Dump completed on 2023-04-26 13:02:40
