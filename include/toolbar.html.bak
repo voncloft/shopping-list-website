@@ -1,0 +1,30 @@
+<center>
+<link rel="stylesheet" type="text/css" href="http://voncloft.shopping.com/include/dropdown.css" />
+ <div class="dropdown">
+  <button class="dropbtn">Item Actions</button>
+  <div class="dropdown-content">
+    <a href="http://voncloft.shopping.com/php/add_foods.php">Add Grocery items to Database</a>
+    <a href="http://voncloft.shopping.com/php/modify_foods.php">Modify Grocery items</a>
+    <a href="http://voncloft.shopping.com/php/pantry.php">Pantry Inventory</a>
+  </div>
+</div> 
+
+ <div class="dropdown">
+  <button class="dropbtn">Shopping List Actions</button>
+  <div class="dropdown-content">
+    <a href="http://voncloft.shopping.com/php/create_shopping_lists.php">Create Shopping List</a>
+    <a href="http://voncloft.shopping.com/php/show_recipe_no_editing.php">Show Recipe List</a>
+    <a href="http://voncloft.shopping.com/php/select_shopping_lists_for_week.php">Select Recipe List for Final List</a>
+    <a href="http://voncloft.shopping.com/php/modify_all_recipes.php">Modify Shopping List Before Import</a>
+    <a href="http://voncloft.shopping.com/php/modify_shopping_list.php">Modify Shopping List (Currently Imported)</a>
+    <a href="http://voncloft.shopping.com/php/remove_shopping_list_from_final.php">Remove Shopping List from Current Week</a>
+    
+  </div>
+</div> 
+
+ <div class="dropdown">
+  <button class="dropbtn">Shopping</button>
+  <div class="dropdown-content">
+    <a href="http://voncloft.shopping.com/php/final_shopping_list.php">View Final Shopping List for the Week</a>
+  </div>
+</div> 
