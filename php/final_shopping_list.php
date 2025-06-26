@@ -125,7 +125,7 @@ echo "Portions for Prep: ".$portions;
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-	$('.checkIt').change(function () {
+$('.checkIt').change(function () {
     var id = $(this).val();
     //alert(id);
     if (this.checked)
@@ -136,13 +136,13 @@ echo "Portions for Prep: ".$portions;
         data:"id="+id+"&checked=true"
     });
  	}
- 	else {
+    else {
     $.ajax({
         type: "POST",
         url: '../ajax/checkbox.php',
         data:"id="+id+"&checked=false"
     });
- 	} 	
+ } 	
 });
 $('.ignoreIt').change(function() {
 	var id = $(this).val();
