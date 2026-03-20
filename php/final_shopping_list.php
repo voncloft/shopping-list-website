@@ -40,7 +40,7 @@ echo "Portions for Prep: ".$portions;
 	 //echo "<table border = 2><tr><th>item</th><th>qty</td><th>Servings</th><th>Calories</th><th>fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th></tr>";
 	 //$sql = "select QFRT,count(DISTINCT(IFRT)) from final_list";
 	 //$sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT";
-	 $sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totalsum, items.department,items.fiber,items.carbs,items.fat,items.protein,items.servings, items.calories, items.grocery_item from final_list inner join items on final_list.IFRT=items.ID group by IFRT order by items.department ASC, items.grocery_item asc";
+	 $sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totalsum, items.department,items.fiber,items.carbs,items.fat,items.protein,items.servings, items.calories,items.url, items.grocery_item from final_list inner join items on final_list.IFRT=items.ID group by IFRT order by items.department ASC, items.grocery_item asc";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     foreach ($rows as $macros){
@@ -55,6 +55,7 @@ echo "Portions for Prep: ".$portions;
         $carbs=$carbs+($total_sum*$servings*$macros['carbs']);
 	$fiber=$fiber+($total_sum*$servings*$macros['fiber']);
 	$calories=$calories+($total_sum*$servings*$macros['calories']);
+	//$url=$calories+($total_sum*$servings*$macros['url']);
 	//debugging
 	/*
         echo "<tr>";
@@ -70,10 +71,11 @@ echo "Portions for Prep: ".$portions;
     }
 	include '../chart/macros.php';
     echo "<table><tr><td>";
-    echo '<table border=2 class="searchable sortable"><tr><th>Ignore?</th><th>Got it</th><th>Qty</th><th align=center>Pantry Qty</th><th align=center>Description</th><th>Price</th><th align=center>Location</th><th align=center>Recipe List(s)</th></tr>';
+    echo '<table border=2 class="searchable sortable"><tr><th>Ignore?</th><th>Got it</th><th>Qty</th><th align=center>Pantry Qty</th><th align=center>Description</th><th>Price</th><th align=center>Location</th><th align=center>Recipe List(s)</th><th>Link</th></tr>';
     foreach ($rows as $row2){
         $id_to_pull_from_items=$row2['IFRT'];
         $qty_needed_from_recipe=$row2['totalsum'];
+        $url=$row2['url'];
         $pantrysql="select pantryqty from items where id='".$id_to_pull_from_items."'";
         $result= $conn->query($pantrysql);
         $pantry_results=$result -> fetch_assoc();
@@ -107,13 +109,14 @@ echo "Portions for Prep: ".$portions;
 					$url_link.="<a target='_blank' href=../scripts/show_shopping_list.php?recipe_name=".$word.">".$complete_recipe_entry."</a>, ";	 			   			   
  			   }
             $price_for_items=($qty_needed_from_recipe - $pantry_results['pantryqty'])* $item_info['price'];    
-				echo "<td><a target=_blank href='https://www.walmart.com/search?q=".$item_info['grocery_item']."&facet=fulfillment_method_in_store%3AIn-store'>".$item_info['grocery_item']."</a></td><td align=center>".$price_for_items."</td><td align=center>".$item_info['department']."</td><td>".substr($url_link,0,-4)."</td></tr>";
+				echo "<td><a target=_blank href='https://www.walmart.com/search?q=".$item_info['grocery_item']."&facet=fulfillment_method_in_store%3AIn-store'>".$item_info['grocery_item']."</a></td><td align=center>".$price_for_items."</td><td align=center>".$item_info['department']."</td><td>".substr($url_link,0,-4)."</td><td><a target=_blank href='$url#id=".$id_to_pull_from_items."'>link</a></td></tr>";
   				unset($recipe_entry);
             $total_price+=$price_for_items;
             $url_link="";
             }
         }
     }
+    
     echo "</table>";
     echo "<td valign=top>";
     echo "<table><tr><td>Bill:</td><td>".$total_price."</td></tr>";
