@@ -13,6 +13,7 @@ for($i=1;$i<=$counter;$i++)
   $pricebox="pricetb".$i;
   $dbox="dtb".$i;
   $servings="servings".$i;
+  $url="url".$i;
   if($_POST[$servings]>=0)
   {
   	$calories="calories".$i;
@@ -20,11 +21,11 @@ for($i=1;$i<=$counter;$i++)
   	$protein="protein".$i;
   	$carbs="carbs".$i;
   	$fiber="fiber".$i;
-  	$sql="update items set grocery_item='".$_POST[$itembox]."',price='".$_POST[$pricebox]."',department='".$_POST[$dbox]."',servings='".$_POST[$servings]."'".",calories='".$_POST[$calories]."'".",fat='".$_POST[$fat]."'".",protein='".$_POST[$protein]."'".",carbs='".$_POST[$carbs]."',fiber='".$_POST[$fiber]."' where id ='".$_POST[$idbox]."'";
+  	$sql="update items set url='".$_POST[$url]."',grocery_item='".$_POST[$itembox]."',price='".$_POST[$pricebox]."',department='".$_POST[$dbox]."',servings='".$_POST[$servings]."'".",calories='".$_POST[$calories]."'".",fat='".$_POST[$fat]."'".",protein='".$_POST[$protein]."'".",carbs='".$_POST[$carbs]."',fiber='".$_POST[$fiber]."' where id ='".$_POST[$idbox]."'";
   }
   else
   {
-        $sql="update items set grocery_item='".$_POST[$itembox]."',price='".$_POST[$pricebox]."',department='".$_POST[$dbox]."',servings=0,calories=0,fat=0,protein=0,carbs=0,fiber=0 where id ='".$_POST[$idbox]."'";;
+        $sql="update items set url='".$_POST[$url]."', grocery_item='".$_POST[$itembox]."',price='".$_POST[$pricebox]."',department='".$_POST[$dbox]."',servings=0,calories=0,fat=0,protein=0,carbs=0,fiber=0 where id ='".$_POST[$idbox]."'";;
   }
   	//echo "<br>".$sql."<br><br>";
   	echo "<br>".$sql."<br><br>";

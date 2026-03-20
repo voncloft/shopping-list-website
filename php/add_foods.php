@@ -40,6 +40,7 @@ include '../include/toolbar.html'
 <tr><td><input type="text" name="protein" id="protein"></td>
 <td><input type="text" name="carbs" id="carbs"></td>
 <td><input type="text" name="fiber" id="fiber"></td></tr>
-
+<td>URL</td><td></td><td></td></tr>
+<tr><td><input type="text" name="url" id="url"></td></tr>
 </table><input type="submit">
 </form>

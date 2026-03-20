@@ -4,11 +4,11 @@ function modify_pantry()
 {
 global $conn;
 session_start();
-$sql = "select id,grocery_item, price, department,servings,calories,fat,protein,carbs,fiber from items order by grocery_item";
+$sql = "select id,grocery_item, price, department,servings,calories,fat,protein,carbs,fiber,url from items order by grocery_item";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 $c=0;
-echo "<center><table><caption>SHOPPING LIST</caption><tr><th>Item</th><th>Price</th><th>Department</th><th>Servings</th><th>Calories</th><th>Fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th></tr><tr>";
+echo "<center><table><caption>SHOPPING LIST</caption><tr><th>Item</th><th>Price</th><th>Department</th><th>Servings</th><th>Calories</th><th>Fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th><th>URL</th></tr><tr>";
 	foreach ($rows as $row2){
         	$c++;
         	echo "<td><input type='hidden' name='idtb".$c."' value=".$row2['id'].">";
@@ -21,7 +21,8 @@ echo "<center><table><caption>SHOPPING LIST</caption><tr><th>Item</th><th>Price<
 			echo "<td><input type='text' size='3' name='protein".$c."' value=".$row2['protein']."></td>";
 			echo "<td><input type='text' size='3' name='carbs".$c."' value=".$row2['carbs']."></td>";
 			echo "<td><input type='text' size='3' name='fiber".$c."' value=".$row2['fiber']."></td>";
-			echo "</tr>";
+		echo "<td><input type='text' name='url".$c."' value='".$row2['url']."'></td>";
+		echo "<tr>";
     }
 echo "</table>";
 $conn->close();

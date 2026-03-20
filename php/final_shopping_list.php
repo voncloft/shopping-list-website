@@ -40,7 +40,7 @@ echo "Portions for Prep: ".$portions;
 	 //echo "<table border = 2><tr><th>item</th><th>qty</td><th>Servings</th><th>Calories</th><th>fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th></tr>";
 	 //$sql = "select QFRT,count(DISTINCT(IFRT)) from final_list";
 	 //$sql="select IFRT, checked, sum(QFRT) as totalsum from final_list group by IFRT";
-	 $sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totalsum, items.department,items.fiber,items.carbs,items.fat,items.protein,items.servings, items.calories, items.grocery_item from final_list inner join items on final_list.IFRT=items.ID group by IFRT order by items.department";
+	 $sql="select final_list.IFRT, final_list.checked, sum(final_list.QFRT) as totalsum, items.department,items.fiber,items.carbs,items.fat,items.protein,items.servings, items.calories, items.grocery_item from final_list inner join items on final_list.IFRT=items.ID group by IFRT order by items.department ASC, items.grocery_item asc";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     foreach ($rows as $macros){
