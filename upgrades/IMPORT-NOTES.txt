@@ -1,0 +1,373 @@
+SHOPPING-LIST INSTANT POT IMPORT
+
+Prepared against https://github.com/voncloft/shopping-list-website
+Snapshot: 3b36b5d48fc4f2932e9c1179a87726cf5e0356c1
+
+INSTALL
+1. Keep a backup of your live database and the PHP file below.
+2. Copy the supplied recipes/ingredients and recipes/steps files into the same
+   folders in your site. These are plain HTML fragments in your existing format.
+3. Run import_instant_pot_recipes.sql in your existing shopping_list database.
+   Example: mysql -u YOUR_USER -p shopping_list < import_instant_pot_recipes.sql
+   A normal SQL import in phpMyAdmin works too. Do not use --force to skip errors.
+   Do not re-import database_setup; it contains DROP TABLE statements.
+4. Copy functions/get_prices_and_macros.php over that one file in your site.
+   Or apply recipe_nutrition_display.patch instead; they are the same change.
+   This makes the recipe-selection page honor used_servings just like the
+   existing recipe-details page and final shopping list already do.
+
+RESULT
+Seven recipe tables, seven recipe_lists entries and fourteen matching HTML files.
+The repository dump is missing 13 of the 43 ingredient records used here.
+Actual inserts are decided by ingredient name at import time, not hard-coded IDs.
+No existing food record is overwritten. Existing recipes and weekly selections
+are left alone. Repeating the import does not duplicate these recipe rows or foods.
+DDL can commit before the data transaction; this is not an all-or-nothing schema
+rollback. If interrupted, inspect the error and rerun after resolving it.
+
+VALIDATION
+The import's data operations passed local tests using SQLite with the MySQL
+table-engine and auto-increment syntax adapted. Checks covered all 86 ingredient
+rows, different item IDs, existing-data preservation, name matching, serving
+arithmetic and repeat imports without duplicates. All fourteen HTML fragments
+match their table names. The PHP change was checked against the source file.
+MySQL/MariaDB and PHP executables are unavailable locally, so this is not a
+MySQL-server or PHP-runtime test. Nothing has been run on your live server.
+
+SERVINGS: ONE MEANS ONE NUTRITION SERVING
+- Item calories/protein/fat/carbs/fiber are per ONE stated nutrition serving.
+- New items have servings=1, following your one-serving entry convention.
+  Existing item servings values are not modified. Every new recipe row supplies
+  an explicit used_servings value, so the older fallback multiplier is bypassed.
+- qty is the number of purchases, e.g. 2 salsa jars or 1 four-stick butter pack.
+- used_servings is the number of those nutrition servings actually consumed in
+  the entire seven-meal recipe. A partial package does not count as a whole one.
+- Batch nutrients = sum(item nutrient per serving * used_servings).
+- Nutrients per meal = batch nutrients / 7.
+- Example: one tablespoon of the existing olive oil is 1 used serving = 120 kcal
+  in the batch, about 17 kcal per meal. One 8-oz cream-cheese block is 8 one-oz
+  servings, not 7 blocks or 7 separate recipe batches.
+- Each imported recipe is ONE whole seven-meal batch: choose Portions = 1 when
+  adding that recipe; keep Portions for Prep = 7 to see per-meal nutrition.
+  Choosing 7 in the recipe selector multiplies it into seven batches (49 meals).
+- The SQL does not change your global portions setting.
+
+WHAT IS ESTIMATED / WHAT TO CHECK
+The dump stores nutrient numbers but no serving-size text or gram weights.
+The unit assumptions below therefore matter. They are conventional serving sizes,
+not verified labels for all of your existing products. Existing numbers are
+preserved even where they differ from the standalone recipe estimates.
+New nutrient values are generic estimates per ONE stated serving, not scraped
+Walmart label data. New prices are NULL. The new servings field defaults to 1,
+not a guessed number of meals or a claimed number of servings in a retail package.
+Your current UI can show a NULL price as zero: this means unknown, not free.
+When you update an item's nutrition from a product label, make sure its serving
+size matches the unit below; otherwise adjust used_servings to the recipe amount
+divided by the new label-serving amount. In particular, check the existing pork
+shoulder record's raw/cooked basis and serving size before trusting its totals.
+
+PURCHASE QUANTITIES
+Variable-weight meat Qty 1 means enough packs to provide 4 lb after the specified
+trimming. Select sufficient actual weight; a smaller advertised pack is not enough.
+Mushrooms assume three 8-oz packs. Broth assumes one 32-fl-oz carton per recipe;
+buy two if splitting that recipe into two pressure-cooking batches. Garlic qty
+follows the existing Garlic Clove name literally. Tap water is qty 0 and is not
+added as a paid purchase. Sides and optional toppings are not in the recipe tables.
+Shared pantry packages can appear multiple times if you add several recipes at
+once, as in your current application; adjust the pantry/shopping quantity normally.
+
+WALMART LINKS
+Known existing URLs are preserved. The new links below were located in Walmart
+indexed listings; availability and local pricing are not guaranteed. Unresolved
+links stay blank, with no invented product IDs. The app itself appends #id=ID,
+using the real ID assigned by MySQL. Do not put #id into the stored URL or the
+app will add it twice. The SQL's final report shows the resulting complete links.
+Source: php/final_shopping_list.php in your repository.
+
+NEW ITEMS
+- Boneless Beef Chuck Roast
+- Boneless Skinless Chicken Thighs
+- Bay Leaves
+- Orange Juice
+- Fresh Baby Spinach 5 oz
+- Dijon Mustard
+- Cornstarch 16 oz
+- Tomatillo Salsa Verde 16 oz
+- Diced Roasted Green Chiles 4 oz
+- Ground Pork 1 lb
+- Ground Beef 85 Percent Lean 1 lb
+- Plain Dry Bread Crumbs
+- Fresh Parsley
+
+SERVING UNITS AND ITEM MAPPING
+
+Olive Oil (existing ID 54)
+  One nutrition serving: 1 tbsp (14 g)
+
+Onion (existing ID 29)
+  One nutrition serving: 1 large onion (200 g)
+  The existing generic Onion URL points to red onion; choose yellow onion for these recipes. The existing URL is not overwritten.
+
+Garlic Clove (existing ID 150)
+  One nutrition serving: 1 clove (3 g)
+  qty follows the existing item name literally: number of cloves, not bulbs.
+
+Beef Broth (existing ID 180)
+  One nutrition serving: 1 cup (240 ml)
+  Buy low-sodium broth; qty assumes a 32-fl-oz carton.
+
+Chicken broth (existing ID 152)
+  One nutrition serving: 1 cup (240 ml)
+  Buy low-sodium broth; qty assumes a 32-fl-oz carton.
+
+Apple Cider Vinegar (existing ID 35)
+  One nutrition serving: 1 tbsp (15 ml)
+
+Chopped Chipotles in adobo sauce (existing ID 357)
+  One nutrition serving: 2 tbsp (30 g)
+
+Ground Cumin (existing ID 178)
+  One nutrition serving: 1 tsp (2 g)
+
+Oregeno (existing ID 66)
+  One nutrition serving: 1 tsp (1 g)
+
+Salt (existing ID 42)
+  One nutrition serving: 1 tsp (6 g)
+
+Black pepper (existing ID 92)
+  One nutrition serving: 1/4 tsp (0.5 g)
+
+Lime Juice (existing ID 242)
+  One nutrition serving: 1 tbsp (15 ml)
+
+Italan Seasoning (existing ID 134)
+  One nutrition serving: 1 tsp (1 g)
+
+Heavy Cream (existing ID 57)
+  One nutrition serving: 1 tbsp (15 ml)
+
+Cream cheese 1 pack (existing ID 192)
+  One nutrition serving: 1 oz (28.35 g)
+  Buy one 8-oz full-fat block per recipe.
+
+Parmesan (existing ID 39)
+  One nutrition serving: 5 g
+  Buy a container containing at least 113 g; finely grate as needed.
+
+Lemon Juice (existing ID 184)
+  One nutrition serving: 1 tbsp (15 ml)
+
+Pork shoulder  (existing ID 197)
+  One nutrition serving: 4 oz (113.4 g), RAW
+  IMPORTANT: the dump does not say whether this older entry is raw or cooked. Used Servings assumes a raw 4-oz label. Verify that basis before trusting the app nutrition for either pork recipe; existing macros are preserved. Qty 1 means one roast with at least 4 lb boneless trimmed meat.
+
+Butter 4 pack (existing ID 67)
+  One nutrition serving: 1 tbsp (14 g)
+  Choose unsalted; qty 1 is the existing four-stick pack.
+
+Mushrooms (existing ID 31)
+  One nutrition serving: 3 oz (85 g)
+  Qty assumes 8-oz packages: three packages supply 24 oz.
+
+Worcestershire sauce (existing ID 337)
+  One nutrition serving: 1 tsp (5 ml)
+
+Sour Cream (existing ID 148)
+  One nutrition serving: 2 tbsp (30 g)
+  One 16-oz tub covers the 360 g required.
+
+Garlic Powder (existing ID 137)
+  One nutrition serving: 1 tsp (3 g)
+
+Onion Powder (existing ID 135)
+  One nutrition serving: 1 tsp (2.5 g)
+
+Franks Hot Sauce (existing ID 23)
+  One nutrition serving: 1 tsp (5 ml)
+  Use plain cayenne pepper sauce, not premixed buttery wing sauce. The existing URL is Xtra Hot; reduce heat only if you want to change the recipe.
+
+Cilantro (existing ID 240)
+  One nutrition serving: 1 tbsp chopped (1 g)
+  One bunch supplies the recipe; the older macros are zero.
+
+Milk (existing ID 248)
+  One nutrition serving: 1 cup (240 ml)
+  Choose whole milk.
+
+Eggs-6 pack (existing ID 40)
+  One nutrition serving: 1 large egg
+  Buy one six-pack; consume two eggs.
+
+Water From Sink (existing ID 493)
+  One nutrition serving: water; no nutrition
+  Tap water is already in the database; no purchase required.
+
+Boneless Beef Chuck Roast (new)
+  One nutrition serving: 4 oz (113.4 g), raw
+  Variable-weight roast. Qty 1 means enough roast for 4 lb trimmed boneless meat, not a 1-lb packet.
+  Walmart: not resolved; left blank
+
+Boneless Skinless Chicken Thighs (new)
+  One nutrition serving: 4 oz (113.4 g), raw
+  Variable-weight family pack. Qty 1 means at least 4 lb of thawed boneless skinless meat. Buy another pack if needed.
+  Walmart: not resolved; left blank
+
+Bay Leaves (new)
+  One nutrition serving: 1 leaf, removed after cooking
+  One jar. Removed leaves contribute negligible nutrition; no label count is assumed.
+  Walmart: https://www.walmart.com/ip/10315300
+
+Orange Juice (new)
+  One nutrition serving: 1 cup (240 ml)
+  One bottle of ready-to-drink 100% orange juice, at least 120 ml; not undiluted concentrate.
+  Walmart: not resolved; left blank
+
+Fresh Baby Spinach 5 oz (new)
+  One nutrition serving: 100 g
+  Walmart: not resolved; left blank
+
+Dijon Mustard (new)
+  One nutrition serving: 1 tsp (5 g)
+  One bottle; use plain Dijon, not honey Dijon.
+  Walmart: not resolved; left blank
+
+Cornstarch 16 oz (new)
+  One nutrition serving: 1 tbsp (8 g)
+  Generic estimate uses 8 g per serving; the linked product may label a 10 g serving. If importing its label, change the recipe Used Servings from 3 to 2.4 for the same 24 g.
+  Walmart: https://www.walmart.com/ip/54802256
+
+Tomatillo Salsa Verde 16 oz (new)
+  One nutrition serving: 2 tbsp (30 g)
+  Buy two 16-oz jars; use 24 oz / 680 g, leaving about half a jar. Choose salsa with NO avocado.
+  Walmart: https://www.walmart.com/ip/10292961
+
+Diced Roasted Green Chiles 4 oz (new)
+  One nutrition serving: 2 tbsp (about 28 g)
+  Two whole 4-oz cans, undrained. Eight label servings total; slight gram rounding is expected.
+  Walmart: https://www.walmart.com/ip/10415222
+
+Ground Pork 1 lb (new)
+  One nutrition serving: 4 oz (113.4 g), raw
+  Walmart: not resolved; left blank
+
+Ground Beef 85 Percent Lean 1 lb (new)
+  One nutrition serving: 4 oz (113.4 g), raw
+  The existing ground-beef URL is 80/20. This separate 85/15 item matches the original meatball recipe.
+  Walmart: not resolved; left blank
+
+Plain Dry Bread Crumbs (new)
+  One nutrition serving: 1/4 cup (20 g)
+  Plain fine dry crumbs. Existing Panko Bread Crumbs has a different volume and serving basis, so it is retained separately.
+  Walmart: not resolved; left blank
+
+Fresh Parsley (new)
+  One nutrition serving: 1 tbsp chopped (3.75 g)
+  Buy one bunch; consume 1/4 cup (15 g).
+  Walmart: https://www.walmart.com/ip/44391168
+
+Raos Marinara Sauce 24 oz (existing ID 33)
+  One nutrition serving: 1/2 cup (125 g)
+  Two full 24-oz jars; the old database macros are zero and remain unchanged.
+
+RECIPE TABLES AND CONSUMED SERVINGS
+
+Chipotle_Beef_Barbacoa_recipe_table
+  qty 1; used_servings 16.000; Boneless Beef Chuck Roast
+  qty 1; used_servings 1.000; Olive Oil
+  qty 1; used_servings 1.000; Onion
+  qty 6; used_servings 6.000; Garlic Clove
+  qty 1; used_servings 2.250; Beef Broth
+  qty 1; used_servings 4.000; Apple Cider Vinegar
+  qty 1; used_servings 2.000; Chopped Chipotles in adobo sauce
+  qty 1; used_servings 3.000; Ground Cumin
+  qty 1; used_servings 2.000; Oregeno
+  qty 1; used_servings 1.000; Salt
+  qty 1; used_servings 4.000; Black pepper
+  qty 1; used_servings 2.000; Bay Leaves
+  qty 1; used_servings 4.000; Lime Juice
+
+Creamy_Garlic_Parmesan_Chicken_recipe_table
+  qty 1; used_servings 16.000; Boneless Skinless Chicken Thighs
+  qty 1; used_servings 1.000; Olive Oil
+  qty 1; used_servings 1.000; Onion
+  qty 10; used_servings 10.000; Garlic Clove
+  qty 1; used_servings 2.250; Chicken broth
+  qty 1; used_servings 2.000; Italan Seasoning
+  qty 1; used_servings 0.500; Salt
+  qty 1; used_servings 4.000; Black pepper
+  qty 1; used_servings 16.000; Heavy Cream
+  qty 1; used_servings 8.000; Cream cheese 1 pack
+  qty 1; used_servings 22.600; Parmesan
+  qty 1; used_servings 1.420; Fresh Baby Spinach 5 oz
+  qty 1; used_servings 1.000; Lemon Juice
+
+Pork_Carnitas_recipe_table
+  qty 1; used_servings 16.000; Pork shoulder 
+  qty 1; used_servings 1.000; Onion
+  qty 6; used_servings 6.000; Garlic Clove
+  qty 1; used_servings 2.250; Chicken broth
+  qty 1; used_servings 0.500; Orange Juice
+  qty 1; used_servings 4.000; Lime Juice
+  qty 1; used_servings 3.000; Ground Cumin
+  qty 1; used_servings 2.000; Oregeno
+  qty 1; used_servings 1.000; Salt
+  qty 1; used_servings 4.000; Black pepper
+  qty 1; used_servings 2.000; Bay Leaves
+  qty 1; used_servings 1.000; Olive Oil
+
+Beef_Stroganoff_recipe_table
+  qty 1; used_servings 16.000; Boneless Beef Chuck Roast
+  qty 1; used_servings 1.000; Olive Oil
+  qty 1; used_servings 2.000; Butter 4 pack
+  qty 3; used_servings 8.000; Mushrooms
+  qty 1; used_servings 1.000; Onion
+  qty 4; used_servings 4.000; Garlic Clove
+  qty 1; used_servings 2.250; Beef Broth
+  qty 1; used_servings 6.000; Worcestershire sauce
+  qty 1; used_servings 6.000; Dijon Mustard
+  qty 1; used_servings 1.000; Salt
+  qty 1; used_servings 4.000; Black pepper
+  qty 1; used_servings 3.000; Cornstarch 16 oz
+  qty 0; used_servings 0.000; Water From Sink
+  qty 1; used_servings 12.000; Sour Cream
+
+Buffalo_Shredded_Chicken_recipe_table
+  qty 1; used_servings 16.000; Boneless Skinless Chicken Thighs
+  qty 1; used_servings 2.250; Chicken broth
+  qty 1; used_servings 2.000; Garlic Powder
+  qty 1; used_servings 2.000; Onion Powder
+  qty 1; used_servings 2.000; Black pepper
+  qty 1; used_servings 48.000; Franks Hot Sauce
+  qty 1; used_servings 4.000; Butter 4 pack
+  qty 1; used_servings 8.000; Cream cheese 1 pack
+
+Pork_Chile_Verde_recipe_table
+  qty 1; used_servings 16.000; Pork shoulder 
+  qty 1; used_servings 1.000; Olive Oil
+  qty 1; used_servings 1.000; Onion
+  qty 6; used_servings 6.000; Garlic Clove
+  qty 1; used_servings 2.250; Chicken broth
+  qty 1; used_servings 2.000; Ground Cumin
+  qty 1; used_servings 1.000; Oregeno
+  qty 1; used_servings 0.500; Salt
+  qty 1; used_servings 2.000; Black pepper
+  qty 2; used_servings 22.667; Tomatillo Salsa Verde 16 oz
+  qty 2; used_servings 8.000; Diced Roasted Green Chiles 4 oz
+  qty 1; used_servings 4.000; Lime Juice
+  qty 1; used_servings 15.000; Cilantro
+
+Italian_Meatballs_in_Marinara_recipe_table
+  qty 3; used_servings 12.000; Ground Beef 85 Percent Lean 1 lb
+  qty 1; used_servings 4.000; Ground Pork 1 lb
+  qty 1; used_servings 4.000; Plain Dry Bread Crumbs
+  qty 1; used_servings 0.500; Milk
+  qty 1; used_servings 2.000; Eggs-6 pack
+  qty 1; used_servings 20.000; Parmesan
+  qty 6; used_servings 6.000; Garlic Clove
+  qty 1; used_servings 4.000; Fresh Parsley
+  qty 1; used_servings 2.000; Italan Seasoning
+  qty 1; used_servings 1.000; Salt
+  qty 1; used_servings 4.000; Black pepper
+  qty 0; used_servings 0.000; Water From Sink
+  qty 2; used_servings 10.880; Raos Marinara Sauce 24 oz
