@@ -1,0 +1,239 @@
+--- a/scripts/modify_item.php
++++ b/scripts/modify_item.php
+@@ -1,38 +1,122 @@
++<?php
++// Process the form before producing output. Unknown numeric values stay NULL.
++function item_edit_text($key)
++{
++    if (!isset($_POST[$key]) || !is_string($_POST[$key])) {
++        throw new InvalidArgumentException('Incomplete item form. Reload Edit Items and try again.');
++    }
++    return $_POST[$key];
++}
++
++function item_edit_number($key, $label)
++{
++    $value = trim(item_edit_text($key));
++    if ($value === '') {
++        return null;
++    }
++    if (!is_numeric($value) || !is_finite((float) $value)) {
++        throw new InvalidArgumentException($label . ' must be a number or blank.');
++    }
++    return $value;
++}
++
++$error = '';
++$saved = 0;
++$transactionStarted = false;
++$conn = null;
++$stmt = null;
++
++try {
++    if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
++        throw new InvalidArgumentException('Open Edit Items and submit the form to save changes.');
++    }
++
++    // This marker is last in the form, so truncated submissions cannot erase rows.
++    $count = filter_var(item_edit_text('item_edit_count'), FILTER_VALIDATE_INT,
++        ['options' => ['min_range' => 1]]);
++    if ($count === false) {
++        throw new InvalidArgumentException('Invalid item count. Reload Edit Items and try again.');
++    }
++
++    $rows = [];
++    for ($i = 1; $i <= $count; $i++) {
++        $id = filter_var(item_edit_text('idtb' . $i), FILTER_VALIDATE_INT,
++            ['options' => ['min_range' => 1]]);
++        $item = item_edit_text('itemtb' . $i);
++        if ($id === false || trim($item) === '') {
++            throw new InvalidArgumentException('Each item needs a valid ID and a name.');
++        }
++        $row = [
++            'id' => $id,
++            'item' => $item,
++            'url' => trim(item_edit_text('url' . $i)),
++            'price' => item_edit_number('pricetb' . $i, $item . ': price'),
++            'department' => item_edit_text('dtb' . $i)
++        ];
++        foreach (['servings', 'calories', 'fat', 'protein', 'carbs', 'fiber'] as $field) {
++            $row[$field] = item_edit_number($field . $i, $item . ': ' . $field);
++        }
++        // Retain the existing editor's negative-servings convention.
++        if ($row['servings'] !== null && (float) $row['servings'] < 0) {
++            foreach (['servings', 'calories', 'fat', 'protein', 'carbs', 'fiber'] as $field) {
++                $row[$field] = 0;
++            }
++        }
++        $rows[] = $row;
++    }
++
++    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
++    include '../include/passwords.php';
++    $conn->begin_transaction();
++    $transactionStarted = true;
++    $stmt = $conn->prepare('UPDATE items SET url=?, grocery_item=?, price=?, department=?,
++        servings=?, calories=?, fat=?, protein=?, carbs=?, fiber=? WHERE ID=?');
++    foreach ($rows as $row) {
++        $url = $row['url'];
++        $item = $row['item'];
++        $price = $row['price'];
++        $department = $row['department'];
++        $servings = $row['servings'];
++        $calories = $row['calories'];
++        $fat = $row['fat'];
++        $protein = $row['protein'];
++        $carbs = $row['carbs'];
++        $fiber = $row['fiber'];
++        $id = $row['id'];
++        // Bind price as text to preserve decimal precision; null still binds SQL NULL.
++        $stmt->bind_param('ssssddddddi', $url, $item, $price, $department,
++            $servings, $calories, $fat, $protein, $carbs, $fiber, $id);
++        $stmt->execute();
++    }
++    $conn->commit();
++    $transactionStarted = false;
++    $saved = count($rows);
++} catch (Throwable $e) {
++    if ($transactionStarted && $conn !== null) {
++        try {
++            $conn->rollback();
++        } catch (Throwable $ignored) {
++            // Preserve the original save error if the database disconnected.
++        }
++    }
++    http_response_code($e instanceof InvalidArgumentException ? 400 : 500);
++    $error = $e->getMessage();
++} finally {
++    if ($stmt !== null) {
++        $stmt->close();
++    }
++}
++?>
+ <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+-
+-<?php
+-include '../include/passwords.php';
+-include '../include/toolbar.html';
+-
+-session_start();
+-$counter=$_SESSION['counter'];
+-for($i=1;$i<=$counter;$i++)
+-{
+-  $idbox="idtb".$i;
+-  $itembox="itemtb".$i;
+-  $pricebox="pricetb".$i;
+-  $dbox="dtb".$i;
+-  $servings="servings".$i;
+-  $url="url".$i;
+-  if($_POST[$servings]>=0)
+-  {
+-  	$calories="calories".$i;
+-  	$fat="fat".$i;
+-  	$protein="protein".$i;
+-  	$carbs="carbs".$i;
+-  	$fiber="fiber".$i;
+-  	$sql="update items set url='".$_POST[$url]."',grocery_item='".$_POST[$itembox]."',price='".$_POST[$pricebox]."',department='".$_POST[$dbox]."',servings='".$_POST[$servings]."'".",calories='".$_POST[$calories]."'".",fat='".$_POST[$fat]."'".",protein='".$_POST[$protein]."'".",carbs='".$_POST[$carbs]."',fiber='".$_POST[$fiber]."' where id ='".$_POST[$idbox]."'";
+-  }
+-  else
+-  {
+-        $sql="update items set url='".$_POST[$url]."', grocery_item='".$_POST[$itembox]."',price='".$_POST[$pricebox]."',department='".$_POST[$dbox]."',servings=0,calories=0,fat=0,protein=0,carbs=0,fiber=0 where id ='".$_POST[$idbox]."'";;
+-  }
+-  	//echo "<br>".$sql."<br><br>";
+-  	echo "<br>".$sql."<br><br>";
+-   	$conn->query($sql);
+-}
+-//echo "<br>".$sql."<br><br>";
+-?>
+-<br>
+-<a href="../index.php">Main Page</a>
+-
++<?php include '../include/toolbar.html'; ?>
++<br><br>
++<?php if ($error !== '') { ?>
++<strong>Items were not saved.</strong><br>
++<?php echo htmlspecialchars($error, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?><br>
++If the form is incomplete, install both fix files and reopen Edit Items.
++If it persists, check the server's max_input_vars and post_max_size settings.<br>
++<?php } else { ?>
++Saved the submitted fields for <?php echo $saved; ?> items.<br>
++<?php } ?>
++<a href="../php/modify_foods.php">Back to Edit Items</a><br>
++<a href="../index.php">Main Page</a><br>
+--- a/functions/modify_pantry.php
++++ b/functions/modify_pantry.php
+@@ -2,31 +2,49 @@
+ include_once '../include/passwords.php';
+ function modify_pantry()
+ {
+-global $conn;
+-session_start();
+-$sql = "select id,grocery_item, price, department,servings,calories,fat,protein,carbs,fiber,url from items order by grocery_item";
+-$result = $conn->query($sql);
+-$rows = $result->fetch_all(MYSQLI_ASSOC);
+-$c=0;
+-echo "<center><table><caption>SHOPPING LIST</caption><tr><th>Item</th><th>Price</th><th>Department</th><th>Servings</th><th>Calories</th><th>Fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th><th>URL</th></tr><tr>";
+-	foreach ($rows as $row2){
+-        	$c++;
+-        	echo "<td><input type='hidden' name='idtb".$c."' value=".$row2['id'].">";
+-        	echo "<input type='text' name='itemtb".$c."' value='".$row2['grocery_item']."'></td>";
+-        	echo "<td><input type='text' size='3' name='pricetb".$c."' value='".$row2['price']."'></td>";
+-        	echo "<td><input type='text' name='dtb".$c."' value='".$row2['department']."'></td>";  
+-			echo "<td><input type='text' size='3' name='servings".$c."' value=".$row2['servings']."></td>";
+-			echo "<td><input type='text' size='3' name='calories".$c."' value=".$row2['calories']."></td>";
+-			echo "<td><input type='text' size='3' name='fat".$c."' value=".$row2['fat']."></td>";
+-			echo "<td><input type='text' size='3' name='protein".$c."' value=".$row2['protein']."></td>";
+-			echo "<td><input type='text' size='3' name='carbs".$c."' value=".$row2['carbs']."></td>";
+-			echo "<td><input type='text' size='3' name='fiber".$c."' value=".$row2['fiber']."></td>";
+-		echo "<td><input type='text' name='url".$c."' value='".$row2['url']."'></td>";
+-		echo "<tr>";
++    global $conn;
++    $result = $conn->query('SELECT ID AS id, grocery_item, price, department, servings,
++        calories, fat, protein, carbs, fiber, url FROM items ORDER BY grocery_item');
++    $rows = $result->fetch_all(MYSQLI_ASSOC);
++    $escape = function ($value) {
++        return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
++    };
++    $fields = [
++        ['grocery_item', 'itemtb', null],
++        ['price', 'pricetb', 3],
++        ['department', 'dtb', null],
++        ['servings', 'servings', 3],
++        ['calories', 'calories', 3],
++        ['fat', 'fat', 3],
++        ['protein', 'protein', 3],
++        ['carbs', 'carbs', 3],
++        ['fiber', 'fiber', 3],
++        ['url', 'url', null]
++    ];
++    echo '<center><table><caption>SHOPPING LIST</caption><tr><th>Item</th><th>Price</th>'
++        . '<th>Department</th><th>Servings</th><th>Calories</th><th>Fat</th>'
++        . '<th>Protein</th><th>Carbs</th><th>Fiber</th><th>URL</th></tr>';
++    $c = 0;
++    foreach ($rows as $row) {
++        $c++;
++        echo '<tr>';
++        foreach ($fields as $field) {
++            list($column, $prefix, $size) = $field;
++            echo '<td>';
++            if ($column === 'grocery_item') {
++                echo '<input type="hidden" name="idtb' . $c . '" value="' . (int) $row['id'] . '">';
++            }
++            echo '<input type="text" name="' . $prefix . $c . '" value="' . $escape($row[$column]) . '"';
++            if ($size !== null) {
++                echo ' size="' . $size . '"';
++            }
++            echo '></td>';
++        }
++        echo '</tr>';
+     }
+-echo "</table>";
+-$conn->close();
+-$_SESSION['counter']=$c;
++    echo '</table></center>';
++    // Last field lets the save handler detect PHP input-limit truncation.
++    echo '<input type="hidden" name="item_edit_count" value="' . $c . '">';
++    $conn->close();
+ }
+ ?>
+-

@@ -15,6 +15,10 @@ INSTALL
    Or apply recipe_nutrition_display.patch instead; they are the same change.
    This makes the recipe-selection page honor used_servings just like the
    existing recipe-details page and final shopping list already do.
+5. Back up and replace BOTH scripts/modify_item.php and functions/modify_pantry.php
+   with the supplied files. Then reopen Edit Items before making any changes.
+   This fixes the existing editor rejecting blank prices while saving URLs.
+   Unknown prices remain NULL. No extra SQL needs to be run for this editor fix.
 
 RESULT
 Seven recipe tables, seven recipe_lists entries and fourteen matching HTML files.
@@ -31,8 +35,10 @@ table-engine and auto-increment syntax adapted. Checks covered all 86 ingredient
 rows, different item IDs, existing-data preservation, name matching, serving
 arithmetic and repeat imports without duplicates. All fourteen HTML fragments
 match their table names. The PHP change was checked against the source file.
-MySQL/MariaDB and PHP executables are unavailable locally, so this is not a
-MySQL-server or PHP-runtime test. Nothing has been run on your live server.
+The two item-editor files passed PHP syntax and execution tests using WebAssembly
+PHP and a fake database connection: blank prices, exact URLs, quotes, truncation,
+invalid values and rollback were checked. This is not a MySQL-server test.
+Nothing has been run on your live server.
 
 SERVINGS: ONE MEANS ONE NUTRITION SERVING
 - Item calories/protein/fat/carbs/fiber are per ONE stated nutrition serving.
