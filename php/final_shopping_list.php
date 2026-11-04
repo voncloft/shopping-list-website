@@ -8,6 +8,7 @@ include_once '../include/passwords.php';
 include_once '../include/toolbar.html';
 require_once '../functions/saveFinalPriceToDB.php';
 require_once '../functions/get_servings.php';
+require_once __DIR__ . '/../functions/recipe_nutrition.php';
 getServings();
 
 $fat=0;
@@ -58,14 +59,15 @@ $sql="SELECT
 
 $result=$conn->query($sql);
 $rows=$result->fetch_all(MYSQLI_ASSOC);
+show_incomplete_nutrition_notice($rows);
 
 foreach($rows as $macros) {
     $nutrition_servings=(float)$macros['total_used_servings'];
-    $fat += $nutrition_servings * $macros['fat'];
-    $protein += $nutrition_servings * $macros['protein'];
-    $carbs += $nutrition_servings * $macros['carbs'];
-    $fiber += $nutrition_servings * $macros['fiber'];
-    $calories += $nutrition_servings * $macros['calories'];
+    $fat += $nutrition_servings * (float)$macros['fat'];
+    $protein += $nutrition_servings * (float)$macros['protein'];
+    $carbs += $nutrition_servings * (float)$macros['carbs'];
+    $fiber += $nutrition_servings * (float)$macros['fiber'];
+    $calories += $nutrition_servings * (float)$macros['calories'];
 }
 
 include '../chart/macros.php';

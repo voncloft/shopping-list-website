@@ -1,0 +1,295 @@
+TWELVE INSTANT POT RECIPES — SERVER INSTALL
+
+1. Back up your shopping_list database and the site files you replace.
+2. Copy the 24 new HTML files into your site's existing recipes/ingredients/
+   and recipes/steps/ folders, keeping their filenames.
+3. Import upgrades/import_12_instant_pot_recipes.sql using phpMyAdmin, or run:
+   mysql -u YOUR_USER -p shopping_list < upgrades/import_12_instant_pot_recipes.sql
+   Run the complete file in one connection, once at a time. Do not use --force.
+4. Copy these supplied PHP files into the matching site folders:
+   functions/get_prices_and_macros.php
+   functions/recipe_nutrition.php
+   scripts/show_shopping_list.php
+   php/final_shopping_list.php
+   These make recipe selection honor Used Servings and label incomplete totals.
+5. Open your recipe list. You should see all 12 names below. Open a recipe
+   to view its ingredients and numbered instructions.
+
+Do not re-import database_setup into an existing database: it drops tables.
+For a new installation, use database_setup first, then this additive import.
+The SQL is designed for the MariaDB/MySQL schema in this repository. It creates
+the 12 recipe tables, registers them in recipe_lists, adds missing items, and
+fills every recipe with its ingredient IDs. It does not change existing foods,
+recipes, weekly selections, pantry quantities, or the global servings setting.
+Tables are created before the data transaction because MySQL DDL auto-commits.
+If interrupted, fix the reported error and rerun; a schema rollback is not promised.
+Serial reruns do not duplicate foods or ingredient rows. Do not run two imports
+at the same time. Existing rows in these recipe tables are not overwritten.
+
+SERVING SETTINGS
+Each recipe is ONE batch making SEVEN meals. Select Portions = 1 when adding
+a recipe to the weekly list. Set Portions for Prep = 7 for per-meal totals.
+Selecting Portions = 7 makes seven batches, not seven individual meals.
+
+INGREDIENT DATA
+Names are matched without case or surrounding spaces. IDs are resolved from
+your database; no ingredient IDs are hard-coded. If several names normalize
+to the same name, the lowest existing ID is used.
+New prices and nutrition fields are NULL (unknown), and servings is 1.
+Existing label data, prices, URLs, spelling, and servings remain unchanged.
+Enter new-item nutrition from your product labels using the serving units below.
+If the package uses a different serving size, adjust the recipe Used Servings
+accordingly. Do not trust incomplete totals as complete calorie or macro counts.
+Unknown prices may still display as zero in the existing app; zero is not a quote.
+Qty counts purchased packages/items. Used Servings counts nutrition servings
+consumed in the WHOLE batch. The app divides batch nutrients by the global
+Portions for Prep setting. Tap water has Qty 0. Pantry packages may be counted
+more than once when several recipes share an ingredient; adjust pantry normally.
+Meat Qty 1 means enough packages for the listed raw weight, not a 1 lb package.
+US cup = 8 fl oz. Ingredient units below are mapping assumptions: the database
+does not store nutrition serving-size text. Verify them against your own labels.
+
+RECIPES / EXPECTED INGREDIENT ROW COUNTS
+- Creamy Cajun Chicken: 10 rows, 7 servings
+- Tuscan Chicken: 12 rows, 7 servings
+- Buffalo Chicken Mac and Cheese: 11 rows, 7 servings
+- Mississippi Pot Roast: 7 rows, 7 servings
+- Beef Birria: 17 rows, 7 servings
+- Hungarian Beef Goulash: 15 rows, 7 servings
+- Korean Spicy Pulled Pork: 12 rows, 7 servings
+- Filipino Pork Adobo: 8 rows, 7 servings
+- Smoky BBQ Pulled Pork: 11 rows, 7 servings
+- Chicken Tikka Masala: 17 rows, 7 servings
+- White Chicken Chili: 14 rows, 7 servings
+- Cajun Jambalaya: 14 rows, 7 servings
+
+MISSING FOODS IN THE CHECKED REPOSITORY SNAPSHOT
+- Dried Ancho Peppers
+- Fully Cooked Andouille Sausage 12 oz
+- Au Jus Gravy Mix 1 oz
+- Smoky Barbecue Sauce
+- Cannellini Beans 15 oz
+- Caraway Seeds
+- Ground Cloves
+- Garam Masala
+- Fresh Ginger Root
+- Gochujang Korean Chili Paste
+- Dried Guajillo Peppers
+- Elbow Macaroni 16 oz
+- Toasted Sesame Oil
+- Sun-dried Tomatoes in Oil
+- Tomato Paste 6 oz
+- No Salt Added Diced Tomatoes 14.5 oz
+- Ground Turmeric
+- Plain Whole Milk Yogurt
+
+ITEM SERVING UNITS AND PURCHASES
+Dried Ancho Peppers
+  One nutrition serving: 1 dried pepper
+  Purchase: 1 bag containing at least 2 dried ancho peppers
+Fully Cooked Andouille Sausage 12 oz
+  One nutrition serving: 2 oz
+  Purchase: Qty counts 12 oz packages; two packages supply the required 16 oz
+Au Jus Gravy Mix 1 oz
+  One nutrition serving: 1 whole 1 oz packet
+  Purchase: 1 packet
+Bay Leaves
+  One nutrition serving: 1 leaf
+  Purchase: 1 jar
+Smoky Barbecue Sauce
+  One nutrition serving: 2 tablespoons
+  Purchase: 1 bottle containing at least 1 1/2 cups
+Cannellini Beans 15 oz
+  One nutrition serving: 1/2 cup drained; 3 servings per drained can
+  Purchase: Qty counts 15 oz cans
+Boneless Beef Chuck Roast
+  One nutrition serving: 4 oz raw boneless meat
+  Purchase: Enough roast for the listed trimmed raw weight
+Beef Broth
+  One nutrition serving: 1 cup
+  Purchase: 1 carton containing 32 fl oz; choose low sodium
+Bell Pepper
+  One nutrition serving: 1 medium pepper
+  Purchase: Qty counts whole medium bell peppers
+Brown Sugar
+  One nutrition serving: 2 teaspoons packed
+  Purchase: 1 bag regular brown sugar
+Butter 4 pack
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 four-stick package; use unsalted
+Cajun Spice
+  One nutrition serving: 1 teaspoon; verify your seasoning label
+  Purchase: 1 jar; use a low-salt Cajun blend
+Caraway Seeds
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 jar
+Celery
+  One nutrition serving: 2 medium stalks; verify label
+  Purchase: 1 bunch containing at least 3 stalks
+Cheddar Cheese block
+  One nutrition serving: 1 oz
+  Purchase: Qty counts 8 oz blocks; two blocks for 16 oz
+Boneless Skinless Chicken Thighs
+  One nutrition serving: 4 oz raw boneless skinless meat
+  Purchase: Enough packages for the listed raw weight
+Chicken broth
+  One nutrition serving: 1 cup
+  Purchase: 1 carton containing 32 fl oz; choose low sodium
+Diced Roasted Green Chiles 4 oz
+  One nutrition serving: 2 tablespoons, about 1 oz
+  Purchase: Qty counts 4 oz cans
+Cilantro
+  One nutrition serving: 1 tablespoon chopped
+  Purchase: 1 bunch
+Cinnamon Sticks
+  One nutrition serving: 1 stick
+  Purchase: 1 jar
+Ground Cloves
+  One nutrition serving: 1/4 teaspoon ground
+  Purchase: 1 jar
+frozen corn
+  One nutrition serving: 1/2 cup
+  Purchase: 1 frozen bag containing at least 2 cups
+Cornstarch 16 oz
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 container
+Heavy Cream
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 pint heavy cream
+Cream cheese 1 pack
+  One nutrition serving: 1 oz
+  Purchase: 1 full-fat 8 oz block
+Ground Cumin
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 jar
+Garam Masala
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 jar
+Garlic Clove
+  One nutrition serving: 1 clove
+  Purchase: Qty counts individual cloves; buy enough bulbs or frozen cloves
+Garlic Powder
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 jar
+Fresh Ginger Root
+  One nutrition serving: 1 tablespoon finely chopped
+  Purchase: 1 piece of fresh ginger yielding at least 2 tablespoons peeled and chopped
+Gochujang Korean Chili Paste
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 tub containing at least 1/3 cup
+Dried Guajillo Peppers
+  One nutrition serving: 1 dried pepper
+  Purchase: 1 bag containing at least 6 dried guajillo peppers
+Franks Hot Sauce
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 bottle containing at least 4 fl oz plain cayenne hot sauce
+Italan Seasoning
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 jar
+Lemon Juice
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 bottle lemon juice
+Lime Juice
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 bottle lime juice
+Elbow Macaroni 16 oz
+  One nutrition serving: 2 oz dry
+  Purchase: 1 box containing 16 oz dry elbow macaroni
+Milk
+  One nutrition serving: 1 cup
+  Purchase: 1 container of whole milk
+Olive Oil
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 bottle
+Frozen Onion
+  One nutrition serving: 2/3 cup frozen chopped onion
+  Purchase: 1 bag containing at least 1 cup; 2 bags for 2 cups
+Onion Powder
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 jar
+Oregeno
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 jar dried oregano
+Paprika
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 jar sweet Hungarian paprika, not hot paprika
+Parmesan
+  One nutrition serving: 5 grams
+  Purchase: 1 container of at least 4 oz
+Black pepper
+  One nutrition serving: 1/4 teaspoon
+  Purchase: 1 container
+Pepperchini
+  One nutrition serving: 1 oz drained peppers; verify jar label
+  Purchase: 1 jar with at least 4 oz drained pepperoncini plus 1/4 cup brine
+Pork shoulder
+  One nutrition serving: 4 oz raw boneless meat; verify the older item label uses this basis
+  Purchase: Enough shoulder for the listed boneless trimmed raw weight
+Ranch seasoning mix
+  One nutrition serving: 1/4 teaspoon dry mix; verify packet label
+  Purchase: 1 oz packet
+Long Grain Rice
+  One nutrition serving: 1/4 cup dry
+  Purchase: 1 bag containing at least 2 cups dry long-grain white rice
+Salt
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 container
+Toasted Sesame Oil
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 bottle
+Smoked Paprika
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 jar smoked paprika
+Sour Cream
+  One nutrition serving: 2 tablespoons
+  Purchase: 1 tub containing at least 8 oz
+Soy sauce
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 bottle low-sodium soy sauce
+Fresh Baby Spinach 5 oz
+  One nutrition serving: 100 grams
+  Purchase: 1 bag containing 5 oz
+Sun-dried Tomatoes in Oil
+  One nutrition serving: 1 oz drained
+  Purchase: 1 jar with at least 4 oz drained tomatoes
+Tomato Paste 6 oz
+  One nutrition serving: 2 tablespoons
+  Purchase: 1 can containing 6 oz
+No Salt Added Diced Tomatoes 14.5 oz
+  One nutrition serving: 1/2 cup including juice; use 3.5 label servings per 14.5 oz can
+  Purchase: Qty counts 14.5 oz cans
+Ground Turmeric
+  One nutrition serving: 1 teaspoon
+  Purchase: 1 jar
+Apple Cider Vinegar
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 bottle apple cider vinegar
+Water From Sink
+  One nutrition serving: 1 cup; nutrition remains zero
+  Purchase: Tap water; Qty 0, no purchase
+White Vinegar
+  One nutrition serving: 1 tablespoon
+  Purchase: 1 bottle white vinegar
+Plain Whole Milk Yogurt
+  One nutrition serving: 1/2 cup
+  Purchase: 1 tub plain whole-milk yogurt; at least 1/2 cup
+
+RECIPE NOTES
+Instructions are original simplified versions for the twelve requested dishes.
+The referenced ChatGPT response was unavailable as text; these are not claimed
+to reproduce its exact quantities. Recipes have not been kitchen-tested.
+Cream, cheese, thick barbecue sauce, pasta, rice, and canned beans are added
+after the pressure stage where specified. Pasta and rice cook on the stove.
+Cooking references checked: https://instantpot.com/pages/frequently-asked-questions
+https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures
+https://ask.fsis.usda.gov/article/How-do-I-handle-leftovers-safely
+https://ask.fsis.usda.gov/article/What-methods-of-reheating-food-are-safe
+
+VALIDATION
+See tests/instant_pot_12_import.test.mjs and tests/instant_pot_nutrition_test.php.
+Local SQL tests adapt MySQL table syntax to SQLite. They are not a MySQL-server
+test. No SQL has been run on your production server.
+
+Verified locally: 12 tables, 148 ingredient rows, 18 new foods against the
+current dump; existing records preserved; alternate IDs and repeat imports pass.
+PHP behavior tests and syntax checks pass using PHP 8.5 in WebAssembly.

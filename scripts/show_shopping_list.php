@@ -5,6 +5,7 @@
 include '../include/passwords.php';
 include '../include/toolbar.html';
 include '../functions/loadFile.php';
+require_once __DIR__ . '/../functions/recipe_nutrition.php';
 session_start();
 
 function load_recipe_macro_rows($conn,$recipe_name)
@@ -31,11 +32,11 @@ function calculate_recipe_macros($rows)
             $nutrition_servings=(float)$macros['used_servings'];
         }
 
-        $totals['fat'] += $nutrition_servings*$macros['fat'];
-        $totals['protein'] += $nutrition_servings*$macros['protein'];
-        $totals['carbs'] += $nutrition_servings*$macros['carbs'];
-        $totals['fiber'] += $nutrition_servings*$macros['fiber'];
-        $totals['calories'] += $nutrition_servings*$macros['calories'];
+        $totals['fat'] += $nutrition_servings*(float)$macros['fat'];
+        $totals['protein'] += $nutrition_servings*(float)$macros['protein'];
+        $totals['carbs'] += $nutrition_servings*(float)$macros['carbs'];
+        $totals['fiber'] += $nutrition_servings*(float)$macros['fiber'];
+        $totals['calories'] += $nutrition_servings*(float)$macros['calories'];
     }
 
     return $totals;
@@ -47,6 +48,7 @@ function show_recipe_details($conn,$recipe_name)
 
     $rows=load_recipe_macro_rows($conn,$recipe_name);
     $totals=calculate_recipe_macros($rows);
+    show_incomplete_nutrition_notice($rows);
 
     $fat=$totals['fat'];
     $protein=$totals['protein'];
