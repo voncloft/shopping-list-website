@@ -11,17 +11,23 @@ function get_prices_and_macros($recipe_name)
 	 $carbs=0;
 	 $fiber=0;
 	 $cals=0;
-    $sql = "select ".$recipe_name.".qty, ".$recipe_name.".ingredient_name,items.price,items.servings, items.calories, items.fat, items.protein, items.carbs, items.fiber, items.grocery_item from ".$recipe_name." inner join items on ".$recipe_name.".ingredient_name=items.id";
+    $sql = "select ".$recipe_name.".qty, ".$recipe_name.".used_servings, ".$recipe_name.".ingredient_name,items.price,items.servings, items.calories, items.fat, items.protein, items.carbs, items.fiber, items.grocery_item from ".$recipe_name." inner join items on ".$recipe_name.".ingredient_name=items.id";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
 foreach ($rows as $macros){
-        $servings=$macros['servings'];
-        $qty=$macros['qty'];
-        $fat=$fat+($qty*$servings*$macros['fat']);
-        $protein=$protein+($qty*$servings*$macros['protein']);
-        $carbs=$carbs+($qty*$servings*$macros['carbs']);
-        $fiber=$fiber+($qty*$servings*$macros['fiber']);
-		  $cals=$cals+($qty*$servings*$macros['calories']);
+        $qty=(float)$macros['qty'];
+        // Match the recipe page: count what is used, not everything purchased.
+        // An explicit zero is valid; only NULL or blank uses package servings.
+        if($macros['used_servings']===null || $macros['used_servings']==='') {
+            $nutrition_servings=$qty*(float)$macros['servings'];
+        } else {
+            $nutrition_servings=(float)$macros['used_servings'];
+        }
+        $fat=$fat+($nutrition_servings*$macros['fat']);
+        $protein=$protein+($nutrition_servings*$macros['protein']);
+        $carbs=$carbs+($nutrition_servings*$macros['carbs']);
+        $fiber=$fiber+($nutrition_servings*$macros['fiber']);
+		  $cals=$cals+($nutrition_servings*$macros['calories']);
 		  $price=$price+($macros['qty'] * $macros['price']);
 }    	
 $portions="<select name=".$recipe_name."_portions id=".$recipe_name."_portions>";
