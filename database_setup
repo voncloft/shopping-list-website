@@ -1778,7 +1778,7 @@ CREATE TABLE `Korean_Spicy_Pulled_Pork_recipe_table` (
   `used_servings` decimal(10,3) DEFAULT NULL,
   `ingredient_name` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1787,7 +1787,7 @@ CREATE TABLE `Korean_Spicy_Pulled_Pork_recipe_table` (
 
 LOCK TABLES `Korean_Spicy_Pulled_Pork_recipe_table` WRITE;
 /*!40000 ALTER TABLE `Korean_Spicy_Pulled_Pork_recipe_table` DISABLE KEYS */;
-INSERT INTO `Korean_Spicy_Pulled_Pork_recipe_table` VALUES (1,1,14.000,'197'),(2,1,2.250,'152'),(3,1,1.500,'270'),(4,8,8.000,'150'),(6,1,4.000,'177'),(7,1,5.333,'571'),(8,1,4.500,'336'),(9,1,2.000,'35'),(10,1,1.000,'574'),(11,1,1.000,'547'),(12,0,0.562,'493'),(13,1,6.000,'584'),(14,1,24.000,'588');
+INSERT INTO `Korean_Spicy_Pulled_Pork_recipe_table` VALUES (1,1,14.000,'197'),(2,1,2.250,'152'),(3,1,1.500,'270'),(4,8,8.000,'150'),(6,1,4.000,'177'),(7,1,5.333,'571'),(8,1,4.500,'336'),(9,1,2.000,'35'),(10,1,1.000,'574'),(11,1,1.000,'547'),(12,0,0.562,'493'),(13,1,6.000,'584'),(14,1,24.000,'588'),(15,3,NULL,'64');
 /*!40000 ALTER TABLE `Korean_Spicy_Pulled_Pork_recipe_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3268,7 +3268,7 @@ CREATE TABLE `current_week_recipes` (
 
 LOCK TABLES `current_week_recipes` WRITE;
 /*!40000 ALTER TABLE `current_week_recipes` DISABLE KEYS */;
-INSERT INTO `current_week_recipes` VALUES (2,'Beverages_recipe_table'),(31,'Buffalo_Chicken_Mac_and_Cheese_recipe_table'),(33,'Korean_Spicy_Pulled_Pork_recipe_table'),(34,'Greenbean_Crackers_recipe_table');
+INSERT INTO `current_week_recipes` VALUES (2,'Beverages_recipe_table'),(33,'Korean_Spicy_Pulled_Pork_recipe_table'),(34,'Greenbean_Crackers_recipe_table');
 /*!40000 ALTER TABLE `current_week_recipes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3287,7 +3287,7 @@ CREATE TABLE `final_list` (
   `recipe_table_name` text DEFAULT NULL,
   `checked` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1172 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1186 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3296,7 +3296,7 @@ CREATE TABLE `final_list` (
 
 LOCK TABLES `final_list` WRITE;
 /*!40000 ALTER TABLE `final_list` DISABLE KEYS */;
-INSERT INTO `final_list` VALUES (1076,1,12.000,542,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',1),(1077,1,2.250,152,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',1),(1078,1,2.000,137,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',1),(1079,1,1.000,135,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',1),(1080,1,8.000,573,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',1),(1081,0,16.000,493,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',NULL),(1082,1,24.000,23,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',1),(1083,1,2.000,67,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',1),(1084,1,4.000,192,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',1),(1085,1,1.000,248,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',1),(1086,0,16.000,205,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',NULL),(1087,1,7.000,266,'Buffalo_Chicken_Mac_and_Cheese_recipe_table',1),(1137,0,0.000,62,'Beverages_recipe_table',NULL),(1138,1,0.000,439,'Beverages_recipe_table',1),(1139,0,0.000,457,'Beverages_recipe_table',NULL),(1140,0,0.000,95,'Beverages_recipe_table',NULL),(1141,0,0.000,202,'Beverages_recipe_table',NULL),(1142,0,0.000,224,'Beverages_recipe_table',NULL),(1143,0,0.000,226,'Beverages_recipe_table',NULL),(1144,0,0.000,227,'Beverages_recipe_table',NULL),(1145,0,0.000,232,'Beverages_recipe_table',NULL),(1146,0,0.000,48,'Beverages_recipe_table',NULL),(1147,0,0.000,274,'Beverages_recipe_table',NULL),(1148,0,0.000,331,'Beverages_recipe_table',NULL),(1149,0,0.000,329,'Beverages_recipe_table',NULL),(1150,0,0.000,355,'Beverages_recipe_table',NULL),(1151,0,0.000,391,'Beverages_recipe_table',NULL),(1152,1,0.000,440,'Beverages_recipe_table',1),(1153,1,0.000,441,'Beverages_recipe_table',1),(1154,0,0.000,582,'Beverages_recipe_table',NULL),(1155,0,0.000,583,'Beverages_recipe_table',NULL),(1156,1,7.000,586,'Greenbean_Crackers_recipe_table',1),(1157,2,14.000,587,'Greenbean_Crackers_recipe_table',1),(1158,1,7.000,67,'Greenbean_Crackers_recipe_table',NULL),(1159,1,14.000,197,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1160,1,2.250,152,'Korean_Spicy_Pulled_Pork_recipe_table',NULL),(1161,1,1.500,270,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1162,8,8.000,150,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1163,1,4.000,177,'Korean_Spicy_Pulled_Pork_recipe_table',NULL),(1164,1,5.333,571,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1165,1,4.500,336,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1166,1,2.000,35,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1167,1,1.000,574,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1168,1,1.000,547,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1169,0,0.562,493,'Korean_Spicy_Pulled_Pork_recipe_table',NULL),(1170,1,6.000,584,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1171,1,24.000,588,'Korean_Spicy_Pulled_Pork_recipe_table',1);
+INSERT INTO `final_list` VALUES (1137,0,0.000,62,'Beverages_recipe_table',NULL),(1138,1,0.000,439,'Beverages_recipe_table',0),(1139,0,0.000,457,'Beverages_recipe_table',NULL),(1140,0,0.000,95,'Beverages_recipe_table',NULL),(1141,0,0.000,202,'Beverages_recipe_table',NULL),(1142,0,0.000,224,'Beverages_recipe_table',NULL),(1143,0,0.000,226,'Beverages_recipe_table',NULL),(1144,0,0.000,227,'Beverages_recipe_table',NULL),(1145,0,0.000,232,'Beverages_recipe_table',NULL),(1146,0,0.000,48,'Beverages_recipe_table',NULL),(1147,0,0.000,274,'Beverages_recipe_table',NULL),(1148,0,0.000,331,'Beverages_recipe_table',NULL),(1149,0,0.000,329,'Beverages_recipe_table',NULL),(1150,0,0.000,355,'Beverages_recipe_table',NULL),(1151,0,0.000,391,'Beverages_recipe_table',NULL),(1152,1,0.000,440,'Beverages_recipe_table',0),(1153,1,0.000,441,'Beverages_recipe_table',0),(1154,0,0.000,582,'Beverages_recipe_table',NULL),(1155,0,0.000,583,'Beverages_recipe_table',NULL),(1156,1,7.000,586,'Greenbean_Crackers_recipe_table',1),(1157,2,14.000,587,'Greenbean_Crackers_recipe_table',0),(1158,1,7.000,67,'Greenbean_Crackers_recipe_table',1),(1172,1,14.000,197,'Korean_Spicy_Pulled_Pork_recipe_table',NULL),(1173,1,2.250,152,'Korean_Spicy_Pulled_Pork_recipe_table',NULL),(1174,1,1.500,270,'Korean_Spicy_Pulled_Pork_recipe_table',NULL),(1175,8,8.000,150,'Korean_Spicy_Pulled_Pork_recipe_table',NULL),(1176,1,4.000,177,'Korean_Spicy_Pulled_Pork_recipe_table',NULL),(1177,1,5.333,571,'Korean_Spicy_Pulled_Pork_recipe_table',NULL),(1178,1,4.500,336,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1179,1,2.000,35,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1180,1,1.000,574,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1181,1,1.000,547,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1182,0,0.562,493,'Korean_Spicy_Pulled_Pork_recipe_table',NULL),(1183,1,6.000,584,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1184,1,24.000,588,'Korean_Spicy_Pulled_Pork_recipe_table',1),(1185,3,21.000,64,'Korean_Spicy_Pulled_Pork_recipe_table',NULL);
 /*!40000 ALTER TABLE `final_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3404,7 +3404,7 @@ CREATE TABLE `variables` (
 
 LOCK TABLES `variables` WRITE;
 /*!40000 ALTER TABLE `variables` DISABLE KEYS */;
-INSERT INTO `variables` VALUES (7,'141.50');
+INSERT INTO `variables` VALUES (7,'105.99');
 /*!40000 ALTER TABLE `variables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3440,4 +3440,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-14  5:30:26
+-- Dump completed on 2026-11-15  3:43:59
