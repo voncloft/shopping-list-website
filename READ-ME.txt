@@ -1,0 +1,12 @@
+Extract into your existing shopping_list website root and overwrite the three
+matching files. Hard-refresh once with Ctrl+Shift+R. No SQL import is needed.
+
+Got it checkmarks and Clear all Got it now save without Saving/Saved notices.
+Totals still update immediately. Save failures still show an error and restore
+the previous checkmarks and total. Empty status space is hidden.
+
+The three helper paragraphs above the table have been removed. The chart,
+buttons and price box retain their existing placement. Open all still skips
+grey pantry-covered rows, whether visible or hidden.
+
+Tested locally in Firefox. Your server and GitHub repository were not changed.

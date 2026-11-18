@@ -1,8 +1,8 @@
 .shopping-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:18px 0 8px; }
 .shopping-actions button { min-height:44px; padding:10px 16px; cursor:pointer; font:inherit; border-radius:var(--radius); border:1px solid var(--control-border); }
 .shopping-actions button:disabled { cursor:wait; opacity:.6; }
-.shopping-hint { margin:6px 0; font-size:.9em; }
 #shopping-status { min-height:1.5em; margin:8px 0; }
+#shopping-status:empty { display:none; }
 #shopping-status.error { color:var(--error); font-weight:bold; }
 .shopping-layout-viewport { max-width:100%; overflow-x:auto; }
 .shopping-layout { display:flex; align-items:flex-start; gap:18px; flex-wrap:nowrap; width:fit-content; max-width:100%; margin:0 auto; }

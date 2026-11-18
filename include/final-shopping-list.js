@@ -95,7 +95,7 @@
         async function saveChecks(values) {
             setBusy(true);
             render(optimisticSummary());
-            message('Saving…');
+            message('');
             try {
                 var data = await post('../ajax/checkbox.php', values, true);
                 if (!data.summary || !Array.isArray(data.summary.checkedIds) ||
@@ -104,7 +104,6 @@
                 restoreChecks(confirmed);
                 render(confirmed);
                 if (sort) applySort(sort.column, sort.direction);
-                message('Saved. Remaining total: ' + money.format(confirmed.totalCents / 100));
             } catch (error) {
                 restoreChecks(confirmed);
                 render(confirmed);
