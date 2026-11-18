@@ -187,16 +187,18 @@
         if (!sort) applySort(6, 'asc');
 
         openButton.addEventListener('click', function () {
-            if (!linkQueue) {
-                linkQueue = Array.from(new Set(Array.from(table.querySelectorAll('.shopping-item-link')).map(function (link) {
-                    return link.href;
-                }))).filter(function (href) {
-                    try { return ['http:', 'https:'].includes(new URL(href).protocol); } catch (ignored) { return false; }
-                });
-            }
+            // Pantry coverage, not whether a row is currently hidden, decides eligibility.
+            var eligibleLinks = Array.from(new Set(Array.from(table.querySelectorAll('tbody > tr[data-pantry-covered="0"] .shopping-item-link')).map(function (link) {
+                return link.href;
+            }))).filter(function (href) {
+                try { return ['http:', 'https:'].includes(new URL(href).protocol); } catch (ignored) { return false; }
+            });
+            // A popup retry must also skip any rows that are now pantry-covered.
+            linkQueue = linkQueue === null ? eligibleLinks : linkQueue.filter(function (href) { return eligibleLinks.includes(href); });
             if (!linkQueue.length) {
                 linkQueue = null;
-                message('There are no saved item links to open.');
+                openButton.textContent = 'Open all Walmart links';
+                message('There are no saved links on non-grey rows.');
                 return;
             }
             var opened = 0;

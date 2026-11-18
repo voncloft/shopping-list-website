@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"><?php require_once __DIR__ . '/../include/theme-head.php'; ?>
 <title>Shopping List</title>
 <link rel="stylesheet" href="../include/final-shopping-list.css?v=20261118b">
-<script src="../include/final-shopping-list.js?v=20261118b" defer></script>
+<script src="../include/final-shopping-list.js?v=20261118d" defer></script>
 </head>
 <body>
 <?php
@@ -51,7 +51,7 @@ include __DIR__ . '/../chart/macros.php';
     <button type="button" id="clear-got-it"<?= count($summary['checkedIds']) === 0 ? ' disabled' : '' ?>>Clear all Got it</button>
     <button type="button" id="toggle-covered-items" aria-pressed="false" aria-controls="shopping-items" hidden>Hide grey items</button>
 </div>
-<p class="shopping-hint">Open all uses the saved links in the Link column. Allow pop-ups for this shopping-list site if prompted.</p>
+<p class="shopping-hint">Open all opens saved links from non-grey rows only. Grey pantry-covered items are skipped. Allow pop-ups for this shopping-list site if prompted.</p>
 <p class="shopping-hint">Tap + beside an item for its nutrition in one prep portion.</p>
 <p class="shopping-hint">Grey rows are covered by your pantry and stay at the bottom. Edit Pantry Qty and press Enter to update. Hide grey items only changes what you see; totals and nutrition stay the same.</p>
 <p id="all-items-covered" hidden>All items are covered by your pantry. Choose Show grey items to see them.</p>

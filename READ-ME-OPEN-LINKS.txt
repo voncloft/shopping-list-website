@@ -1,0 +1,14 @@
+OPEN ALL LINKS — SKIP GREY ROWS
+
+Extract this ZIP into your existing shopping_list website root and overwrite
+its two matching files. Hard-refresh the final shopping list with Ctrl+Shift+R.
+No SQL import, credentials change, or database update is needed.
+
+Open all Walmart links now opens saved product links only from non-grey rows.
+Grey pantry-covered rows are skipped whether you show them or hide them.
+Got it checkmarks do not change this rule: pantry coverage determines which
+rows are grey. If every row is covered, no product tabs open.
+
+The existing direct-URL opening, item ID fragments, unsafe-link checks and
+blocked-popup retry behavior are preserved. Tested locally in Firefox with
+an isolated fixture database. Your server and GitHub repository were not changed.
