@@ -1,23 +1,9 @@
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
 <?php
-include '../include/passwords.php';
-include '../include/toolbar.html';
-
-session_start();
-if(!empty($_POST['recipes'])){
-    foreach($_POST['recipes'] as $selected){
-        $recipe_name=$selected;
-	echo $recipe_name;
-	$sql="delete from current_week_recipes where recipes='".$recipe_name."'";
-	$conn->query($sql);
-	$sql2="delete from final_list where recipe_table_name='".$recipe_name."'";
-	$conn->query($sql2);
-	echo $sql."<br>".$sql2."<br>";
-	echo "Removed ".$recipe_name." from the week<br>";
-	header("Location: ../php/final_shopping_list.php");
-	}
-}
-?>
-<br>
-<a href="../index.php">Main Page</a>
+require_once __DIR__.'/../functions/form_checks.php';site_post();
+require_once __DIR__.'/../include/passwords.php';
+$selected=$_POST['recipes'] ?? [];
+if (!is_array($selected) || !$selected) throw new InvalidArgumentException('Select at least one recipe to remove from this week.');
+$available=[];foreach($conn->query('SELECT recipes FROM current_week_recipes')->fetch_all(MYSQLI_ASSOC) as $row)$available[$row['recipes']]=true;
+$names=[];foreach ($selected as $value) { $value=site_text($value,'Recipe',true,64);if(!isset($available[$value]))throw new InvalidArgumentException('A selected recipe is no longer imported. Reload the list.');$names[]=$value; }
+site_transaction($conn,function () use ($conn,$names) { foreach ($names as $name) { site_execute($conn,'DELETE FROM current_week_recipes WHERE recipes=?','s',$name);site_execute($conn,'DELETE FROM final_list WHERE recipe_table_name=?','s',$name); } });
+site_success('Selected recipes removed from this week. Their saved ingredients and instructions are unchanged.','../php/final_shopping_list.php');

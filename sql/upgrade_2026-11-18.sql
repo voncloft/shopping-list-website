@@ -1,0 +1,40 @@
+-- Run ONLY this migration against your existing shopping_list database.
+-- Additive and repeatable: preserves foods, recipes, user themes and active choice.
+CREATE TABLE IF NOT EXISTS shopping_themes (
+ id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ builtin_key VARCHAR(32) NULL UNIQUE,
+ name VARCHAR(80) NOT NULL UNIQUE,
+ options_json LONGTEXT NOT NULL,
+ updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS shopping_theme_settings (
+ id TINYINT UNSIGNED NOT NULL PRIMARY KEY,
+ active_theme_id INT UNSIGNED NOT NULL,
+ mode VARCHAR(16) NOT NULL DEFAULT 'fixed',
+ FOREIGN KEY (active_theme_id) REFERENCES shopping_themes(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+START TRANSACTION;
+INSERT INTO shopping_themes (builtin_key,name,options_json) SELECT 'light','Light','{"page_bg":"#ffffff","text":"#111111","heading":"#111111","muted":"#555555","link":"#0000ee","visited":"#551a8b","link_hover":"#004080","focus":"#1676be","table_bg":"#ffffff","table_text":"#111111","table_header_bg":"#e8ecef","table_header_text":"#111111","table_alt_bg":"#f5f7f9","table_hover_bg":"#e7f0f8","border":"#888888","covered_bg":"#e3e3e3","covered_text":"#535353","button_bg":"#eeeeee","button_text":"#222222","button_hover":"#d6e5ef","control_border":"#777777","field_bg":"#ffffff","field_text":"#111111","check_accent":"#1877bd","disabled_bg":"#dedede","disabled_text":"#666666","nav_bg":"#04aa6d","nav_text":"#ffffff","nav_hover":"#287e42","menu_bg":"#f1f1f1","menu_text":"#111111","menu_hover":"#d5e3ef","menu_hover_text":"#111111","panel_bg":"#fafafa","panel_text":"#222222","card_bg":"#ffffff","error":"#b00020","success":"#216e39","chart_bg":"#ffffff","chart_text":"#333333","chart_label":"#ffffff","chart_border":"#ffffff","macro_fat":"#2ca02c","macro_protein":"#ff7f0e","macro_carbs":"#1f77b4","macro_fiber":"#d62728","macro_calories":"#9467bd","font_family":"serif","color_scheme":"light","font_size":16,"cell_padding":7,"border_width":1,"radius":6,"chart_hole":0}' WHERE NOT EXISTS (SELECT 1 FROM shopping_themes WHERE builtin_key='light');
+INSERT INTO shopping_themes (builtin_key,name,options_json) SELECT 'dark','Dark','{"page_bg":"#14181f","text":"#e8edf5","heading":"#ffffff","muted":"#aab6c6","link":"#83baff","visited":"#c7a6f5","link_hover":"#b6d8ff","focus":"#66b8ff","table_bg":"#202733","table_text":"#e8edf5","table_header_bg":"#303e50","table_header_text":"#ffffff","table_alt_bg":"#252f3e","table_hover_bg":"#34465e","border":"#647287","covered_bg":"#353a43","covered_text":"#aeb6c1","button_bg":"#35455a","button_text":"#ffffff","button_hover":"#466183","control_border":"#7d90aa","field_bg":"#17202d","field_text":"#eff5ff","check_accent":"#77b7ff","disabled_bg":"#323844","disabled_text":"#a5afbf","nav_bg":"#254e66","nav_text":"#ffffff","nav_hover":"#356d8b","menu_bg":"#243244","menu_text":"#eef5ff","menu_hover":"#405878","menu_hover_text":"#ffffff","panel_bg":"#202733","panel_text":"#e8edf5","card_bg":"#2a3545","error":"#ff9ca8","success":"#87d5a0","chart_bg":"#14181f","chart_text":"#e8edf5","chart_label":"#ffffff","chart_border":"#14181f","macro_fat":"#2ca02c","macro_protein":"#ff7f0e","macro_carbs":"#1f77b4","macro_fiber":"#d62728","macro_calories":"#9467bd","font_family":"sans","color_scheme":"dark","font_size":16,"cell_padding":7,"border_width":1,"radius":6,"chart_hole":0}' WHERE NOT EXISTS (SELECT 1 FROM shopping_themes WHERE builtin_key='dark');
+INSERT INTO shopping_themes (builtin_key,name,options_json) SELECT 'warm','Warm','{"page_bg":"#faf3e6","text":"#372c22","heading":"#513323","muted":"#73624f","link":"#754323","visited":"#815a78","link_hover":"#a14d21","focus":"#1676be","table_bg":"#fffaf0","table_text":"#372c22","table_header_bg":"#e8d4b5","table_header_text":"#432d1e","table_alt_bg":"#f3e8d6","table_hover_bg":"#efdbb9","border":"#a28d72","covered_bg":"#ded9ce","covered_text":"#6b645a","button_bg":"#e9d2ad","button_text":"#432d1e","button_hover":"#dcb985","control_border":"#9d805f","field_bg":"#fffaf0","field_text":"#372c22","check_accent":"#9c612c","disabled_bg":"#dedede","disabled_text":"#666666","nav_bg":"#895f38","nav_text":"#ffffff","nav_hover":"#684324","menu_bg":"#f3e8d6","menu_text":"#372c22","menu_hover":"#e4cda9","menu_hover_text":"#432d1e","panel_bg":"#f3e8d6","panel_text":"#372c22","card_bg":"#fffaf0","error":"#b00020","success":"#216e39","chart_bg":"#faf3e6","chart_text":"#372c22","chart_label":"#ffffff","chart_border":"#faf3e6","macro_fat":"#2ca02c","macro_protein":"#ff7f0e","macro_carbs":"#1f77b4","macro_fiber":"#d62728","macro_calories":"#9467bd","font_family":"serif","color_scheme":"light","font_size":16,"cell_padding":7,"border_width":1,"radius":6,"chart_hole":0}' WHERE NOT EXISTS (SELECT 1 FROM shopping_themes WHERE builtin_key='warm');
+INSERT INTO shopping_theme_settings (id,active_theme_id,mode) SELECT 1,id,'fixed' FROM shopping_themes WHERE builtin_key='light' AND NOT EXISTS (SELECT 1 FROM shopping_theme_settings WHERE id=1);
+COMMIT;
+
+-- The latest repository dump has chicken thighs (item 185) and spicy BBQ sauce
+-- (item 20) in _recipe_table. Rename it without recreating or replacing its data.
+SET @old_recipe_exists = (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE() AND table_name='_recipe_table');
+SET @new_recipe_exists = (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE() AND table_name='Spicy_BBQ_Chicken_Thighs_recipe_table');
+SET @rename_recipe_sql = IF(@old_recipe_exists=1 AND @new_recipe_exists=0,
+ 'RENAME TABLE `_recipe_table` TO `Spicy_BBQ_Chicken_Thighs_recipe_table`', 'SELECT 1');
+PREPARE rename_recipe_stmt FROM @rename_recipe_sql;
+EXECUTE rename_recipe_stmt;
+DEALLOCATE PREPARE rename_recipe_stmt;
+SET @recipe_renamed = (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE() AND table_name='Spicy_BBQ_Chicken_Thighs_recipe_table')=1
+ AND (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE() AND table_name='_recipe_table')=0;
+START TRANSACTION;
+UPDATE recipe_lists SET recipe_name='Spicy_BBQ_Chicken_Thighs_recipe_table' WHERE recipe_name='_recipe_table' AND @recipe_renamed;
+UPDATE current_week_recipes SET recipes='Spicy_BBQ_Chicken_Thighs_recipe_table' WHERE recipes='_recipe_table' AND @recipe_renamed;
+UPDATE final_list SET recipe_table_name='Spicy_BBQ_Chicken_Thighs_recipe_table' WHERE recipe_table_name='_recipe_table' AND @recipe_renamed;
+COMMIT;
+SELECT IF(@recipe_renamed,'Unnamed recipe is now Spicy BBQ Chicken Thighs.',
+ 'Recipe rename skipped: source missing or destination already exists alongside it. No recipe data was replaced.') AS recipe_rename_result;

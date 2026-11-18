@@ -1,4 +1,5 @@
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<?php require_once __DIR__ . "/../include/theme-head.php"; ?>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <b>
 Item Actions<br>
@@ -18,6 +19,8 @@ Shopping List Actions<br>
 <br>
 Shopping<br>
 <a href="../php/final_shopping_list.php">View Final Shopping List for Week</a><br>
+<br>Misc<br>
+<a href="../php/themes.php">Theme Options</a><br>
 <br><b><u>To Do:</u></b><br>
 1. (x) Check box and have it marked in database using ajax<br>
 2a.(x) Edit Final table with ajax in pantry <br>
@@ -32,3 +35,5 @@ Shopping<br>
 8. Exercise Tracker (weight, treadmill, muscle, etc)<br>
 9. (x)Default final_list order by department
 10. Export recipe to spreadsheet
+
+

@@ -1,37 +1,13 @@
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
 <?php
-include '../include/passwords.php';
-include '../include/toolbar.html';
-
-session_start();
-$counter=$_SESSION['counter'];
-for($i=1;$i<=$counter;$i++)
-{
-  $idbox="idtb".$i;
-  $itembox="itemtb".$i;
-  $pricebox="pricetb".$i;
-  $dbox="dtb".$i;
-  $servings="servings".$i;
-  $url="url".$i;
-  if($_POST[$servings]>=0)
-  {
-  	$calories="calories".$i;
-  	$fat="fat".$i;
-  	$protein="protein".$i;
-  	$carbs="carbs".$i;
-  	$fiber="fiber".$i;
-  	$sql="update items set url='".$_POST[$url]."',grocery_item='".$_POST[$itembox]."',price='".$_POST[$pricebox]."',department='".$_POST[$dbox]."',servings='".$_POST[$servings]."'".",calories='".$_POST[$calories]."'".",fat='".$_POST[$fat]."'".",protein='".$_POST[$protein]."'".",carbs='".$_POST[$carbs]."',fiber='".$_POST[$fiber]."' where id ='".$_POST[$idbox]."'";
-  }
-  else
-  {
-        $sql="update items set url='".$_POST[$url]."', grocery_item='".$_POST[$itembox]."',price='".$_POST[$pricebox]."',department='".$_POST[$dbox]."',servings=0,calories=0,fat=0,protein=0,carbs=0,fiber=0 where id ='".$_POST[$idbox]."'";;
-  }
-  	//echo "<br>".$sql."<br><br>";
-  	echo "<br>".$sql."<br><br>";
-   	$conn->query($sql);
-}
-//echo "<br>".$sql."<br><br>";
-?>
-<br>
-<a href="../index.php">Main Page</a>
+require_once __DIR__.'/../functions/form_checks.php'; site_post();
+require_once __DIR__.'/../include/passwords.php';
+$id=site_id($_POST['item_id'] ?? '');
+site_transaction($conn,function () use ($conn,$id) {
+    $items=site_items($conn);
+    if (!isset($items[$id])) throw new InvalidArgumentException('That item no longer exists. Reload the item list.');
+    $input=site_item_input($_POST,$items[$id]);
+    site_duplicate_item($items,$input['item'],$id);
+    extract($input);
+    site_execute($conn,'UPDATE items SET grocery_item=?,price=?,department=?,pantryqty=?,servings=?,protein=?,fat=?,carbs=?,calories=?,fiber=?,url=? WHERE ID=?','sdsdddddddsi',$item,$price,$dept,$pantryqty,$servings,$protein,$fat,$carbs,$calories,$fiber,$url,$id);
+});
+site_success('Item saved.','../php/modify_foods.php');

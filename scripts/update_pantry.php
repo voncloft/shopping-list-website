@@ -1,19 +1,8 @@
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
 <?php
-include '../include/passwords.php';
-include '../include/toolbar.html';
-
-session_start();
-$counter=$_SESSION['counter'];
-for($i=1;$i<=$counter;$i++)
-{
-  $idbox="idtb".$i;
-  $pantryqty="pantry".$i;
-  $sql="update items set pantryqty='".$_POST[$pantryqty]."' where id ='".$_POST[$idbox]."'";
-  echo $sql."<br>";
-  $conn->query($sql);
-}
-?>
-<br>
-<a href="../index.php">Main Page</a>
+require_once __DIR__.'/../functions/form_checks.php';site_post();
+require_once __DIR__.'/../include/passwords.php';
+$id=site_id($_POST['item_id'] ?? ''); $qty=site_number($_POST['pantryqty'] ?? '', 'Pantry quantity');
+$items=site_items($conn);
+if (!isset($items[$id])) throw new InvalidArgumentException('That item no longer exists. Reload the pantry page.');
+site_execute($conn,'UPDATE items SET pantryqty=? WHERE ID=?','di',$qty,$id);
+site_success('Pantry quantity saved for '.$items[$id]['grocery_item'].'.','../php/pantry.php');

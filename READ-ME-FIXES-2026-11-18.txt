@@ -1,0 +1,38 @@
+SHOPPING LIST WEBSITE — FOLLOW-UP FIXES, 2026-11-18
+
+For the website with the themes update already installed.
+
+Unzip this patch into your existing shopping_list website root, allowing these
+files to overwrite their matching paths. Do not put it in a nested subfolder.
+Your database and connection configuration are not included or changed.
+NO SQL IMPORT IS NEEDED FOR THIS PATCH.
+
+Close old editor tabs and hard-refresh the website once (Ctrl+Shift+R).
+
+Included:
+- Apply theme uses the saved-theme dropdown immediately. Loading a theme in the
+  editor is a separate action and does not apply it.
+- Both homepages have a normal Theme Options link instead of Appearance controls.
+- Live name, calorie, macro and price filters on Show Recipe List and both Modify
+  Shopping List pages, using the same controls as weekly recipe selection.
+  Clear filters shows the full page list again. Hidden selections stay selected.
+  Before Import includes all saved recipes; Currently Imported includes only
+  this week's recipes. Choose one recipe at a time when editing.
+- Hide grey items / Show grey items on the final list. This display setting is
+  remembered in this browser. It changes no quantities, checkmarks, nutrition,
+  prices or recipe data. Show them again to edit their Pantry Qty.
+- Open all Walmart links now opens the product URL directly, instead of opening
+  a blank tab and navigating later. Firefox can still require popup permission.
+
+FIREFOX / NIGHTLY:
+Allow popups for YOUR shopping-list website from the popup-blocked notice.
+After updating and refreshing, click Open all Walmart links (or Open remaining
+links) again if needed. Close any blank tabs created by the old version.
+The popup notice remembers the originally requested URL; the updated button
+passes the real saved Walmart URL, including the add-on item ID fragment.
+
+Checked locally in Firefox with an isolated test database: direct Apply with and
+without JavaScript, theme persistence, all search pages and their form actions,
+hidden selections, phone layout, grey-row hide/show and pantry edits, stable
+nutrition/totals, sorting, real multi-tab opening, and simulated popup retry.
+Production MySQL and your server have not been modified.

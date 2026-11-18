@@ -1,153 +1,142 @@
-<HEAD>
-<script src="../include/jquery/sorttable.js"></script>
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-</HEAD>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><?php require_once __DIR__ . '/../include/theme-head.php'; ?>
+<title>Shopping List</title>
+<link rel="stylesheet" href="../include/final-shopping-list.css?v=20261118b">
+<script src="../include/final-shopping-list.js?v=20261118b" defer></script>
+</head>
 <body>
 <?php
-include_once '../include/passwords.php';
-include_once '../include/toolbar.html';
-require_once '../functions/saveFinalPriceToDB.php';
-require_once '../functions/get_servings.php';
+include_once __DIR__ . '/../include/passwords.php';
+include_once __DIR__ . '/../include/toolbar.html';
+require_once __DIR__ . '/../functions/get_servings.php';
+require_once __DIR__ . '/../functions/final_list_helpers.php';
 getServings();
-
-$fat=0;
-$protein=0;
-$carbs=0;
-$fiber=0;
-$total_sum=0;
-$counter=0;
-$calories=0;
-
-$portions="<select name=portions id=portions>";
-for($portion_counter=1;$portion_counter<=10;$portion_counter++) {
-    if($portion_counter==$servings_from_db) {
-        $portions.="<option value='".$portion_counter."' selected>".$portion_counter."</option>";
-    } else {
-        $portions.="<option value='".$portion_counter."'>".$portion_counter."</option>";
-    }
+$servings_from_db = max(1, (float)$servings_from_db);
+$rows = final_list_rows($conn);
+$summary = final_list_summary($rows);
+final_list_store_total($conn, $summary);
+$fat = $protein = $carbs = $fiber = $calories = 0;
+$counter = 0;
+foreach ($rows as $row) {
+    $used = (float)$row['total_used_servings'];
+    $fat += $used * (float)$row['fat'];
+    $protein += $used * (float)$row['protein'];
+    $carbs += $used * (float)$row['carbs'];
+    $fiber += $used * (float)$row['fiber'];
+    $calories += $used * (float)$row['calories'];
 }
-$portions.="</select>";
-
-echo "<form action='../scripts/clear_final.php' method=POST>";
-echo "<center><h1>Shopping List</h1>";
-echo "Portions for Prep: ".$portions;
-
-$total_price=0;
-$url_link="";
-
-$sql="SELECT
-        final_list.IFRT,
-        MAX(final_list.checked) AS checked,
-        SUM(final_list.QFRT) AS totalsum,
-        SUM(COALESCE(final_list.used_servings, final_list.QFRT * items.servings)) AS total_used_servings,
-        items.department,
-        items.fiber,
-        items.carbs,
-        items.fat,
-        items.protein,
-        items.servings,
-        items.calories,
-        items.url,
-        items.grocery_item
-      FROM final_list
-      INNER JOIN items ON final_list.IFRT=items.ID
-      GROUP BY final_list.IFRT,
-               items.department,items.fiber,items.carbs,items.fat,items.protein,
-               items.servings,items.calories,items.url,items.grocery_item
-      ORDER BY items.department ASC, items.grocery_item ASC";
-
-$result=$conn->query($sql);
-$rows=$result->fetch_all(MYSQLI_ASSOC);
-
-foreach($rows as $macros) {
-    $nutrition_servings=(float)$macros['total_used_servings'];
-    $fat += $nutrition_servings * $macros['fat'];
-    $protein += $nutrition_servings * $macros['protein'];
-    $carbs += $nutrition_servings * $macros['carbs'];
-    $fiber += $nutrition_servings * $macros['fiber'];
-    $calories += $nutrition_servings * $macros['calories'];
-}
-
-include '../chart/macros.php';
-
-echo "<table><tr><td>";
-echo '<table border=2 class="searchable sortable"><tr><th>Ignore?</th><th>Got it</th><th>Qty</th><th align=center>Pantry Qty</th><th align=center>Description</th><th>Price</th><th align=center>Location</th><th align=center>Recipe List(s)</th><th>Link</th></tr>';
-
-foreach($rows as $row2) {
-    $id_to_pull_from_items=$row2['IFRT'];
-    $qty_needed_from_recipe=$row2['totalsum'];
-    $url=$row2['url'];
-
-    $pantrysql="select pantryqty from items where id='".$id_to_pull_from_items."'";
-    $result=$conn->query($pantrysql);
-    $pantry_results=$result->fetch_assoc();
-
-    if($row2['totalsum']>$pantry_results['pantryqty']) {
-        echo "<tr><td align=center><input type='checkbox' id='ignore_cb' class='ignoreIt' value='".$id_to_pull_from_items."'></td>";
-
-        if($row2['checked']=="1") {
-            echo "<td align=center><input type='checkbox' id='IFRT_CHECKBOX' class='checkIt' value='".$id_to_pull_from_items."' checked></td><td align=center>".$qty_needed_from_recipe."</td>";
-        } else {
-            echo "<td align=center><input type='checkbox' id='IFRT_CHECKBOX' class='checkIt' value='".$id_to_pull_from_items."'></td><td align=center>".$qty_needed_from_recipe."</td>";
-        }
-
-        echo '<td contenteditable="true" id="txt_pantry" onBlur="saveToDb(this,'.$id_to_pull_from_items.')" align=center>'.$pantry_results["pantryqty"].'</td>';
-
-        $get_food_info="select pantryqty,grocery_item,price,department from items where id='".$id_to_pull_from_items."' order by department";
-        $item_results=$conn->query($get_food_info);
-        $rows_from_items=$item_results->fetch_all(MYSQLI_ASSOC);
-
-        foreach($rows_from_items as $item_info) {
-            $recipe_entry=[];
-            $get_recipe_name="select recipe_table_name from final_list where IFRT='".$id_to_pull_from_items."'";
-            $recipes=$conn->query($get_recipe_name);
-            $show_recipe_name=$recipes->fetch_all(MYSQLI_ASSOC);
-
-            foreach($show_recipe_name as $recipe_td) {
-                $recipe_entry[]=$recipe_td['recipe_table_name'];
-            }
-
-            foreach(array_unique($recipe_entry) as $word) {
-                $finalized_recipe_entry=str_replace("_recipe_table","",$word);
-                $complete_recipe_entry=str_replace("_"," ",$finalized_recipe_entry);
-                $url_link.="<a target='_blank' href=../scripts/show_shopping_list.php?recipe_name=".$word.">".$complete_recipe_entry."</a>, ";
-            }
-
-            $price_for_items=($qty_needed_from_recipe-$pantry_results['pantryqty'])*$item_info['price'];
-            echo "<td><a target=_blank href='https://www.walmart.com/search?q=".$item_info['grocery_item']."&facet=fulfillment_method_in_store%3AIn-store'>".$item_info['grocery_item']."</a></td><td align=center>".$price_for_items."</td><td align=center>".$item_info['department']."</td><td>".substr($url_link,0,-2)."</td><td><a target=_blank href='".$url."#id=".$id_to_pull_from_items."'>link</a></td></tr>";
-            $total_price += $price_for_items;
-            $url_link="";
-        }
-    }
-}
-
-echo "</table>";
-echo "<td valign=top>";
-echo "<table><tr><td>Bill:</td><td>".$total_price."</td></tr>";
-echo "<tr><td>Tax:</td><td>6%</td></tr>";
-$tax_added=$total_price*1.06;
-saveFinalPriceToDB(number_format($tax_added,2));
-echo "<tr><td>Total:</td><td>".number_format($tax_added,2)."</td></tr></table>";
-echo "</td></tr><tr><td>Clear table <input type='submit'></td></tr></table></center></form>";
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script>
-$('.checkIt').change(function () {
-    var id=$(this).val();
-    $.ajax({type:'POST',url:'../ajax/checkbox.php',data:'id='+id+'&checked='+(this.checked?'true':'false')});
-});
-$('.ignoreIt').change(function() {
-    var id=$(this).val();
-    $.ajax({type:'POST',url:'../ajax/ignore.php',data:'id='+id,success:function(){window.location.href='final_shopping_list.php';}});
-});
-$('#portions').change(function() {
-    var id=$(this).val();
-    $.ajax({type:'POST',url:'../ajax/portions.php',data:'id='+id,success:function(){window.location.href='final_shopping_list.php';}});
-});
-function saveToDb(editableObj,id) {
-    var id_from_items=$(editableObj).text();
-    $.ajax({type:'POST',url:'../ajax/edit_pantry.php',data:'id='+id+'&updated_value='+id_from_items,success:function(){window.location.href='final_shopping_list.php';}});
+<form id="shopping-form" action="../scripts/clear_final.php" method="post">
+<center>
+<h1>Shopping List</h1>
+<label for="portions">Portions for Prep:</label>
+<select name="portions" id="portions">
+<?php for ($i = 1; $i <= 10; $i++): ?>
+<option value="<?= $i ?>"<?= $i == $servings_from_db ? ' selected' : '' ?>><?= $i ?></option>
+<?php endfor; ?>
+</select>
+<?php
+// Keep the nutrition notice from earlier upgrades when that helper is installed.
+if (is_file(__DIR__ . '/../functions/recipe_nutrition.php')) {
+    require_once __DIR__ . '/../functions/recipe_nutrition.php';
+    show_incomplete_nutrition_notice($rows);
 }
-</script>
+include __DIR__ . '/../chart/macros.php';
+?>
+<div class="shopping-actions">
+    <button type="button" id="open-all-links">Open all Walmart links</button>
+    <button type="button" id="clear-got-it"<?= count($summary['checkedIds']) === 0 ? ' disabled' : '' ?>>Clear all Got it</button>
+    <button type="button" id="toggle-covered-items" aria-pressed="false" aria-controls="shopping-items" hidden>Hide grey items</button>
+</div>
+<p class="shopping-hint">Open all uses the saved links in the Link column. Allow pop-ups for this shopping-list site if prompted.</p>
+<p class="shopping-hint">Tap + beside an item for its nutrition in one prep portion.</p>
+<p class="shopping-hint">Grey rows are covered by your pantry and stay at the bottom. Edit Pantry Qty and press Enter to update. Hide grey items only changes what you see; totals and nutrition stay the same.</p>
+<p id="all-items-covered" hidden>All items are covered by your pantry. Choose Show grey items to see them.</p>
+<p id="shopping-status" role="status" aria-live="polite"></p>
+<noscript>Enable JavaScript to update checkmarks, sort items, and expand nutrition.</noscript>
+<div class="shopping-layout-viewport"><div class="shopping-layout">
+<div class="shopping-scroll">
+<table id="shopping-items" class="searchable" border="2">
+<thead><tr>
+<?php
+$headers = [
+    ['Ignore?', 'text'], ['Got it', 'checked'], ['Qty', 'number'],
+    ['Pantry Qty', 'number'], ['Description', 'text'], ['Price', 'number'],
+    ['Location', 'text'], ['Recipe List(s)', 'text'], ['Link', 'text'],
+];
+foreach ($headers as $column => $header):
+?>
+<th scope="col" data-sort-type="<?= $header[1] ?>" aria-sort="none"><button type="button" class="sort-heading" data-column="<?= $column ?>"><?= $header[0] ?></button></th>
+<?php endforeach; ?>
+</tr></thead>
+<tbody>
+<?php foreach ($rows as $row):
+    $covered = final_list_needed($row) <= 0;
+    $id = (int)$row['IFRT'];
+    $cents = final_list_row_cents($row);
+    $url = final_list_item_url($row['url'], $id);
+    $name = $row['grocery_item'];
+    $macros = final_list_portion_macros($row, $servings_from_db);
+    $recipes = $conn->query('SELECT DISTINCT recipe_table_name FROM final_list WHERE IFRT = ' . $id)->fetch_all(MYSQLI_ASSOC);
+    $recipe_names = [];
+    foreach ($recipes as $recipe) {
+        $recipe_names[] = str_replace('_', ' ', str_replace('_recipe_table', '', $recipe['recipe_table_name']));
+    }
+?>
+<tr class="<?= $covered ? 'pantry-covered' : 'needs-buying' ?>" data-pantry-covered="<?= $covered ? '1' : '0' ?>" data-item-id="<?= $id ?>" data-price-cents="<?= $cents ?>" data-missing-price="<?= !$covered && ($row['price'] === null || $row['price'] === '') ? '1' : '0' ?>">
+<td class="center"><input type="checkbox" class="ignoreIt" value="<?= $id ?>" aria-label="Ignore <?= final_list_html($name) ?>"></td>
+<td class="center"><input type="checkbox" class="checkIt" value="<?= $id ?>" aria-label="Got <?= final_list_html($name) ?>"<?= (int)$row['checked'] === 1 ? ' checked' : '' ?>></td>
+<td class="center" data-sort-value="<?= final_list_html($row['totalsum']) ?>"><?= final_list_html($row['totalsum']) ?></td>
+<td contenteditable="true" class="pantry-qty center" role="textbox" tabindex="0" inputmode="decimal" enterkeyhint="done" title="Edit pantry quantity and press Enter to save" data-item-id="<?= $id ?>" data-original="<?= final_list_html($row['pantryqty'] ?? 0) ?>" aria-label="Pantry quantity for <?= final_list_html($name) ?>"><?= final_list_html($row['pantryqty'] ?? 0) ?></td>
+<td class="description-cell" data-sort-value="<?= final_list_html($name) ?>">
+    <div class="item-heading">
+        <button type="button" class="macro-toggle" aria-expanded="false" aria-controls="macros-<?= $id ?>" aria-label="Show nutrition for <?= final_list_html($name) ?>">+</button>
+        <a target="_blank" rel="noopener" href="<?= final_list_html('https://www.walmart.com/search?q=' . rawurlencode($name) . '&facet=fulfillment_method_in_store%3AIn-store') ?>"><?= final_list_html($name) ?></a>
+    </div>
+    <div class="macro-details" id="macros-<?= $id ?>" hidden>
+        <p><strong>Per prep portion (1 of <?= final_list_html($servings_from_db) ?>)</strong></p>
+        <dl>
+        <?php foreach (['calories' => 'Calories', 'fat' => 'Fat', 'protein' => 'Protein', 'carbs' => 'Carbs', 'fiber' => 'Fiber', 'net-carbs' => 'Net carbs'] as $field => $label): ?>
+        <div class="macro-card macro-<?= $field ?>">
+            <dt><?= $label ?></dt>
+            <dd data-macro="<?= $field ?>"><?= $macros[$field] === null ? 'Not set' : number_format($macros[$field], 2, '.', '') . ($field === 'calories' ? ' kcal' : ' g') ?></dd>
+        </div>
+        <?php endforeach; ?>
+        </dl>
+        <p class="macro-missing">Recipe amount divided by <?= final_list_html($servings_from_db) ?> portions. Includes ingredients supplied from your pantry.</p>
+        <?php if (in_array(null, $macros, true)): ?><p class="macro-missing">Some nutrition or serving information is missing from this food's entry.</p><?php endif; ?>
+    </div>
+</td>
+<td class="center" data-sort-value="<?= $cents ?>"><?= number_format($cents / 100, 2, '.', '') ?></td>
+<td class="center"><?= final_list_html($row['department']) ?></td>
+<td data-sort-value="<?= final_list_html(implode(', ', $recipe_names)) ?>">
+<?php foreach ($recipes as $index => $recipe): ?>
+<?= $index > 0 ? ', ' : '' ?><a target="_blank" rel="noopener" href="../scripts/show_shopping_list.php?recipe_name=<?= rawurlencode($recipe['recipe_table_name']) ?>"><?= final_list_html($recipe_names[$index]) ?></a>
+<?php endforeach; ?>
+</td>
+<td><?php if ($url !== ''): ?><a class="shopping-item-link" target="_blank" rel="noopener" href="<?= final_list_html($url) ?>">link</a><?php else: ?>No link<?php endif; ?></td>
+</tr>
+<?php endforeach; ?>
+</tbody>
+</table>
+<?php if (count($rows) === 0): ?><p>Your shopping list is empty.</p><?php endif; ?>
+</div>
+<aside class="shopping-totals" aria-live="polite" aria-atomic="true">
+<h2 title="Pantry quantities reduce the estimate. Got it checkmarks only reduce Still to buy.">Est total</h2>
+<p><span>Bill:</span> <span id="estimated-bill">$<?= number_format($summary['fullSubtotalCents'] / 100, 2) ?></span></p>
+<p><span>Tax (6%):</span> <span id="estimated-tax">$<?= number_format($summary['fullTaxCents'] / 100, 2) ?></span></p>
+<p class="grand-total"><span>Total:</span> <strong id="full-list-total">$<?= number_format($summary['fullTotalCents'] / 100, 2) ?></strong></p>
+<p><span>Still to buy:</span> <strong id="remaining-total">$<?= number_format($summary['totalCents'] / 100, 2) ?></strong></p>
+<p id="missing-prices"<?= $summary['missingPrices'] === 0 ? ' hidden' : '' ?>>Some items have no saved price. These totals exclude their cost.</p>
+</aside>
+</div></div>
+<p class="clear-table">Clear table <input type="submit" value="Submit"></p>
+</center>
+</form>
+<script type="application/json" id="shopping-state"><?= json_encode($summary, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
 <a href="../index.php">Main Page</a>
 </body>
+</html>

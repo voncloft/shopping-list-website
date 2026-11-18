@@ -1,31 +1,18 @@
 <?php
-include_once '../include/passwords.php';
-function modify_pantry()
-{
-global $conn;
-session_start();
-$sql = "select id,grocery_item, price, department,servings,calories,fat,protein,carbs,fiber,url from items order by grocery_item";
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
-$c=0;
-echo "<center><table><caption>SHOPPING LIST</caption><tr><th>Item</th><th>Price</th><th>Department</th><th>Servings</th><th>Calories</th><th>Fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th><th>URL</th></tr><tr>";
-	foreach ($rows as $row2){
-        	$c++;
-        	echo "<td><input type='hidden' name='idtb".$c."' value=".$row2['id'].">";
-        	echo "<input type='text' name='itemtb".$c."' value='".$row2['grocery_item']."'></td>";
-        	echo "<td><input type='text' size='3' name='pricetb".$c."' value='".$row2['price']."'></td>";
-        	echo "<td><input type='text' name='dtb".$c."' value='".$row2['department']."'></td>";  
-			echo "<td><input type='text' size='3' name='servings".$c."' value=".$row2['servings']."></td>";
-			echo "<td><input type='text' size='3' name='calories".$c."' value=".$row2['calories']."></td>";
-			echo "<td><input type='text' size='3' name='fat".$c."' value=".$row2['fat']."></td>";
-			echo "<td><input type='text' size='3' name='protein".$c."' value=".$row2['protein']."></td>";
-			echo "<td><input type='text' size='3' name='carbs".$c."' value=".$row2['carbs']."></td>";
-			echo "<td><input type='text' size='3' name='fiber".$c."' value=".$row2['fiber']."></td>";
-		echo "<td><input type='text' name='url".$c."' value='".$row2['url']."'></td>";
-		echo "<tr>";
+require_once __DIR__.'/../include/passwords.php';
+require_once __DIR__.'/item_form.php';
+function modify_pantry() {
+    global $conn;
+    $items=site_items($conn);
+    echo '<p>Changes save automatically after a short pause. Every field except URL is required; zero is valid. Blank values in older items must be completed before saving that item.</p><div class="item-edit-scroll"><table class="item-edit-table" border="1"><thead><tr>';
+    foreach (item_form_fields() as $label) echo '<th>'.site_html($label).'</th>';
+    echo '<th>Status</th></tr></thead><tbody>';
+    foreach ($items as $id=>$item) {
+        $data=$item; $data['item']=$item['grocery_item']; $data['dept']=$item['department']; $form='edit-item-'.$id;
+        echo '<tr>';
+        foreach (item_form_fields() as $key=>$label) { echo '<td>'; item_form_input($key,$data[$key] ?? '',$form,$form.'-'.$key); echo '</td>'; }
+        echo '<td><button type="submit" form="'.$form.'">Save</button></td></tr>';
     }
-echo "</table>";
-$conn->close();
-$_SESSION['counter']=$c;
+    echo '</tbody></table></div>';
+    foreach ($items as $id=>$item) echo '<form id="edit-item-'.$id.'" action="../scripts/modify_item.php" method="post"><input type="hidden" name="item_id" value="'.$id.'"></form>';
 }
-?>

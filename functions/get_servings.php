@@ -1,14 +1,12 @@
 <?php
-include_once '../include/passwords.php';
-function getServings()
-{
-	global $conn;
-	global $servings_from_db;	
-	$sql = "select servings from variables";
-	$result = $conn->query($sql);
-	$rows = $result->fetch_all(MYSQLI_ASSOC);
-	foreach ($rows as $row2){
-		$servings_from_db=$row2['servings'];
-	}
+require_once __DIR__ . '/../include/passwords.php';
+function getServings() {
+    global $conn, $servings_from_db;
+    static $cached;
+    if ($cached === null) {
+        $rows = $conn->query('SELECT servings FROM variables')->fetch_all(MYSQLI_ASSOC);
+        $last = $rows ? end($rows) : ['servings'=>1];
+        $cached = max(1, (float)$last['servings']);
+    }
+    $servings_from_db = $cached;
 }
-?>

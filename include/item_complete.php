@@ -1,14 +1,11 @@
  <?php
-//error_reporting(0);
- $q=$_GET['q'];
- //echo $q;
+ $q = isset($_GET['q']) && is_string($_GET['q']) ? trim($_GET['q']) : '';
+ if ($q === '' || strlen($q) > 255) exit;
+ header('Content-Type: text/plain; charset=utf-8');
 include_once '../include/passwords.php';
  $my_data=mysqli_real_escape_string($conn,$q);
- //echo $my_data;
- //$sql="SELECT distinct Search_query FROM Search_History WHERE Search_query LIKE '%$my_data%' ORDER BY Search_query";
  $sql="SELECT distinct grocery_item FROM items WHERE grocery_item LIKE '%$my_data%'";
-//echo $sql; 
- $result = mysqli_query($conn,$sql) or die(mysqli_error());
+ $result = mysqli_query($conn,$sql);
 
  if($result)
  {

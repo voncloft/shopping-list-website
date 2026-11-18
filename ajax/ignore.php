@@ -1,5 +1,6 @@
 <?php
-include '../include/passwords.php';
-$query="Delete from final_list WHERE IFRT=".$_POST['id'];
-mysqli_query($conn,$query);
-?>
+require_once __DIR__.'/../functions/form_checks.php';site_post();
+require_once __DIR__.'/../include/passwords.php';
+$id=site_id($_POST['id'] ?? '');
+site_execute($conn,'DELETE FROM final_list WHERE IFRT=?','i',$id);
+header('Content-Type: application/json; charset=utf-8');echo json_encode(['ok'=>true]);

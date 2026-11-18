@@ -1,23 +1,3 @@
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<head>
-<style>
-table th{
-  background-color: green;
-  color: white;
-  position: sticky;
-  z-index: 100;
-  top: 0;
-  left: 0;
-}
-</style>
-</head>
-<?php
-include_once '../include/passwords.php';
-include '../include/toolbar.html';
-include_once '../functions/show_recipes_interface.php';
-echo "<form action='/scripts/modify_item.php' method=POST>";
-get_interface("modify_pantry","");
-echo '<Input type="submit">';
-echo "</form>";
-?>
-
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><?php require_once __DIR__ . '/../include/theme-head.php'; ?><title>Edit grocery items</title><script src="../include/row-autosave.js?v=20261118" defer></script></head><body>
+<?php require_once __DIR__.'/../include/passwords.php'; include __DIR__.'/../include/toolbar.html'; require_once __DIR__.'/../functions/show_recipes_interface.php'; ?></center>
+<h1>Edit grocery items</h1><?php get_interface('modify_pantry',''); ?></body></html>

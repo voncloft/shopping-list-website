@@ -1,8 +1,7 @@
 <?php
-	include '../include/passwords.php';
-	$query="update variables set servings =".$_POST['id']." where servings >0";
-	mysqli_query($conn,$query);
-	//alert($query);
-	$query="update items set servings=".$_POST['id'];
-	//mysqli_query($conn,$query);
-?>
+require_once __DIR__.'/../functions/form_checks.php';site_post();
+require_once __DIR__.'/../include/passwords.php';
+$count=site_number($_POST['id'] ?? '', 'Prep portions',false,true,10);
+if ($count<1) throw new InvalidArgumentException('Prep portions must be from 1 to 10.');
+site_execute($conn,'UPDATE variables SET servings=?','i',$count);
+header('Content-Type: application/json; charset=utf-8'); echo json_encode(['ok'=>true]);

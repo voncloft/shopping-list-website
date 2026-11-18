@@ -1,29 +1,7 @@
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-<?php
-include '../include/passwords.php';
-include '../include/toolbar.html'
-?>
-<form action='../scripts/export_recipe.php' method=POST>
-    <table><caption>New Recipe</caption>
-        <tr><td>Recipe Name</td><td><input type="text" name="recipe_name" id="recipe_name"></td></tr>
-        <tr><td>URL: </td><td><input type="text" name="url"></td></tr>
-    </table>
-    <table>
-        <tr><td>QTY</td><td>Ingredient</td></tr>
-        <?php
-            $sql = "select id,grocery_item, price, department from items order by grocery_item";
-        $result = $conn->query($sql);
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
-        for($i=1;$i<=20;$i++)
-        {
-            echo '<tr><td><input type="number" name="qty'.$i.'" id="qty'.$i.'"></td>
-        <td><select id="ingredient'.$i.'" name="ingredient'.$i.'">';
-            foreach ($rows as $row2){
-                echo '<option value="'.$row2['id'].'">'.$row2['grocery_item'].'</option>';
-            }
-            echo '</select>';
-        }
-        ?>
-    </td></tr><tr><td><input type="submit"></td></tr></table>
-    </form>
+<?php require_once __DIR__.'/../include/passwords.php'; require_once __DIR__.'/../functions/form_checks.php'; $items=site_items($conn); ?>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><?php require_once __DIR__ . '/../include/theme-head.php'; ?><title>Create recipe</title></head><body>
+<?php include __DIR__.'/../include/toolbar.html'; ?></center><main class="theme-page"><h1>Create recipe</h1>
+<form action="../scripts/export_recipe.php" method="post"><p><label>Recipe name <input name="recipe_name" required maxlength="51"></label></p><p><label>URL (optional) <input type="url" name="url" maxlength="8192"></label></p>
+<p>Enter at least one ingredient with a positive quantity. Leave unused rows empty.</p><table border="1"><thead><tr><th>Quantity to buy</th><th>Ingredient</th></tr></thead><tbody>
+<?php for ($i=1;$i<=20;$i++): ?><tr><td><input type="number" min="1" max="1000000" step="1" name="qty<?= $i ?>" aria-label="Quantity for ingredient <?= $i ?>"></td><td><select name="ingredient<?= $i ?>" aria-label="Ingredient <?= $i ?>"><option value="">Choose an ingredient</option><?php foreach ($items as $id=>$item): ?><option value="<?= $id ?>"><?= site_html($item['grocery_item']) ?></option><?php endforeach; ?></select></td></tr><?php endfor; ?>
+</tbody></table><p><button type="submit">Create recipe</button></p></form></main></body></html>

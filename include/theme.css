@@ -1,0 +1,126 @@
+/* Every site color is supplied inline by theme-head.php from MySQL. */
+html { color-scheme:var(--color-scheme, light); background:var(--page-bg); color:var(--text); }
+body { background:var(--page-bg); color:var(--text); font-family:var(--font-family); font-size:var(--font-size); }
+h1,h2,h3,h4,h5,h6 { color:var(--heading); }
+a:link { color:var(--link); }
+a:visited { color:var(--visited); }
+a:hover,a:active { color:var(--link-hover); }
+hr { border-color:var(--border); }
+::selection { background:var(--menu-hover); color:var(--menu-hover-text); }
+table { border-color:var(--border); }
+td,th { border-color:var(--border); }
+table[border],table.searchable,.theme-options,.theme-preview-table { border-collapse:collapse; background:var(--table-bg); color:var(--table-text); }
+table[border] > tbody > tr > td,table.searchable > tbody > tr > td,.theme-options td,.theme-preview-table td { padding:var(--cell-padding); border:var(--border-width) solid var(--border); background:var(--table-bg); color:var(--table-text); }
+table th { background:var(--table-header-bg); color:var(--table-header-text); padding:var(--cell-padding); border-color:var(--border); }
+table[border] > tbody > tr:nth-child(even) > td,.theme-preview-table tr:nth-child(even) > td { background:var(--table-alt-bg); }
+table[border] > tbody > tr:hover > td,.theme-preview-table tr:hover > td { background:var(--table-hover-bg); }
+input,select,textarea,button { font:inherit; }
+input:not([type=checkbox]):not([type=radio]):not([type=hidden]):not([type=submit]):not([type=button]):not([type=reset]),select,textarea { background:var(--field-bg); color:var(--field-text); border:1px solid var(--control-border); border-radius:var(--radius); padding:5px; }
+option { background:var(--field-bg); color:var(--field-text); }
+input[type=checkbox],input[type=radio],input[type=range],progress { accent-color:var(--check-accent); }
+/* Preserve native checkbox size and behavior. */
+button,input[type=submit],input[type=button],input[type=reset],.theme-button { background:var(--button-bg); color:var(--button-text); border:1px solid var(--control-border); border-radius:var(--radius); cursor:pointer; }
+button:hover,input[type=submit]:hover,input[type=button]:hover,.theme-button:hover { background:var(--button-hover); color:var(--button-text); }
+button:disabled,input:disabled,select:disabled,textarea:disabled { background:var(--disabled-bg); color:var(--disabled-text); cursor:default; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+[contenteditable=true]:focus { background:var(--field-bg); color:var(--field-text); }
+body .dropbtn,.site-nav-link { background:var(--nav-bg); color:var(--nav-text); }
+.site-nav-link:link,.site-nav-link:visited { display:inline-block; padding:16px; color:var(--nav-text); text-decoration:none; font:16px sans-serif; }
+body .dropdown-content { background:var(--menu-bg); border:1px solid var(--border); z-index:1000; text-align:left; }
+body .dropdown-content a,body .dropdown-content a:visited { color:var(--menu-text); }
+body .dropdown-content a:hover { background:var(--menu-hover); color:var(--menu-hover-text); }
+body .dropdown:hover .dropbtn,body .dropdown:focus-within .dropbtn,.site-nav-link:hover { background:var(--nav-hover); color:var(--nav-text); }
+.dropdown:focus-within .dropdown-content { display:block; }
+body .ac_results { background:var(--menu-bg); color:var(--menu-text); border-color:var(--border); }
+body .ac_odd { background:var(--table-alt-bg); }
+body .ac_loading { background-color:var(--field-bg); }
+body .ac_over { background:var(--menu-hover); color:var(--menu-hover-text); }
+.theme-page { max-width:1060px; margin:25px auto; padding:0 12px 40px; text-align:left; }
+.theme-page h1 { margin-bottom:8px; }
+.theme-intro,.theme-muted { color:var(--muted); }
+.theme-panel { border:1px solid var(--border); background:var(--panel-bg); color:var(--panel-text); border-radius:var(--radius); padding:18px; margin:18px 0; }
+.theme-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.theme-actions button,.theme-button,.theme-page summary { min-height:44px; padding:10px 14px; box-sizing:border-box; }
+.theme-page summary { cursor:pointer; font-weight:bold; }
+.theme-page label { display:block; }
+.theme-options { width:100%; margin:12px 0 22px; }
+.theme-options th,.theme-options td { text-align:left; }
+.theme-options input[type=color] { width:56px; height:40px; padding:2px; vertical-align:middle; }
+.theme-options input[type=text] { width:90px; }
+.theme-options input[type=number] { width:90px; }
+.theme-options .theme-value { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.theme-save-bar { position:sticky; bottom:0; border:1px solid var(--border); padding:14px; background:var(--panel-bg); color:var(--panel-text); z-index:10; }
+.theme-error { color:var(--error); }
+.theme-success { color:var(--success); }
+.theme-preview-table { width:100%; margin:10px 0; }
+.theme-preview-covered > td { background:var(--covered-bg) !important; color:var(--covered-text) !important; }
+.theme-preview-chart { width:130px; height:130px; border-radius:50%; background:conic-gradient(var(--macro-carbs) 0 45%,var(--macro-protein) 45% 72%,var(--macro-fat) 72% 94%,var(--macro-fiber) 94%); }
+.theme-preview-controls { display:flex; flex-wrap:wrap; gap:15px; align-items:center; }
+.theme-preview-controls label { display:inline; }
+.theme-page input[name=name] { max-width:100%; box-sizing:border-box; }
+.theme-notice { padding:12px; border:1px solid var(--border); }
+@media(max-width:600px) { .theme-options th,.theme-options td { padding:6px; } .theme-panel { padding:12px; } .theme-actions > select { max-width:100%; } }
+.recipe-selector { max-width:1200px; margin:24px auto; padding:0 12px; text-align:left; }
+.recipe-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); gap:16px; }
+.recipe-card { padding:15px; border:1px solid var(--border); border-radius:var(--radius); background:var(--panel-bg); color:var(--panel-text); text-align:left; }
+.recipe-card[hidden] { display:none; }
+.recipe-card h2 { font-size:1.15em; margin:0 0 15px; }
+.recipe-card label { cursor:pointer; }
+.recipe-card .recipe-summary { width:100%; }
+.recipe-portion-note { font-size:.85em; color:var(--muted); }
+.recipe-nutrition { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+.recipe-nutrition > div { padding:8px; background:var(--card-bg); border-left:4px solid var(--border); }
+.recipe-nutrition dt { font-size:.85em; }
+.recipe-nutrition dd { margin:5px 0 0; font-weight:bold; }
+.recipe-nutrition .recipe-metric-calories { border-color:var(--macro-calories); }
+.recipe-nutrition .recipe-metric-protein { border-color:var(--macro-protein); }
+.recipe-nutrition .recipe-metric-fat { border-color:var(--macro-fat); }
+.recipe-nutrition .recipe-metric-carbs,.recipe-nutrition .recipe-metric-net-carbs { border-color:var(--macro-carbs); }
+.recipe-nutrition .recipe-metric-fiber { border-color:var(--macro-fiber); }
+.recipe-ranges { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+.recipe-ranges fieldset { border:1px solid var(--border); }
+.recipe-ranges label { display:inline-flex; align-items:center; gap:5px; }
+.recipe-ranges input { width:75px; }
+#recipe-search { width:min(100%,450px); min-height:44px; box-sizing:border-box; margin:8px 0 15px; }
+#recipe-filters summary { cursor:pointer; padding:10px 0; }
+.recipe-selector button { padding:10px 14px; min-height:44px; }
+.recipe-detail-page { max-width:1100px; margin:20px auto; padding:0 12px; text-align:left; }
+.recipe-detail { padding:18px 0; border-bottom:1px solid var(--border); }
+.recipe-table-scroll { max-width:100%; overflow-x:auto; }
+.recipe-instructions { padding:16px 0; line-height:1.5; }
+.recipe-instructions table { max-width:100%; }
+@media(max-width:600px) { .macro-chart > tbody > tr > td { display:block; } .macro-chart { max-width:100%; } }
+
+.home-theme-picker { max-width:600px; text-align:left; }
+.home-theme-picker button { min-height:44px; padding:8px 14px; }
+table { background:var(--table-bg); color:var(--table-text); }
+.macro-chart { background:transparent; color:var(--text); }
+.theme-data-table > tbody > tr > td { padding:var(--cell-padding); background:var(--table-bg); color:var(--table-text); }
+.theme-data-table > tbody > tr:nth-child(even) > td { background:var(--table-alt-bg); }
+.theme-data-table > tbody > tr:hover > td { background:var(--table-hover-bg); }
+.item-form-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+.item-form-grid label { display:grid; gap:6px; }
+.item-form-grid input { min-width:0; }
+.item-edit-scroll { max-width:100%; overflow:auto; max-height:80vh; }
+.item-edit-table th { position:sticky; top:0; z-index:1; }
+.item-edit-table input[type=number] { width:90px; }
+.item-edit-table input[type=text],.item-edit-table input[type=url] { width:190px; }
+.item-edit-table button { min-height:44px; padding:8px; }
+
+.row-save-status { display:block; min-width:120px; max-width:260px; overflow-wrap:anywhere; }
+
+.item-edit-table td:last-child { position:sticky; right:0; z-index:2; background:var(--table-bg); color:var(--table-text); }
+.item-edit-table th:last-child { right:0; z-index:3; }
+
+/* Long ingredient names must not enlarge the table and push its arrow offscreen. */
+.recipe-edit-table { width:100%; min-width:620px; table-layout:fixed; }
+.recipe-edit-table .recipe-qty-column { width:15%; }
+.recipe-edit-table .recipe-servings-column { width:20%; }
+.recipe-edit-table .recipe-remove-column { width:12%; }
+.recipe-edit-table th { overflow-wrap:anywhere; }
+.recipe-edit-table input[type=number], .recipe-edit-table select {
+    width:100%; min-width:0; max-width:100%; box-sizing:border-box;
+}
+.recipe-edit-table select { text-overflow:ellipsis; }
+
+.recipe-editor-page input[name=url] { max-width:100%; box-sizing:border-box; }

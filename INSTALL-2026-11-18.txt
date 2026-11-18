@@ -1,0 +1,156 @@
+SHOPPING LIST WEBSITE — COMPLETE SITE UPDATE, 2026-11-18
+
+This ZIP contains the complete active website, not just changed files.
+Files are at the ZIP root: unzip directly inside your new shopping_list folder.
+Built from voncloft/shopping-list-website master, commit 59992c1.
+
+INSTALL
+
+1. Keep your current database. Back it up with your usual MySQL/MariaDB backup
+   command before importing the small upgrade below. Renaming a website folder
+   does not back up the database.
+
+2. Rename your current website folder as planned and make the new folder.
+   Unzip this archive into /media/Websites/shopping_list.
+   Do not create an extra nested shopping-list-website directory.
+
+3. Copy your real connection SETTINGS from the old folder. This archive contains
+   placeholders only. Keep the NEW include/passwords.php; it loads the shared
+   error handler and opens the connection safely. Copy only the config file:
+
+   backup_dir=/media/Websites/shopping-lsit-bak-2026-11-18
+   cp -a "$backup_dir/include/passwords.config.php" /media/Websites/shopping_list/include/
+
+   Adjust backup_dir if you used a different spelling. Also retain your existing
+   php.ini and .htaccess, if you use them. Preserve their ownership/permissions.
+   Your hostname and site path should stay the same so the Firefox add-ons keep
+   using their saved server address.
+
+4. All 39 ingredient files and 39 step files from the latest GitHub repository
+   are included under their original names. If you have newer server-only recipe
+   edits, copy the backup's recipes contents over these before using the editor:
+
+   cp -a "$backup_dir/recipes/." /media/Websites/shopping_list/recipes/
+
+   The web server needs the same write access to recipes/ingredients and
+   recipes/steps that it had before, for saving recipe instructions.
+
+5. Import ONLY sql/upgrade_2026-11-18.sql into the EXISTING shopping_list database.
+   For example, replace YOUR_DATABASE_USER with your usual database login:
+
+   cd /media/Websites/shopping_list
+   mysql -u YOUR_DATABASE_USER -p shopping_list < sql/upgrade_2026-11-18.sql
+
+   This adds shopping_themes and shopping_theme_settings, seeds Light/Dark/Warm,
+   and renames _recipe_table to Spicy_BBQ_Chicken_Thighs_recipe_table with its
+   references. That unnamed recipe contains chicken thighs and spicy BBQ sauce
+   in your latest dump. No foods, prices, pantry stock, or recipe ingredients
+   are recreated. A conflicting destination name skips the rename rather than
+   overwriting another recipe. Re-running the migration preserves saved themes.
+
+   No fresh database_setup dump is needed or included. Your current data remains
+   in MySQL. sql/add_themes.sql and sql/rename_unnamed_recipe.sql are the same two
+   parts separately; importing the combined upgrade is sufficient.
+
+6. Open the homepage and hard-refresh once (Ctrl+Shift+R). Choose a theme from
+   the dropdown, then Apply. Edit or create themes opens the full editor.
+   If Open all is blocked, allow pop-ups for YOUR shopping-list site.
+
+NEW FEATURES
+
+- Themes are stored in MySQL, including the active choice. All browsers/devices
+  see that choice when loading a page. Follow system uses the saved Light and
+  Dark presets according to each device's preference. There is no browser-only
+  theme store. Open pages pick up a new saved theme when refreshed.
+- 54 editable options: page/link/visited-link colors, table headers/rows/hover,
+  pantry-covered rows, buttons, inputs, dropdowns, autocomplete, checkbox accent,
+  disabled controls, borders, panels, messages, fonts, spacing, corners, pie
+  colors and a pie/donut setting. Checkbox dimensions stay native.
+- Create a theme with Save as new, edit it with Save changes, and select it with
+  Apply theme. The preview changes without affecting the rest of the website.
+  Custom themes can be deleted; deleting an active one falls back to Light.
+- Weekly recipe selection filters instantly by name and any combination of
+  calorie, protein, fat, carb, fiber, net-carb and recipe-price min/max ranges.
+  Empty filters show all available recipes. Hidden selections remain checked
+  and are counted above the list. Clear filters restores the full list.
+- Numeric nutrition filters use one prep portion for 1x the recipe. The recipe
+  Amount control still posts the original *_portions field, multiplying the
+  whole recipe as before. Missing values do not match a numeric filter for that
+  value. Stored zero values are treated as zero; accuracy depends on your data.
+- Each recipe card links to its ingredient table and saved cooking instructions.
+- Got it saves immediately and reduces Still to buy. Est total / Bill / Tax /
+  Total stay at the TOP RIGHT of the table, reflecting the planned purchase after
+  pantry deductions. Checking off purchases does not erase that estimate.
+- Use Pantry Qty for food already owned. Enter saves a pantry edit. Fully covered
+  rows stay editable, grey and last; lowering Pantry Qty restores their position.
+- Ignore and pantry edits retain the chosen sort and direction. Ignore still
+  removes the item from the final list and therefore its nutrition.
+- +/− is a 48px touch target. Nutrition expands inside the same Description cell,
+  uses used_servings divided by prep portions, and follows the pie-chart colors.
+- Clear all Got it only clears checkmarks. Open all uses saved product URLs,
+  preserves the add-on #id= fragment, skips unsafe/empty links and handles retries
+  when the browser blocks some tabs. No Walmart scraping is performed.
+
+INPUT CHECKS AND AUTOMATIC SAVING
+
+- Item and pantry inventory rows save after 900 ms without typing, on leaving a
+  field, or on Enter. Each row shows Saving, Saved, or the reason it was not saved.
+  Requests for one row run in order, so a slow earlier save cannot overwrite a
+  later edit. Unconfirmed edits remain in the box and are marked Not saved.
+  With JavaScript disabled, the same rows have individual Save buttons.
+- Every item add/edit field except URL is required. Explicit zero is accepted.
+  Required blanks, malformed/negative numbers, invalid URLs, and duplicate names
+  are rejected by the server as well as the browser. Names are compared ignoring
+  case and extra whitespace. Existing historical duplicate names can be retained
+  when editing other fields; creating another duplicate or renaming into one is
+  blocked. Unrelated incomplete old items do not prevent another row saving.
+- Recipe creation rejects empty/duplicate names and requires a usable ingredient.
+  Empty or broken saved recipes show a repair message instead of silently looking
+  empty, and cannot be imported. Recipe edits validate every submitted row before
+  changing anything and save as one transaction. Removing every ingredient is
+  rejected. Unused new ingredient rows may stay blank; Used Servings retains its
+  existing optional automatic-calculation meaning.
+- Pantry/portion/Ignore updates validate their inputs. Multi-recipe removal works
+  for all selected recipes. Clearing the list and importing/editing recipes use
+  transactions to avoid a half-saved list. Instructions are validated before file
+  writes; a failed write reports a problem instead of claiming success.
+- SQL debug echoes have been removed from save responses. The website shows plain
+  success/error messages. Database exceptions do not expose SQL or credentials in
+  the page or add-on response; diagnostic location/code goes to the server log.
+
+CLEANUP AND COMPATIBILITY
+
+- get_interface() and its existing keywords are retained.
+- Shared recipe totals replace duplicate nutrition math. Prep portions are read
+  once per request. Recipe details and import use joined ingredient reads instead
+  of querying each item again. The chart library loads once per page.
+- Only *_recipe_table tables appear in recipe menus, excluding settings tables.
+- Recipe imports use a transaction and prepared inserts; refresh/repeat imports
+  skip a recipe already in current_week_recipes.
+- ajax/edit_price.php is byte-for-byte identical to the latest GitHub version.
+  scripts/add_food_to_db.php now validates required fields and duplicate names,
+  while keeping the add-on URL, POST field names and success/error JSON format.
+  Existing add-ons omit pantryqty; new items still start with pantry quantity 0.
+- Historical old/, backups/, .bak/-bak copies and the database dump are omitted.
+  They are not used by the active website. Internal item and pantry editor forms
+  now save one row at a time. Reload old open editor tabs before editing.
+
+VALIDATION
+
+Tested locally in Firefox with PHP 8.5 and an isolated SQLite-backed mysqli test
+adapter: themes, cross-browser persistence, preview, custom colors, system mode,
+recipe filters, hidden selections, instruction viewing, imports, shopping totals,
+pantry edits, sorting, pop-up handling and mobile layout. PHP syntax checks cover
+the full active site. Add-on tests: 48 client checks and 23 price/aisle server
+contract checks passed. Additional live-request tests verified the food-import
+JSON contract with valid input, missing fields, zeros, bad URLs, and duplicates.
+The production MySQL database/server has not been changed or tested directly.
+MySQL-specific DDL is supplied for you to import; the local adapter tests do not
+validate MySQL locking behavior. No test foods or test credentials are packaged.
+
+ROLLBACK
+
+Restore the old website folder and its original configuration. The extra theme
+tables can remain. If the recipe rename was applied, the old website can already
+read its new *_recipe_table name. Restore your database backup only if you also
+want to undo database changes made since installation.

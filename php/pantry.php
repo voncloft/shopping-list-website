@@ -1,11 +1,2 @@
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<?php
-include_once '../include/passwords.php';
-include '../include/toolbar.html';
-include_once '../functions/show_recipes_interface.php';
-echo "<form action='/scripts/update_pantry.php' method=POST>";
-get_interface("pantry_inventory","","");
-echo '<Input type="submit">';
-echo "</form>";
-?>
-
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><?php require_once __DIR__ . '/../include/theme-head.php'; ?><title>Pantry inventory</title><script src="../include/row-autosave.js?v=20261118" defer></script></head><body>
+<?php require_once __DIR__.'/../include/passwords.php'; include __DIR__.'/../include/toolbar.html'; require_once __DIR__.'/../functions/show_recipes_interface.php'; ?></center><main class="theme-page"><h1>Pantry inventory</h1><?php get_interface('pantry_inventory',''); ?></main></body></html>

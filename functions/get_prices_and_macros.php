@@ -1,68 +1,15 @@
 <?php
-include 'get_servings.php';
-function get_prices_and_macros($recipe_name)
-{
-	getServings();
-	global $servings_from_db;		
-	global $conn;
-	 $price=0;
-	 $fat=0;
-	 $protein=0;
-	 $carbs=0;
-	 $fiber=0;
-	 $cals=0;
-    $sql = "select ".$recipe_name.".qty, ".$recipe_name.".used_servings, ".$recipe_name.".ingredient_name,items.price,items.servings, items.calories, items.fat, items.protein, items.carbs, items.fiber, items.grocery_item from ".$recipe_name." inner join items on ".$recipe_name.".ingredient_name=items.id";
-    $result = $conn->query($sql);
-    $rows = $result->fetch_all(MYSQLI_ASSOC);
-foreach ($rows as $macros){
-        $qty=(float)$macros['qty'];
-        // Match the recipe page: count what is used, not everything purchased.
-        // An explicit zero is valid; only NULL or blank uses package servings.
-        if($macros['used_servings']===null || $macros['used_servings']==='') {
-            $nutrition_servings=$qty*(float)$macros['servings'];
-        } else {
-            $nutrition_servings=(float)$macros['used_servings'];
-        }
-        $fat=$fat+($nutrition_servings*$macros['fat']);
-        $protein=$protein+($nutrition_servings*$macros['protein']);
-        $carbs=$carbs+($nutrition_servings*$macros['carbs']);
-        $fiber=$fiber+($nutrition_servings*$macros['fiber']);
-		  $cals=$cals+($nutrition_servings*$macros['calories']);
-		  $price=$price+($macros['qty'] * $macros['price']);
-}    	
-$portions="<select name=".$recipe_name."_portions id=".$recipe_name."_portions>";
-for ($i=1;$i<=10;$i++)
-{
-	$portions=$portions."<option value=".$i.">".$i."</option>";
-}		
-$portions=$portions."</select>";
-		if($cals>0)
-		{
-			echo "<table border=2 width=350><tr><td>";
-		}
-		else {
-			echo "<table width=350><tr><td>";		
-		}
-			echo "<table border=2 width=100%><tr><td>";    	
-    		echo "<center>Price: $".$price."</center>";
-    		echo "</td><td>Portions: ".$portions;
-			echo"</td></tr></table>";  
-		if($cals>0)
-		{			
-			echo "</td></tr><tr><td>";
-			echo "<table border=2 width=100%><th>Calories</th><th>Fat</th><th>Protein</th><th>Carbs</th><th>Fiber</th>";  	
-    		echo "<tr><td><center>".round($cals/$servings_from_db,2)."</td><td><center>".round($fat/$servings_from_db,2)."</td><td><center>".round($protein/$servings_from_db,2)."</td><td><center>".round($carbs/$servings_from_db,2)."</td><td><center>".round($fiber/$servings_from_db,2);
-    		echo "</td></tr></table>";
-    		echo "</td></tr></table>";
-    	}
-    	else {
-			echo "</td></tr></table>";    	
-    	}
-		$price=0;
-		$fat=0;
-		$protein=0;
-		$carbs=0;
-		$cals=0;
-		$fiber=0;
+require_once __DIR__ . '/recipe_summary.php';
+function get_prices_and_macros($recipe_name, $summary = null) {
+    $summary = $summary ?? recipe_summary($recipe_name);
+    if ($summary['error']) { echo '<p class="theme-error" role="alert">'.recipe_html($summary['error']).'</p>'; return; }
+    $values = $summary['portion'];
+    echo '<table class="recipe-summary" border="1"><tbody><tr><td>Recipe price: '.($values['price'] === null ? 'Incomplete' : '$'.number_format($values['price'],2)).'</td><td><label>Amount: <select name="'.recipe_html($recipe_name).'_portions" id="'.recipe_html($recipe_name).'_portions">';
+    for ($i=1; $i<=10; $i++) echo '<option value="'.$i.'">'.$i.'× recipe</option>';
+    echo '</select></label></td></tr></tbody></table>';
+    echo '<p class="recipe-portion-note">Nutrition per prep portion (1 of '.recipe_html(recipe_prep_portions()).') for 1× recipe.</p><dl class="recipe-nutrition">';
+    foreach (['calories'=>'Calories','protein'=>'Protein','fat'=>'Fat','carbs'=>'Carbs','fiber'=>'Fiber','net_carbs'=>'Net carbs'] as $key=>$label) {
+        echo '<div class="recipe-metric recipe-metric-'.str_replace('_','-',$key).'"><dt>'.$label.'</dt><dd>'.($values[$key] === null ? 'Not set' : number_format($values[$key],2).($key==='calories' ? ' kcal':' g')).'</dd></div>';
+    }
+    echo '</dl>';
 }
-?>

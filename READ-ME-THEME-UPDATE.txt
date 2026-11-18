@@ -1,0 +1,55 @@
+SHOPPING LIST — THEME FIXES + TEN EXTRA PRESETS, 2026-11-18
+
+For the website that already has the Themes page installed.
+This patch includes the previous search, grey-row toggle, direct Apply theme,
+plain homepage Theme Options link, and Walmart blank-popup fixes as well.
+
+1. Extract into your existing shopping_list website root and overwrite matching
+   files. No connection settings, foods, recipe quantities, or instruction files
+   are included in this patch.
+
+2. Import ONLY sql/add_ten_themes.sql into your existing shopping_list database.
+   This is necessary to make the ten new themes appear in the dropdown.
+   Example (replace YOUR_DATABASE_USER with your usual database login):
+
+   cd /media/Websites/shopping_list
+   mysql -u YOUR_DATABASE_USER -p shopping_list < sql/add_ten_themes.sql
+
+   Do not import a fresh database_setup dump. The SQL only adds missing presets.
+   It leaves your currently applied theme, custom themes, and saved edits alone.
+   Re-running it is safe: existing preset keys or theme names are skipped.
+
+3. Hard-refresh once with Ctrl+Shift+R. Open Theme Options, choose a theme and
+   click Apply theme. Loading it in the editor first is unnecessary.
+
+TEN EXTRA THEMES
+
+Purple & Black      Black & Red       Midnight Blue      Forest
+Deep Ocean          Amber             Charcoal & Teal    Rose
+Coffee              Cream & Indigo
+
+Light, Dark and Warm remain available. Every extra theme defines all 54 options,
+including links, tables, buttons, input fields, menus, checkbox accent, pantry
+rows, nutrition colors, and charts. You can edit a preset or save your own copy.
+
+DISPLAY FIXES
+
+- Saved MySQL colors are included directly in the HTML, before styles and scripts
+  load. Pages no longer wait for a separate theme-style.php request to obtain
+  their background colors. Themes remain stored in MySQL, not browser storage.
+- Recipe ingredient dropdowns stay within their table column. Long product names
+  no longer push the dropdown arrow or Remove column outside the visible table.
+  On narrow phone screens the table scrolls horizontally within the page.
+- Firefox/Nightly: allow popups for your shopping-list website, then click Open
+  all / Open remaining links again if needed. The button now opens the product
+  URL directly; it no longer starts with about:blank. Item ID fragments stay intact.
+
+LOCAL CHECKS
+
+Tested in Firefox with an isolated database adapter: inline Dark colors on 14
+pages with theme assets blocked and JavaScript disabled; System mode; all ten
+presets; repeated SQL imports; preservation of custom names, edits and active
+choice; long dropdown names; maximum font/padding/corner settings; phone layout;
+theme apply/save/delete; recipe search; pantry visibility; stable totals/chart;
+sorting; and opening product tabs. Changed PHP files passed syntax checks.
+The live server and production MySQL database have not been changed or tested.

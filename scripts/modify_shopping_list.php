@@ -1,102 +1,20 @@
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <?php
-include '../include/passwords.php';
-include '../include/toolbar.html';
-?>
-<form action='apply_changes_to_shopping_list.php' method=POST>
-<?php
-session_start();
-$overall_price = 0;
-$c = 0;
-
-if (!empty($_POST['recipes'])) {
-    foreach ($_POST['recipes'] as $selected) {
-        $recipe_name = $selected;
-    }
+require_once __DIR__.'/../include/passwords.php';require_once __DIR__.'/../functions/form_checks.php';
+$selected=$_POST['recipes'] ?? [];
+if (!is_array($selected) || count($selected)!==1) throw new InvalidArgumentException('Choose one recipe to edit at a time.');
+$name=site_recipe_name($conn,reset($selected));$items=site_items($conn);
+$rows=$conn->query('SELECT id,qty,used_servings,ingredient_name FROM `'.$name.'`')->fetch_all(MYSQLI_ASSOC);
+$url='';foreach($conn->query('SELECT recipe_name,url FROM recipe_lists')->fetch_all(MYSQLI_ASSOC) as $r)if($r['recipe_name']===$name)$url=$r['url'];
+function recipe_edit_item_select($name,$chosen,$items) {
+    echo '<select name="'.$name.'"><option value="">Choose an ingredient</option>';
+    foreach($items as $id=>$item)echo '<option value="'.$id.'"'.((string)$id===(string)$chosen?' selected':'').'>'.site_html($item['grocery_item']).'</option>';
+    echo '</select>';
 }
-
-$remove_rt = str_replace("_recipe_table", "", $recipe_name);
-$remove_us = str_replace("_", " ", $remove_rt);
-echo "<h1>" . $remove_us . "</h1>";
-
-$default_list_string = "<select>";
-$default_items_sql = "select id, grocery_item from items order by grocery_item";
-$items = $conn->query($default_items_sql);
-$rows_of_default = $items->fetch_all(MYSQLI_ASSOC);
-
-foreach ($rows_of_default as $original_list) {
-    $default_list_string .= "<option value='" . $original_list['id'] . "'>" . $original_list['grocery_item'] . "</option>";
-}
-$default_list_string .= "</select>";
-
-$sql = "select qty, used_servings, id, ingredient_name from " . $recipe_name;
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
-
-$url = "select url from recipe_lists where recipe_name='" . $recipe_name . "'";
-$url_row = $conn->query($url);
-$rows2 = $url_row->fetch_all(MYSQLI_ASSOC);
-
-foreach ($rows2 as $url_for_recipe) {
-    echo "URL For Recipe: <input type='text' name='url' size='100' value='" . $url_for_recipe['url'] . "'>";
-}
-
-echo "<p><b>Used Servings:</b> leave blank for normal items. Fill it in only when you buy more than you actually eat. Example: 2 boxes of 12 mandarin cups, but eat 14 cups total = Qty 2, Used Servings 14.</p>";
-echo "<table border=2><tr><th>Qty To Buy</th><th>Used Servings</th><th>Description</th><th>Price</th></tr>";
-
-$x = 0;
-foreach ($rows as $from_recipe_list) {
-    $c++;
-    echo "<input type='hidden' name='hidden" . $c . "' value='" . $from_recipe_list['id'] . "'>";
-    echo "<tr>";
-    echo "<td><input type='number' step='1' size='8' value='" . $from_recipe_list['qty'] . "' name='recipe_list" . $c . "'></td>";
-
-    $used_value = ($from_recipe_list['used_servings'] === null) ? "" : $from_recipe_list['used_servings'];
-    echo "<td><input type='number' step='0.001' size='8' value='" . $used_value . "' name='used_servings" . $c . "' placeholder='auto'></td>";
-
-    $items_list = "select id, grocery_item, price, department from items where id='" . $from_recipe_list['ingredient_name'] . "'";
-    $items = $conn->query($items_list);
-    $row_editing = $items->fetch_all(MYSQLI_ASSOC);
-
-    foreach ($row_editing as $current_item) {
-        $x++;
-        $current_value = "currentvalue" . $x;
-        $_SESSION[$current_value] = $current_item['id'];
-
-        $replaced_string = "'" . ' option selected="selected" >' . $current_item['grocery_item'];
-        $look_for_string = "'>" . $current_item['grocery_item'] . "</option>";
-        $select_current_item = str_replace($look_for_string, $replaced_string, $default_list_string);
-
-        $string_in_select = "<select>";
-        $replace_in_select = "<select name='select" . $c . "' width='20' style='width:200px'>";
-        $final_select_option = str_replace($string_in_select, $replace_in_select, $select_current_item);
-
-        $get_price = $current_item['price'] * $from_recipe_list['qty'];
-        echo "<td>" . $final_select_option . "</td><td>" . $get_price . "</td></tr>";
-        $overall_price += $get_price;
-    }
-}
-
-$_SESSION['loop_counter'] = $c;
-$_SESSION['recipe_edit_name'] = $recipe_name;
-
-for ($c = 1; $c <= 20; $c++) {
-    $string_in_select = "<select>";
-    $replace_in_select = "<select name='select_add" . $c . "' width='20' style='width:200px'>";
-    $final_select_option = str_replace($string_in_select, $replace_in_select, $default_list_string);
-
-    echo "<tr>";
-    echo "<td><input type='number' step='1' size='8' name='qtext" . $c . "'></td>";
-    echo "<td><input type='number' step='0.001' size='8' name='used_add" . $c . "' placeholder='auto'></td>";
-    echo "<td>" . $final_select_option . "</td><td></td></tr>";
-}
-
-$conn->close();
-echo "<tr><td>Total Price:</td><td colspan='3'>";
-include '../include/recipe_list_price.php';
-echo "</td></tr></table>";
-?>
-<br>
-<INPUT TYPE="SUBMIT">
-</FORM>
-<a href="../index.php">Main Page</a>
+?><!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><?php require_once __DIR__ . '/../include/theme-head.php'; ?><title>Edit recipe</title></head><body>
+<?php include __DIR__.'/../include/toolbar.html'; ?></center><main class="theme-page recipe-editor-page"><h1>Edit <?= site_html(str_replace('_',' ',substr($name,0,-13))) ?></h1>
+<form action="apply_changes_to_shopping_list.php" method="post"><input type="hidden" name="recipe_name" value="<?= site_html($name) ?>"><input type="hidden" name="row_count" value="<?= count($rows) ?>">
+<p><label>URL (optional) <input type="url" name="url" value="<?= site_html($url) ?>"></label></p><p>Qty is what you buy. Used Servings is what the recipe consumes; leave it blank for the automatic Qty × servings-per-item calculation. Keep at least one ingredient with a positive quantity. Use Remove to delete a row.</p>
+<div class="recipe-table-scroll"><table border="1" class="recipe-edit-table"><colgroup><col class="recipe-qty-column"><col class="recipe-servings-column"><col><col class="recipe-remove-column"></colgroup><thead><tr><th>Qty to buy</th><th>Used Servings</th><th>Ingredient</th><th>Remove</th></tr></thead><tbody>
+<?php $i=0;foreach($rows as $row):$i++; ?><tr><td><input type="hidden" name="hidden<?= $i ?>" value="<?= (int)$row['id'] ?>"><input type="number" name="recipe_list<?= $i ?>" value="<?= site_html($row['qty']) ?>" required min="0" max="1000000" step="1"></td><td><input type="number" name="used_servings<?= $i ?>" value="<?= site_html($row['used_servings']) ?>" min="0" max="9999999.999" step="0.001" placeholder="auto"></td><td><?php recipe_edit_item_select('select'.$i,$row['ingredient_name'],$items); ?></td><td><input type="checkbox" name="remove<?= $i ?>" value="1" aria-label="Remove ingredient row <?= $i ?>"></td></tr><?php endforeach; ?>
+<?php for($i=1;$i<=20;$i++): ?><tr><td><input type="number" name="qtext<?= $i ?>" min="0" max="1000000" step="1"></td><td><input type="number" name="used_add<?= $i ?>" min="0" max="9999999.999" step="0.001" placeholder="auto"></td><td><?php recipe_edit_item_select('select_add'.$i,'',$items); ?></td><td>New row</td></tr><?php endfor; ?>
+</tbody></table></div><p><button type="submit">Save recipe changes</button></p></form></main></body></html>

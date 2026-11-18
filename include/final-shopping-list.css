@@ -1,0 +1,59 @@
+.shopping-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:18px 0 8px; }
+.shopping-actions button { min-height:44px; padding:10px 16px; cursor:pointer; font:inherit; border-radius:var(--radius); border:1px solid var(--control-border); }
+.shopping-actions button:disabled { cursor:wait; opacity:.6; }
+.shopping-hint { margin:6px 0; font-size:.9em; }
+#shopping-status { min-height:1.5em; margin:8px 0; }
+#shopping-status.error { color:var(--error); font-weight:bold; }
+.shopping-layout-viewport { max-width:100%; overflow-x:auto; }
+.shopping-layout { display:flex; align-items:flex-start; gap:18px; flex-wrap:nowrap; width:fit-content; max-width:100%; margin:0 auto; }
+.shopping-scroll { min-width:0; max-width:100%; overflow-x:auto; flex:1 1 auto; }
+#shopping-items { border-collapse:collapse; text-align:left; }
+#shopping-items th, #shopping-items td { padding:var(--cell-padding); border:var(--border-width) solid var(--border); }
+#shopping-items td { vertical-align:top; }
+#shopping-items .needs-buying > td { background:var(--table-bg); color:var(--table-text); }
+#shopping-items .pantry-covered > td { background:var(--covered-bg); color:var(--covered-text); }
+#shopping-items .pantry-covered > td > a, #shopping-items .pantry-covered .item-heading > a { color:var(--covered-text); }
+#shopping-items .pantry-qty:focus { outline:2px solid var(--focus); outline-offset:-2px; }
+#shopping-items .center { text-align:center; }
+#shopping-items .description-cell { min-width:225px; max-width:330px; overflow-wrap:anywhere; }
+.item-heading { display:flex; align-items:center; gap:8px; }
+.macro-toggle { flex:0 0 48px; width:48px; height:48px; font-size:26px; line-height:1; cursor:pointer; border:1px solid var(--control-border); border-radius:var(--radius); background:var(--button-bg); color:var(--button-text); touch-action:manipulation; }
+.macro-toggle:focus-visible, .sort-heading:focus-visible, .shopping-actions button:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+.macro-details { margin-top:10px; padding:10px; border:1px solid var(--border); border-radius:var(--radius); background:var(--panel-bg); color:var(--panel-text); }
+.macro-details[hidden] { display:none; }
+.macro-details p { margin:0 0 8px; font-size:.88em; }
+.macro-details dl { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin:0; }
+.macro-card { border-left:5px solid var(--macro-color); background:var(--card-bg); padding:6px; }
+.macro-card dt { font-size:.82em; }
+.macro-card dd { margin:4px 0 0; font-weight:bold; }
+.macro-calories { --macro-color:var(--macro-calories); }
+.macro-fat { --macro-color:var(--macro-fat); }
+.macro-protein { --macro-color:var(--macro-protein); }
+.macro-carbs, .macro-net-carbs { --macro-color:var(--macro-carbs); }
+.macro-fiber { --macro-color:var(--macro-fiber); }
+.macro-missing { margin-top:8px !important; }
+.sort-heading { border:0; background:transparent; color:inherit; font:inherit; font-weight:bold; cursor:pointer; padding:4px; }
+th[aria-sort="ascending"] .sort-heading::after { content:" ▲"; }
+th[aria-sort="descending"] .sort-heading::after { content:" ▼"; }
+.shopping-totals { border:1px solid var(--border); border-radius:var(--radius); padding:12px; width:235px; flex:0 0 235px; box-sizing:border-box; text-align:left; }
+.shopping-totals h2 { margin:0 0 12px; font-size:1.1em; }
+.shopping-totals p { display:flex; justify-content:space-between; gap:20px; }
+.shopping-totals .grand-total { font-size:1.2em; border-top:1px solid var(--border); padding-top:10px; }
+.shopping-totals .full-total { font-size:.85em; }
+#missing-prices { display:block; font-size:.85em; }
+#missing-prices[hidden] { display:none; }
+.clear-table { margin:20px 0; }
+@media (max-width:600px) {
+    .shopping-actions button { flex:1 1 190px; }
+    .shopping-layout { width:max-content; max-width:none; }
+    .shopping-scroll { max-width:none; overflow:visible; flex:0 0 auto; }
+    #shopping-items .description-cell { min-width:230px; }
+    #shopping-form > center > table { width:100%; }
+    #shopping-form > center > table > tbody > tr > td { display:block; text-align:center; }
+}
+
+#shopping-items .needs-buying:nth-child(even) > td { background:var(--table-alt-bg); }
+#shopping-items .needs-buying:hover > td { background:var(--table-hover-bg); }
+.shopping-totals { background:var(--panel-bg); color:var(--panel-text); }
+
+#shopping-items tr[hidden], #toggle-covered-items[hidden], #all-items-covered[hidden] { display:none; }

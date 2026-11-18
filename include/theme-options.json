@@ -1,0 +1,350 @@
+{
+  "page_bg": {
+    "label": "Page background",
+    "group": "Page and links",
+    "type": "color",
+    "default": "#ffffff"
+  },
+  "text": {
+    "label": "Page text",
+    "group": "Page and links",
+    "type": "color",
+    "default": "#111111"
+  },
+  "heading": {
+    "label": "Headings",
+    "group": "Page and links",
+    "type": "color",
+    "default": "#111111"
+  },
+  "muted": {
+    "label": "Secondary text",
+    "group": "Page and links",
+    "type": "color",
+    "default": "#555555"
+  },
+  "link": {
+    "label": "Links",
+    "group": "Page and links",
+    "type": "color",
+    "default": "#0000ee"
+  },
+  "visited": {
+    "label": "Visited links",
+    "group": "Page and links",
+    "type": "color",
+    "default": "#551a8b"
+  },
+  "link_hover": {
+    "label": "Hovered links",
+    "group": "Page and links",
+    "type": "color",
+    "default": "#004080"
+  },
+  "focus": {
+    "label": "Keyboard focus",
+    "group": "Page and links",
+    "type": "color",
+    "default": "#1676be"
+  },
+  "table_bg": {
+    "label": "Table background",
+    "group": "Tables and pantry",
+    "type": "color",
+    "default": "#ffffff"
+  },
+  "table_text": {
+    "label": "Table text",
+    "group": "Tables and pantry",
+    "type": "color",
+    "default": "#111111"
+  },
+  "table_header_bg": {
+    "label": "Table header",
+    "group": "Tables and pantry",
+    "type": "color",
+    "default": "#e8ecef"
+  },
+  "table_header_text": {
+    "label": "Table header text",
+    "group": "Tables and pantry",
+    "type": "color",
+    "default": "#111111"
+  },
+  "table_alt_bg": {
+    "label": "Alternating rows",
+    "group": "Tables and pantry",
+    "type": "color",
+    "default": "#f5f7f9"
+  },
+  "table_hover_bg": {
+    "label": "Hovered row",
+    "group": "Tables and pantry",
+    "type": "color",
+    "default": "#e7f0f8"
+  },
+  "border": {
+    "label": "Table and panel borders",
+    "group": "Tables and pantry",
+    "type": "color",
+    "default": "#888888"
+  },
+  "covered_bg": {
+    "label": "Pantry-covered rows",
+    "group": "Tables and pantry",
+    "type": "color",
+    "default": "#e3e3e3"
+  },
+  "covered_text": {
+    "label": "Pantry-covered text and links",
+    "group": "Tables and pantry",
+    "type": "color",
+    "default": "#535353"
+  },
+  "button_bg": {
+    "label": "Buttons",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#eeeeee"
+  },
+  "button_text": {
+    "label": "Button text",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#222222"
+  },
+  "button_hover": {
+    "label": "Hovered buttons",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#d6e5ef"
+  },
+  "control_border": {
+    "label": "Control borders",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#777777"
+  },
+  "field_bg": {
+    "label": "Input fields and select menus",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#ffffff"
+  },
+  "field_text": {
+    "label": "Input text",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#111111"
+  },
+  "check_accent": {
+    "label": "Checkboxes and radio buttons",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#1877bd"
+  },
+  "disabled_bg": {
+    "label": "Disabled controls",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#dedede"
+  },
+  "disabled_text": {
+    "label": "Disabled text",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#666666"
+  },
+  "nav_bg": {
+    "label": "Navigation buttons",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#04aa6d"
+  },
+  "nav_text": {
+    "label": "Navigation button text",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#ffffff"
+  },
+  "nav_hover": {
+    "label": "Hovered navigation buttons",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#287e42"
+  },
+  "menu_bg": {
+    "label": "Dropdown and autocomplete menus",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#f1f1f1"
+  },
+  "menu_text": {
+    "label": "Menu text",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#111111"
+  },
+  "menu_hover": {
+    "label": "Selected menu item",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#d5e3ef"
+  },
+  "menu_hover_text": {
+    "label": "Selected menu text",
+    "group": "Buttons, fields and menus",
+    "type": "color",
+    "default": "#111111"
+  },
+  "panel_bg": {
+    "label": "Price and editor panels",
+    "group": "Panels and messages",
+    "type": "color",
+    "default": "#fafafa"
+  },
+  "panel_text": {
+    "label": "Panel text",
+    "group": "Panels and messages",
+    "type": "color",
+    "default": "#222222"
+  },
+  "card_bg": {
+    "label": "Nutrition cards",
+    "group": "Panels and messages",
+    "type": "color",
+    "default": "#ffffff"
+  },
+  "error": {
+    "label": "Error messages",
+    "group": "Panels and messages",
+    "type": "color",
+    "default": "#b00020"
+  },
+  "success": {
+    "label": "Saved messages",
+    "group": "Panels and messages",
+    "type": "color",
+    "default": "#216e39"
+  },
+  "chart_bg": {
+    "label": "Chart background",
+    "group": "Pie chart and nutrition",
+    "type": "color",
+    "default": "#ffffff"
+  },
+  "chart_text": {
+    "label": "Chart legend and hover text",
+    "group": "Pie chart and nutrition",
+    "type": "color",
+    "default": "#333333"
+  },
+  "chart_label": {
+    "label": "Chart percentage text",
+    "group": "Pie chart and nutrition",
+    "type": "color",
+    "default": "#ffffff"
+  },
+  "chart_border": {
+    "label": "Pie slice borders",
+    "group": "Pie chart and nutrition",
+    "type": "color",
+    "default": "#ffffff"
+  },
+  "macro_fat": {
+    "label": "Fat",
+    "group": "Pie chart and nutrition",
+    "type": "color",
+    "default": "#2ca02c"
+  },
+  "macro_protein": {
+    "label": "Protein",
+    "group": "Pie chart and nutrition",
+    "type": "color",
+    "default": "#ff7f0e"
+  },
+  "macro_carbs": {
+    "label": "Carbs and net carbs",
+    "group": "Pie chart and nutrition",
+    "type": "color",
+    "default": "#1f77b4"
+  },
+  "macro_fiber": {
+    "label": "Fiber",
+    "group": "Pie chart and nutrition",
+    "type": "color",
+    "default": "#d62728"
+  },
+  "macro_calories": {
+    "label": "Calories",
+    "group": "Pie chart and nutrition",
+    "type": "color",
+    "default": "#9467bd"
+  },
+  "font_family": {
+    "label": "Font",
+    "group": "Size and shape",
+    "type": "select",
+    "choices": {
+      "sans": "System sans serif",
+      "serif": "Serif",
+      "mono": "Monospace"
+    },
+    "default": "serif"
+  },
+  "color_scheme": {
+    "label": "Native control appearance",
+    "group": "Size and shape",
+    "type": "select",
+    "choices": {
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "default": "light"
+  },
+  "font_size": {
+    "label": "Text size (px)",
+    "group": "Size and shape",
+    "type": "number",
+    "min": 12,
+    "max": 26,
+    "step": 1,
+    "default": 16
+  },
+  "cell_padding": {
+    "label": "Table cell padding (px)",
+    "group": "Size and shape",
+    "type": "number",
+    "min": 0,
+    "max": 18,
+    "step": 1,
+    "default": 7
+  },
+  "border_width": {
+    "label": "Table border width (px)",
+    "group": "Size and shape",
+    "type": "number",
+    "min": 0,
+    "max": 3,
+    "step": 1,
+    "default": 1
+  },
+  "radius": {
+    "label": "Button and panel corners (px)",
+    "group": "Size and shape",
+    "type": "number",
+    "min": 0,
+    "max": 20,
+    "step": 1,
+    "default": 6
+  },
+  "chart_hole": {
+    "label": "Donut hole (0 makes a pie)",
+    "group": "Size and shape",
+    "type": "number",
+    "min": 0,
+    "max": 0.7,
+    "step": 0.05,
+    "default": 0
+  }
+}

@@ -1,91 +1,17 @@
 <?php
-include '../include/passwords.php';
-include '../include/toolbar.html';
-echo "<form action='../scripts/save_recipe_instructions.php' method=POST>";
- $showtables= mysqli_query($conn, "SHOW TABLES FROM shopping_list");
- $dropdown_menu="<select name='recipe_name' id='recipe_name'><option value='Pick_Recipe'>Pick Recipe</option>";
- //$selected_recipe=$_GET['selected_recipe'];
-
- 
- while($table = mysqli_fetch_array($showtables)) { 
- 	if($table[0]!="final_list" && $table[0]!="current_week_recipes" && $table[0]!="items" && $table[0]!="recipe_lists"  && $table[0]!="measurements" )
- 	{	
-	if(!empty($_GET['selected_recipe']))
-	{
- 		if($table[0]==$_GET['selected_recipe'])
- 		{
-			$dropdown_menu=$dropdown_menu.'<option selected="selected" value="'.str_replace("_"," ",str_replace("_recipe_table","",$table[0]).'">'.str_replace("_recipe_table","",$table[0])).'</option>';
- 		}
- 		else
- 		{
-			$dropdown_menu=$dropdown_menu.'<option value="'.str_replace("_"," ",str_replace("_recipe_table","",$table[0]).'">'.str_replace("_recipe_table","",$table[0])).'</option>';
- 		}
- 	}
- 	else
- 	{
-		$dropdown_menu=$dropdown_menu.'<option value="'.str_replace("_"," ",str_replace("_recipe_table","",$table[0]).'">'.str_replace("_recipe_table","",$table[0])).'</option>';
- 	}
- 	}	
- }
-    $drop_down_menu=$dropdown_menu."</select>";
-if(!empty($_GET['selected_recipe']) && ($_GET['selected_recipe']!="Pick_Recipe_recipe_table"))
-{
-	$c=0;
-	$sql="select ingredient_name from ".$_GET['selected_recipe'];
-	$result = $conn->query($sql);
-    	$rows = $result->fetch_all(MYSQLI_ASSOC);
-
-	echo "<table><tr><td>";
-	echo "<br>Creating recipe for: ".$drop_down_menu."</td></tr><tr><td>";
-	echo "<table><tr><th>Qty</th><th>Measurement</th><th>Ingredient</th></tr><tr>";
-	foreach($rows as $from_recipe_list)
-	{
-		$c++;
-		echo "<td><input type='text' name='qty".$c."'></td><td>";
-
-
-		$measurements_sql="select unit_of_measurement from measurements";
-		$measurements_results=$conn->query($measurements_sql);
-		$m_rows=$measurements_results->fetch_all(MYSQLI_ASSOC);
-		echo "<select name='measurement".$c."'>";
-		foreach($m_rows as $mrows){
-                        echo '<option value="'.$mrows['unit_of_measurement'].'">'.$mrows['unit_of_measurement'].'</option>';
-		}
-		echo "</select></td><td>";
-            	$items = "select grocery_item from items where id = '".$from_recipe_list['ingredient_name']."'";
-        	$result = $conn->query($items);
-        	$rows = $result->fetch_all(MYSQLI_ASSOC);
-		echo "<select name='ingredient".$c."'>";
-            	foreach ($rows as $row2){
-            		if($from_recipe_list['ingredient_name']==$row2['id'])
-            		{
-                		echo '<option selected="selected" value="'.$row2['grocery_item'].'">'.$row2['grocery_item'].'</option>';
-			}
-			else
-			{
-				echo '<option value="'.$row2['grocery_item'].'">'.$row2['grocery_item'].'</option>';
-			}
-              	}
-            echo '</select></td><tr>';		
-		echo "</tr>";
-	}
-	echo '<input type="hidden" name="count" id="count" value="'.$c.'">';	
-	echo "</table></td></tr><tr><td>";
-	echo "INSTRUCTIONS: </td></tr><tr><td><textarea cols='130' rows='30' name='instructions'></textarea></td></tr>";
-	echo "<tr><td><input type='submit'></td></tr><tr><td><center><a href='../index.php'>Home</a></center></td></tr><form>";
+require_once __DIR__.'/../include/passwords.php';require_once __DIR__.'/../functions/form_checks.php';
+$tables=site_recipe_tables($conn);$selected=$_GET['selected_recipe'] ?? '';$rows=[];$measurements=[];
+if($selected!==''){
+    $selected=site_recipe_name($conn,$selected);
+    $rows=$conn->query('SELECT r.ingredient_name,i.grocery_item FROM `'.$selected.'` r LEFT JOIN items i ON r.ingredient_name=i.ID')->fetch_all(MYSQLI_ASSOC);
+    if(!$rows)throw new InvalidArgumentException('Add ingredients to this recipe before creating its instructions.');
+    foreach($rows as$r)if($r['grocery_item']===null)throw new InvalidArgumentException('Replace missing ingredients in the recipe editor first.');
+    $measurements=$conn->query('SELECT unit_of_measurement FROM measurements')->fetch_all(MYSQLI_ASSOC);
 }
-else
-{
-	echo "Recipe has not been selected<br>";
-	echo $drop_down_menu;
-}
-echo "<center><a href='../index.php'>Home</a></center>";
-?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-$("#recipe_name").on('change', function() {
-        var recipe = $(this).val();
-	window.location.href="create_cooking_instructions.php?selected_recipe="+recipe.replace(/ /g,"_")+"_recipe_table";
-});
-
-</script>
+?><!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><?php require_once __DIR__ . '/../include/theme-head.php'; ?><title>Recipe instructions</title></head><body>
+<?php include __DIR__.'/../include/toolbar.html'; ?></center><main class="theme-page"><h1>Recipe instructions</h1>
+<form method="get"><label>Recipe <select name="selected_recipe" required><option value="">Choose a recipe</option><?php foreach($tables as$name=>$ignored): ?><option value="<?= site_html($name) ?>"<?= $selected===$name?' selected':'' ?>><?= site_html(trim(str_replace('_',' ',substr($name,0,-13))) ?: 'Unnamed recipe') ?></option><?php endforeach; ?></select></label><button type="submit">Load ingredients</button></form>
+<?php if($selected!==''): ?><form method="post" action="../scripts/save_recipe_instructions.php"><input type="hidden" name="recipe_table" value="<?= site_html($selected) ?>"><input type="hidden" name="count" value="<?= count($rows) ?>">
+<table border="1"><thead><tr><th>Quantity used in instructions</th><th>Measurement</th><th>Ingredient</th></tr></thead><tbody><?php $i=0;foreach($rows as$row):$i++; ?><tr><td><input name="qty<?= $i ?>" type="number" step="any" min="0" required></td><td><select name="measurement<?= $i ?>" required><?php foreach($measurements as$m): ?><option><?= site_html($m['unit_of_measurement']) ?></option><?php endforeach; ?></select></td><td><?= site_html($row['grocery_item']) ?><input type="hidden" name="ingredient<?= $i ?>" value="<?= site_html($row['grocery_item']) ?>"></td></tr><?php endforeach; ?></tbody></table>
+<p><label>Steps <textarea name="instructions" rows="18" required style="width:100%;box-sizing:border-box" placeholder="Write the steps in plain language. New lines will be kept."></textarea></label></p><p>Saving replaces this recipe's ingredient instructions and steps. The existing instructions can be viewed below before writing a replacement.</p><button type="submit">Save instructions</button></form>
+<p><a target="_blank" rel="noopener" href="../scripts/show_shopping_list.php?recipe_name=<?= rawurlencode($selected) ?>">View current ingredients and steps</a></p><?php endif; ?></main></body></html>
