@@ -20,7 +20,7 @@ Shopping<br>
 <a href="php/final_shopping_list.php">View Final Shopping List for Week</a><br><br>
 Misc<br>
 <a href="php/themes.php">Theme Options</a><br>
-<a href="todo.html">TODO</a>
+<!--a href="todo.html">TODO</a-->
 
 
 
