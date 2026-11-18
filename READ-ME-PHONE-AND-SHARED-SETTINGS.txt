@@ -1,0 +1,48 @@
+PHONE FIT + SHARED HIDE-GREY SETTING — 2026-11-18
+
+For the website with the previous themes update installed.
+
+1. Extract into your existing shopping_list website root and overwrite matching
+   files. No passwords/configuration or recipe files are included.
+
+2. Import the included SQL once into your existing database:
+
+   mysql -u root -p shopping_list < /media/Websites/shopping_list/sql/add_shopping_display_settings.sql
+
+   Use your usual database username if it is different. The migration adds one
+   small table and is safe to rerun: it does not reset the saved preference or
+   change foods, recipes, prices, pantry quantities, or themes.
+
+3. Hard-refresh with Ctrl+Shift+R (or reload the page on your phone).
+
+PHONE VIEW
+
+The original shopping table and its price box scale together to fit the phone
+width, keeping all nine columns visible at once. Nothing is moved into separate
+cards or removed. Pinch zoom remains available for a closer look. Your selected
+theme, colors, chart, controls, sorting and nutrition details are preserved.
+Wide desktop rendering is unchanged.
+
+SHARED GREY-ROW SETTING
+
+Hide grey items / Show grey items is now saved in MySQL and shared by every
+browser/device. Each page loads the database choice and refreshes it when you
+return to an open tab. Existing browser-only preferences no longer override it.
+The initial shared setting is Show grey items; choose Hide grey items once to
+change it everywhere. A failed save restores the previous view and shows an
+error rather than claiming it was saved. There are no routine Saved notices.
+Sorting still uses its existing per-browser preference.
+
+Open all Walmart links still skips all grey pantry-covered rows, visible or
+hidden. The previous quiet Got it saves and removed helper text are retained.
+
+VERIFICATION
+
+Locally tested in Firefox and Chromium at phone widths 360–600 and a touch
+landscape viewport. All columns and totals fit; theme colors, macro expansion,
+checkbox saves and sorting work. Desktop screenshots and geometry match the
+previous version exactly. Separate browser contexts verified shared settings,
+reload/tab-return synchronization, save-failure rollback, stale-response handling,
+invalid inputs, and repeated SQL imports. PHP syntax checks passed.
+Tests used an isolated SQLite-backed adapter, not your production MySQL server.
+No server files or GitHub repository have been modified by this task.

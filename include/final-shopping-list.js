@@ -8,8 +8,9 @@
         var clearButton = document.getElementById('clear-got-it');
         var openButton = document.getElementById('open-all-links');
         var coveredButton = document.getElementById('toggle-covered-items');
-        var hideCovered = false;
-        var coveredKey = 'shopping-list-hide-covered-v1:' + location.pathname;
+        var hideCovered = coveredButton.getAttribute('aria-pressed') === 'true';
+        var coveredSaveBusy = false;
+        var coveredRequest = 0;
         var confirmed = JSON.parse(document.getElementById('shopping-state').textContent);
         var busy = false;
         var sort = null;
@@ -27,14 +28,82 @@
             coveredButton.textContent = hideCovered ? 'Show grey items (' + hiddenCount + ' hidden)' : 'Hide grey items';
             document.getElementById('all-items-covered').hidden = hiddenCount === 0 || hiddenCount !== rows().length;
         }
-        try { hideCovered = localStorage.getItem(coveredKey) === 'true'; } catch (ignored) {}
         coveredButton.hidden = false;
-        coveredButton.addEventListener('click', function () {
+        coveredButton.addEventListener('click', async function () {
+            if (coveredSaveBusy) return;
+            var previous = hideCovered;
+            coveredRequest++;
+            coveredSaveBusy = true;
+            coveredButton.disabled = true;
             hideCovered = !hideCovered;
-            try { localStorage.setItem(coveredKey, String(hideCovered)); } catch (ignored) {}
             updateCoveredVisibility();
+            message('');
+            try {
+                var data = await post('../ajax/display_settings.php', {hide_covered: hideCovered ? '1' : '0'}, true);
+                if (typeof data.hideCovered !== 'boolean') throw new Error('Unexpected display setting.');
+                hideCovered = data.hideCovered;
+            } catch (error) {
+                hideCovered = previous;
+                message(error.message || 'Could not save the display setting. Previous view restored.', true);
+            } finally {
+                updateCoveredVisibility();
+                coveredSaveBusy = false;
+                coveredButton.disabled = false;
+            }
         });
+        async function refreshCoveredSetting() {
+            if (coveredSaveBusy || document.hidden) return;
+            var request = ++coveredRequest;
+            var controller = new AbortController();
+            var timer = setTimeout(function () { controller.abort(); }, 10000);
+            try {
+                var response = await fetch('../ajax/display_settings.php', {
+                    credentials: 'same-origin', cache: 'no-store', signal: controller.signal
+                });
+                var data = await response.json();
+                if (response.ok && data.ok === true && typeof data.hideCovered === 'boolean' &&
+                    request === coveredRequest && !coveredSaveBusy) {
+                    hideCovered = data.hideCovered;
+                    updateCoveredVisibility();
+                }
+            } catch (ignored) {
+                // Keep the last confirmed view when a returning tab is offline.
+            } finally { clearTimeout(timer); }
+        }
+        window.addEventListener('focus', refreshCoveredSetting);
+        window.addEventListener('pageshow', function (event) { if (event.persisted) refreshCoveredSetting(); });
+        document.addEventListener('visibilitychange', refreshCoveredSetting);
         updateCoveredVisibility();
+
+        // Fit the original table and its price box across a phone screen. This
+        // leaves wide-screen layout and the user's normal pinch zoom untouched.
+        var shoppingLayout = document.querySelector('.shopping-layout');
+        var shoppingViewport = document.querySelector('.shopping-layout-viewport');
+        var phoneView = window.matchMedia('(max-width:600px), (max-width:1000px) and (pointer:coarse)');
+        var fitFrame = null;
+        function fitPhoneTable() {
+            fitFrame = null;
+            if (!phoneView.matches) {
+                shoppingLayout.style.removeProperty('--shopping-mobile-scale');
+                return;
+            }
+            var naturalWidth = Math.max(shoppingLayout.offsetWidth, shoppingLayout.scrollWidth);
+            var scale = naturalWidth ? Math.min(1, shoppingViewport.clientWidth / naturalWidth) : 1;
+            shoppingLayout.style.setProperty('--shopping-mobile-scale', String(Math.floor(scale * 10000) / 10000));
+        }
+        function schedulePhoneFit() {
+            if (fitFrame === null) fitFrame = requestAnimationFrame(fitPhoneTable);
+        }
+        if (window.ResizeObserver) {
+            var shoppingResize = new ResizeObserver(schedulePhoneFit);
+            shoppingResize.observe(shoppingLayout);
+            shoppingResize.observe(shoppingViewport);
+        }
+        window.addEventListener('resize', schedulePhoneFit);
+        if (phoneView.addEventListener) phoneView.addEventListener('change', schedulePhoneFit);
+        else phoneView.addListener(schedulePhoneFit);
+        if (document.fonts) document.fonts.ready.then(schedulePhoneFit);
+        fitPhoneTable();
         function message(text, error) {
             status.textContent = text;
             status.classList.toggle('error', !!error);

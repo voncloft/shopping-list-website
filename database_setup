@@ -3386,6 +3386,30 @@ INSERT INTO `recipe_lists` VALUES (1,'Beverages_recipe_table',''),(2,'Body_recip
 UNLOCK TABLES;
 
 --
+-- Table structure for table `shopping_display_settings`
+--
+
+DROP TABLE IF EXISTS `shopping_display_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shopping_display_settings` (
+  `id` tinyint(3) unsigned NOT NULL,
+  `hide_covered_items` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shopping_display_settings`
+--
+
+LOCK TABLES `shopping_display_settings` WRITE;
+/*!40000 ALTER TABLE `shopping_display_settings` DISABLE KEYS */;
+INSERT INTO `shopping_display_settings` VALUES (1,0);
+/*!40000 ALTER TABLE `shopping_display_settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `shopping_theme_settings`
 --
 
@@ -3496,4 +3520,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-18  6:26:44
+-- Dump completed on 2026-11-18  6:40:13

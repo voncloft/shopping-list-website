@@ -43,9 +43,10 @@ th[aria-sort="descending"] .sort-heading::after { content:" ▼"; }
 #missing-prices { display:block; font-size:.85em; }
 #missing-prices[hidden] { display:none; }
 .clear-table { margin:20px 0; }
-@media (max-width:600px) {
+@media (max-width:600px), (max-width:1000px) and (pointer:coarse) {
     .shopping-actions button { flex:1 1 190px; }
-    .shopping-layout { width:max-content; max-width:none; }
+    .shopping-layout-viewport { width:100%; overflow:visible; }
+    .shopping-layout { width:max-content; max-width:none; zoom:var(--shopping-mobile-scale, 0.25); }
     .shopping-scroll { max-width:none; overflow:visible; flex:0 0 auto; }
     #shopping-items .description-cell { min-width:230px; }
     #shopping-form > center > table { width:100%; }

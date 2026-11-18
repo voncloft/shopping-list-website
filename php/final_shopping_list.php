@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><?php require_once __DIR__ . '/../include/theme-head.php'; ?>
 <title>Shopping List</title>
-<link rel="stylesheet" href="../include/final-shopping-list.css?v=20261118e">
-<script src="../include/final-shopping-list.js?v=20261118e" defer></script>
+<link rel="stylesheet" href="../include/final-shopping-list.css?v=20261118f">
+<script src="../include/final-shopping-list.js?v=20261118f" defer></script>
 </head>
 <body>
 <?php
@@ -13,6 +13,10 @@ include_once __DIR__ . '/../include/passwords.php';
 include_once __DIR__ . '/../include/toolbar.html';
 require_once __DIR__ . '/../functions/get_servings.php';
 require_once __DIR__ . '/../functions/final_list_helpers.php';
+require_once __DIR__ . '/../functions/shopping_display_settings.php';
+$hideCovered = false;
+try { $hideCovered = shopping_display_settings($conn)['hideCovered']; }
+catch (Throwable $e) { error_log('Shopping display settings unavailable; showing all rows.'); }
 getServings();
 $servings_from_db = max(1, (float)$servings_from_db);
 $rows = final_list_rows($conn);
@@ -49,7 +53,7 @@ include __DIR__ . '/../chart/macros.php';
 <div class="shopping-actions">
     <button type="button" id="open-all-links">Open all Walmart links</button>
     <button type="button" id="clear-got-it"<?= count($summary['checkedIds']) === 0 ? ' disabled' : '' ?>>Clear all Got it</button>
-    <button type="button" id="toggle-covered-items" aria-pressed="false" aria-controls="shopping-items" hidden>Hide grey items</button>
+    <button type="button" id="toggle-covered-items" aria-pressed="<?= $hideCovered ? 'true' : 'false' ?>" aria-controls="shopping-items" hidden>Hide grey items</button>
 </div>
 <p id="all-items-covered" hidden>All items are covered by your pantry. Choose Show grey items to see them.</p>
 <p id="shopping-status" role="status" aria-live="polite"></p>
