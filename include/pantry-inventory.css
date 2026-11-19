@@ -1,0 +1,22 @@
+/* Pantry fills the browser width and uses normal vertical page scrolling. */
+.theme-page.pantry-page { max-width:none; margin:25px 0; padding:0 0 40px; }
+.pantry-inventory-scroll { width:100%; max-height:none; overflow:visible; }
+.pantry-inventory-table { width:100%; table-layout:fixed; }
+.pantry-inventory-table .pantry-item-column { width:52%; }
+.pantry-inventory-table .pantry-department-column { width:17%; }
+.pantry-inventory-table .pantry-quantity-column { width:17%; }
+.pantry-inventory-table .pantry-status-column { width:14%; }
+.pantry-inventory-table th, .pantry-inventory-table td { overflow-wrap:anywhere; }
+.pantry-inventory-table input[type=number] { width:100%; min-width:0; max-width:100%; box-sizing:border-box; }
+.pantry-inventory-table .row-save-status { min-width:0; max-width:none; }
+.pantry-inventory-table td:last-child { position:static; }
+.pantry-inventory-table th:last-child { right:auto; }
+.pantry-inventory-table button { max-width:100%; overflow-wrap:anywhere; }
+@media (max-width:600px) {
+    .pantry-inventory-table .pantry-item-column { width:40%; }
+    .pantry-inventory-table .pantry-department-column { width:15%; }
+    .pantry-inventory-table .pantry-quantity-column { width:25%; }
+    .pantry-inventory-table .pantry-status-column { width:20%; }
+    .pantry-inventory-table th, .pantry-inventory-table td { padding:min(var(--cell-padding), 4px); }
+    .pantry-inventory-table input[type=number] { min-height:44px; }
+}

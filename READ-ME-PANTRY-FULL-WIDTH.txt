@@ -1,0 +1,10 @@
+Extract over the matching files in your shopping_list website folder, then
+hard-refresh with Ctrl+Shift+R. No SQL import is needed.
+
+This removes the pantry page's 1060px width limit and centered side gutters.
+The table fills the available browser width with the normal 8px page margins.
+All four columns remain visible, and long names wrap. Only normal vertical
+page scrolling is needed. Theme colors and automatic saving are preserved.
+Other website pages are unchanged. This includes the earlier pantry fit fix.
+
+Verified in Firefox at widths 360, 412, 1333, 1920 and 2560 pixels.

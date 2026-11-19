@@ -1,0 +1,15 @@
+Extract into your existing shopping_list website root and overwrite the three
+matching files, then hard-refresh with Ctrl+Shift+R. No SQL import is needed.
+
+Pantry inventory keeps Item, Department, Quantity at home, and Status together
+within the page width. Long names and messages wrap. Quantity fields stay visible
+and editable. The table uses normal up/down page scrolling, with no separate
+scrolling box or sideways scrolling needed to reach the quantity fields.
+
+Your chosen theme, automatic per-row saves and Enter-to-save are preserved.
+The final shopping list and other editing pages are unchanged by this patch.
+
+Checked locally in Firefox and Chromium at widths 360–1333px, including large
+26px theme text and 18px theme padding, long product names and error messages,
+real test-database quantity saves, failed-save retry and the no-JavaScript Save
+button. No production database or server files have been changed.
