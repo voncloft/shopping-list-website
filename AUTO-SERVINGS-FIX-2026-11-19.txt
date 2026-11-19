@@ -1,0 +1,41 @@
+AUTOMATIC SERVINGS FIX - November 19, 2026
+
+The imported shopping list previously stored the calculated result for automatic
+servings. Editing an item's Servings then changed the recipe page but left the
+already-imported copy with the old result. Removing and re-importing the recipe
+recalculated it, which is why that corrected the potato entry.
+
+This update preserves automatic servings on new imports and when saving an
+imported recipe. Subsequent item serving edits then carry through on page reload.
+Explicit Used Servings remain explicit, including zero; batch multipliers and
+Got it checkmarks are preserved when saving a recipe.
+
+The small update contains only:
+  scripts/select_for_final.php
+  scripts/apply_changes_to_shopping_list.php
+  this note
+
+On the server, put shopping-list-auto-servings-fix-2026-11-19.zip in
+/media/Websites/shopping_list, then run:
+
+cd /media/Websites/shopping_list
+backup_dir="/media/Websites/shopping-list-auto-servings-backup-$(date +%Y%m%d-%H%M%S)"
+mkdir -p "$backup_dir/scripts"
+cp -p scripts/select_for_final.php scripts/apply_changes_to_shopping_list.php "$backup_dir/scripts/"
+unzip -o shopping-list-auto-servings-fix-2026-11-19.zip
+
+No SQL import is required. Your delete/re-import already corrected the existing
+potato count. This patch does not rewrite existing imported data. For another
+stale recipe, remove/re-import it as you did before. With the update installed,
+automatic rows in that new import will remain automatic.
+
+The displayed calories still use your saved nutrition values. With potato Qty 7,
+Servings 1, 81.7 calories per nutrition serving, and Prep Portions 7, the potato's
+contribution is 81.70 calories per prep portion. This is arithmetic verification,
+not independent verification of the nutrition for a whole potato.
+
+Verified in an isolated PHP browser fixture: imports at 1, 2 and 3 batches,
+subsequent item serving edits, explicit/zero servings, imported recipe saves,
+checkmarks, matching recipe/final-page calculations, and PHP syntax. The fixture
+uses SQLite through a mysqli adapter; the production MySQL database was not
+accessed or modified.

@@ -28,8 +28,9 @@ try {
         $week->bind_param('s',$name); $week->execute();
         foreach ($summary['rows'] as $row) {
             $qty=(float)$row['qty']*$amount;
-            $used=($row['used_servings'] === null || $row['used_servings'] === '') ? (float)$row['qty']*(float)$row['servings'] : (float)$row['used_servings'];
-            $used*=$amount; $id=(int)$row['ingredient_name'];
+            // Keep auto as NULL so changes to an item's servings reach the imported list.
+            $used=($row['used_servings'] === null || $row['used_servings'] === '') ? null : (float)$row['used_servings']*$amount;
+            $id=(int)$row['ingredient_name'];
             $item->bind_param('ddis',$qty,$used,$id,$name); $item->execute();
         }
     }

@@ -26,7 +26,7 @@ for($i=1;$i<=20;$i++){
 }
 $usable=false;foreach($next as $r)if($r[0]>0 || $r[1]>0)$usable=true;
 if(!$next || !$usable)throw new InvalidArgumentException('Keep at least one ingredient with a positive quantity. The existing recipe was not changed.');
-site_transaction($conn,function()use($conn,$name,$url,$next,$old,$items){
+site_transaction($conn,function()use($conn,$name,$url,$next,$old){
     $imported=false;foreach($conn->query('SELECT recipes FROM current_week_recipes')->fetch_all(MYSQLI_ASSOC)as$r)if($r['recipes']===$name)$imported=true;
     $factor=1;$checks=[];
     if($imported){
@@ -39,7 +39,8 @@ site_transaction($conn,function()use($conn,$name,$url,$next,$old,$items){
     site_execute($conn,'UPDATE recipe_lists SET url=? WHERE recipe_name=?','ss',$url,$name);
     if($imported){
         site_execute($conn,'DELETE FROM final_list WHERE recipe_table_name=?','s',$name);
-        foreach($next as$r){[$qty,$used,$id]=$r;$consumed=($used===null?$qty*(float)$items[$id]['servings']:$used)*$factor;$qty*=$factor;$checked=$checks[$id]??0;
+        // Auto remains NULL; only explicitly entered servings are multiplied and stored.
+        foreach($next as$r){[$qty,$used,$id]=$r;$consumed=$used===null?null:$used*$factor;$qty*=$factor;$checked=$checks[$id]??0;
             site_execute($conn,'INSERT INTO final_list (QFRT,used_servings,IFRT,recipe_table_name,checked) VALUES (?,?,?,?,?)','ddisi',$qty,$consumed,$id,$name,$checked);
         }
     }
