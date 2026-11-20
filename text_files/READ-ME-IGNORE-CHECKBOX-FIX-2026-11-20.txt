@@ -1,0 +1,44 @@
+IGNORE CHECKBOX FIX - November 20, 2026
+
+The bug was reproduced in Firefox: after an item was ignored and the page
+reloaded, the browser restored that checked Ignore box onto a different row.
+The other item had not been checked or deleted in the database.
+
+This update gives each checkbox its own item-specific ID, disables browser
+autocomplete for those checkboxes, clears the Ignore mark before reloading,
+and restores Got it marks from the saved item IDs when the page is shown.
+Ignore boxes are actions and always start unchecked.
+
+FILES
+  include/final-shopping-list.js
+  php/final_shopping_list.php
+  text_files/READ-ME-IGNORE-CHECKBOX-FIX-2026-11-20.txt
+
+INSTALL
+Copy shopping-list-ignore-checkbox-fix-2026-11-20.zip into your website folder
+on the server, then run:
+
+cd /media/Websites/shopping_list
+backup_dir="/media/Websites/shopping-list-ignore-backup-$(date +%Y%m%d-%H%M%S)"
+mkdir -p "$backup_dir/include" "$backup_dir/php"
+cp -p include/final-shopping-list.js "$backup_dir/include/"
+cp -p php/final_shopping_list.php "$backup_dir/php/"
+unzip -o shopping-list-ignore-checkbox-fix-2026-11-20.zip
+
+Reload the final shopping page. Its script URL has a new version so the browser
+requests the updated JavaScript. No SQL import is needed.
+
+The update does not change database records, checkbox dimensions, themes, table
+layout, or the normal meaning of Ignore. Your original files are in backup_dir.
+To roll back in the same shell:
+
+cp -p "$backup_dir/include/final-shopping-list.js" include/
+cp -p "$backup_dir/php/final_shopping_list.php" php/
+
+VALIDATION
+Reproduced the wrong Ignore mark with the previous source and verified the fix
+in Firefox and Chromium, including Chromium phone/touch emulation. Covered
+repeated Ignore actions, saved Got it marks, selected sorting, reload/back,
+failed requests, and delayed requests. Also checked the existing final-list
+flows and JavaScript/PHP syntax. Tests used an isolated PHP fixture with a
+SQLite adapter; the production server and MySQL database were not accessed.

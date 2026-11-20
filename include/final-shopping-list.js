@@ -118,6 +118,8 @@
         function restoreChecks(summary) {
             var checked = new Set(summary.checkedIds.map(String));
             rows().forEach(function (row) {
+                // Ignore is a one-shot action, never a saved checkbox state.
+                row.querySelector('.ignoreIt').checked = false;
                 row.querySelector('.checkIt').checked = checked.has(row.dataset.itemId);
             });
         }
@@ -189,6 +191,7 @@
                 setBusy(true);
                 message('Ignoring item…');
                 post('../ajax/ignore.php', {id: checkbox.value}, false).then(function () {
+                    checkbox.checked = false;
                     location.reload();
                 }).catch(function () {
                     checkbox.checked = false;
@@ -245,6 +248,15 @@
                 var column = Number(heading.dataset.column);
                 applySort(column, sort && sort.column === column && sort.direction === 'asc' ? 'desc' : 'asc');
             }
+        });
+        // Browsers can restore form state by position after a row disappears.
+        // Use saved item IDs before sorting and again after browser restoration.
+        restoreChecks(confirmed);
+        window.addEventListener('pageshow', function () {
+            if (busy) return;
+            restoreChecks(confirmed);
+            if (sort) applySort(sort.column, sort.direction);
+            setBusy(false);
         });
         try {
             var saved = JSON.parse(localStorage.getItem(sortKey));

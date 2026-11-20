@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"><?php require_once __DIR__ . '/../include/theme-head.php'; ?>
 <title>Shopping List</title>
 <link rel="stylesheet" href="../include/final-shopping-list.css?v=20261118f">
-<script src="../include/final-shopping-list.js?v=20261118f" defer></script>
+<script src="../include/final-shopping-list.js?v=20261120a" defer></script>
 </head>
 <body>
 <?php
@@ -88,8 +88,8 @@ foreach ($headers as $column => $header):
     }
 ?>
 <tr class="<?= $covered ? 'pantry-covered' : 'needs-buying' ?>" data-pantry-covered="<?= $covered ? '1' : '0' ?>" data-item-id="<?= $id ?>" data-price-cents="<?= $cents ?>" data-missing-price="<?= !$covered && ($row['price'] === null || $row['price'] === '') ? '1' : '0' ?>">
-<td class="center"><input type="checkbox" class="ignoreIt" value="<?= $id ?>" aria-label="Ignore <?= final_list_html($name) ?>"></td>
-<td class="center"><input type="checkbox" class="checkIt" value="<?= $id ?>" aria-label="Got <?= final_list_html($name) ?>"<?= (int)$row['checked'] === 1 ? ' checked' : '' ?>></td>
+<td class="center"><input type="checkbox" class="ignoreIt" id="ignore-item-<?= $id ?>" autocomplete="off" value="<?= $id ?>" aria-label="Ignore <?= final_list_html($name) ?>"></td>
+<td class="center"><input type="checkbox" class="checkIt" id="got-item-<?= $id ?>" autocomplete="off" value="<?= $id ?>" aria-label="Got <?= final_list_html($name) ?>"<?= (int)$row['checked'] === 1 ? ' checked' : '' ?>></td>
 <td class="center" data-sort-value="<?= final_list_html($row['totalsum']) ?>"><?= final_list_html($row['totalsum']) ?></td>
 <td contenteditable="true" class="pantry-qty center" role="textbox" tabindex="0" inputmode="decimal" enterkeyhint="done" title="Edit pantry quantity and press Enter to save" data-item-id="<?= $id ?>" data-original="<?= final_list_html($row['pantryqty'] ?? 0) ?>" aria-label="Pantry quantity for <?= final_list_html($name) ?>"><?= final_list_html($row['pantryqty'] ?? 0) ?></td>
 <td class="description-cell" data-sort-value="<?= final_list_html($name) ?>">
